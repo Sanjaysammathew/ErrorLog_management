@@ -6,11 +6,13 @@ from fastapi import FastAPI
 
 from app.api.routers.health import router as health_router
 from app.api.routers.auth import router as auth_router
+from app.api.routers.categories import router as categories_router
 from app.core.config import settings
 from app.database.session import engine
 from app.exceptions.custom_exceptions import (
     InvalidCredentialsError,
     InvalidTokenError,
+    CategoryAlreadyExistsError,
     ManagerNotFoundError,
     PermissionDeniedError,
     UserAlreadyExistsError,
@@ -19,6 +21,7 @@ from app.exceptions.custom_exceptions import (
 from app.exceptions.handlers import (
     invalid_credentials_handler,
     invalid_token_handler,
+    category_already_exists_handler,
     manager_not_found_handler,
     permission_denied_handler,
     user_already_exists_handler,
@@ -57,9 +60,13 @@ app = FastAPI(
 app.add_exception_handler(UserAlreadyExistsError, user_already_exists_handler)
 app.add_exception_handler(InvalidCredentialsError, invalid_credentials_handler)
 app.add_exception_handler(InvalidTokenError, invalid_token_handler)
+app.add_exception_handler(
+    CategoryAlreadyExistsError, category_already_exists_handler
+)
 app.add_exception_handler(ManagerNotFoundError, manager_not_found_handler)
 app.add_exception_handler(PermissionDeniedError, permission_denied_handler)
 app.add_exception_handler(UserNotFoundError, user_not_found_handler)
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(users_router)
+app.include_router(categories_router)

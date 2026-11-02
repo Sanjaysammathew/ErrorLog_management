@@ -40,3 +40,7 @@ class ManagerNotFoundError(AppError):
 
 class UserNotFoundError(AppError):
     default_message = "User not found"
+
+
+class CategoryAlreadyExistsError(AppError):
+    default_message = "Category name is already registered"

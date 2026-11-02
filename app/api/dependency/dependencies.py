@@ -13,7 +13,10 @@ from app.exceptions.custom_exceptions import PermissionDeniedError
 from app.models.user import UserRole, user
 from app.repositories.implementations import UserRepository
 from app.repositories.interfaces import UserInterface
+from app.repositories.implementations import CategoryRepository
+from app.repositories.interfaces import CategoryInterface
 from app.services.auth_service import AuthService
+from app.services.category_service import CategoryService
 from app.services.user_service import UserService
 
 
@@ -27,6 +30,18 @@ def get_auth_service(
     user_repository: UserInterface = Depends(get_user_repository),
 ) -> AuthService:
     return AuthService(user_repository)
+
+
+def get_category_repository(
+    db: AsyncSession = Depends(get_db),
+) -> CategoryInterface:
+    return CategoryRepository(db)
+
+
+def get_category_service(
+    category_repository: CategoryInterface = Depends(get_category_repository),
+) -> CategoryService:
+    return CategoryService(category_repository)
 
 
 def get_user_service(
