@@ -20,10 +20,20 @@ class UserCreate(UserBase):
 
 
 class UserUpdate(BaseModel):
-    name: Optional[str] = None
+    username: Optional[str] = None
     email: Optional[EmailStr] = None
     department: Optional[str] = None
     manager_id: Optional[int] = None
+    password: Optional[str] = Field(default=None, min_length=6)
+
+
+class UserResponse(UserBase):
+    id: int
+    manager_id: Optional[int] = None
+    created_at: datetime
+    is_active: bool
+
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserListResponse(BaseModel):
@@ -31,11 +41,3 @@ class UserListResponse(BaseModel):
     total: int
     page: int
     page_size: int
-
-
-class UserResponse(UserBase):
-    id: int
-    manager_id: Optional[int] = None
-    created_at: datetime
-
-    model_config = ConfigDict(from_attributes=True)

@@ -7,6 +7,7 @@ from app.exceptions.custom_exceptions import (
     ManagerNotFoundError,
     PermissionDeniedError,
     UserAlreadyExistsError,
+    UserNotFoundError,
 )
 
 
@@ -51,5 +52,14 @@ async def manager_not_found_handler(
 ) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT,
+        content={"detail": exc.message},
+    )
+
+
+async def user_not_found_handler(
+    _: Request, exc: UserNotFoundError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
         content={"detail": exc.message},
     )

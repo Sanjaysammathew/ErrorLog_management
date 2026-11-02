@@ -14,6 +14,7 @@ from app.models.user import UserRole, user
 from app.repositories.implementations import UserRepository
 from app.repositories.interfaces import UserInterface
 from app.services.auth_service import AuthService
+from app.services.user_service import UserService
 
 
 def get_user_repository(
@@ -26,6 +27,12 @@ def get_auth_service(
     user_repository: UserInterface = Depends(get_user_repository),
 ) -> AuthService:
     return AuthService(user_repository)
+
+
+def get_user_service(
+    user_repository: UserInterface = Depends(get_user_repository),
+) -> UserService:
+    return UserService(user_repository)
 
 
 async def get_current_user(

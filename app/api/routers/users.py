@@ -1,35 +1,60 @@
 from fastapi import APIRouter, Depends, Query, status
-from fastapi.security import OAuth2PasswordRequestForm
 
-from app.core.security import create_access_token
-from app.api.dependency.dependencies import (
-    get_auth_service,
-    get_current_user,
-    require_roles,
-)
+from app.api.dependency.dependencies import get_user_service, require_roles
 from app.models.user import UserRole, user
-from app.schemas.authSchema import Token
-from app.schemas.userSchema import UserCreate, UserResponse
-from app.services.auth_service import AuthService
-from app.schemas.userSchema import UserListResponse
+from app.schemas.userSchema import (
+    UserCreate,
+    UserListResponse,
+    UserResponse,
+    UserUpdate,
+)
+from app.services.user_service import UserService
 
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 async def register(
     user_data: UserCreate,
-    auth_service: AuthService = Depends(get_auth_service),
-    role_checker: user = Depends(require_roles(UserRole.ADMIN)),
+    user_service: UserService = Depends(get_user_service),
+    _: user = Depends(require_roles(UserRole.ADMIN)),
 ) -> user:
-    return await auth_service.register_user(user_data)
+    return await user_service.register_user(user_data)
 
 
 @router.get("", response_model=UserListResponse)
 async def list_users(
     page: int = Query(1, ge=1),
     page_size: int = Query(10, ge=1, le=100),
-    auth_service: AuthService = Depends(get_auth_service),
+    user_service: UserService = Depends(get_user_service),
     _: user = Depends(require_roles(UserRole.ADMIN)),
 ) -> UserListResponse:
-    return await auth_service.list_users(page, page_size)
+    return await user_service.list_users(page, page_size)
+
+
+@router.get("/{user_id}", response_model=UserResponse)
+async def get_user(
+    user_id: int,
+    user_service: UserService = Depends(get_user_service),
+    _: user = Depends(require_roles(UserRole.ADMIN)),
+) -> user:
+    return await user_service.get_user(user_id)
+
+
+@router.put("/{user_id}", response_model=UserResponse)
+async def update_user(
+    user_id: int,
+    user_data: UserUpdate,
+    user_service: UserService = Depends(get_user_service),
+    _: user = Depends(require_roles(UserRole.ADMIN)),
+) -> user:
+    return await user_service.update_user(user_id, user_data)
+
+
+@router.patch("/{user_id}/deactivate", response_model=UserResponse)
+async def deactivate_user(
+    user_id: int,
+    user_service: UserService = Depends(get_user_service),
+    _: user = Depends(require_roles(UserRole.ADMIN)),
+) -> user:
+    return await user_service.deactivate_user(user_id)

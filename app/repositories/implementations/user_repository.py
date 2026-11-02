@@ -2,10 +2,10 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.exceptions.custom_exceptions import UserAlreadyExistsError
+from app.exceptions.custom_exceptions import UserAlreadyExistsError, UserNotFoundError
 from app.models.user import UserRole, user
 from app.repositories.interfaces.user_interface import UserInterface
-from sqlalchemy import func, select
+from sqlalchemy import func
 
 
 class UserRepository(UserInterface):
@@ -44,3 +44,20 @@ class UserRepository(UserInterface):
     async def count_all(self) -> int:
         result = await self.db.execute(select(func.count(user.id)))
         return result.scalar_one()
+
+    async def update(self, user_id: int, changes: dict) -> user:
+        result = await self.db.execute(select(user).where(user.id == user_id))
+        existing_user = result.scalar_one_or_none()
+        if existing_user is None:
+            raise UserNotFoundError
+
+        for key, value in changes.items():
+            setattr(existing_user, key, value)
+
+        await self.db.commit()
+        await self.db.refresh(existing_user)
+        return existing_user
+
+    async def get_by_id(self, user_id: int) -> user | None:
+        result = await self.db.execute(select(user).where(user.id == user_id))
+        return result.scalar_one_or_none()

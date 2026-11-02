@@ -14,6 +14,7 @@ from app.exceptions.custom_exceptions import (
     ManagerNotFoundError,
     PermissionDeniedError,
     UserAlreadyExistsError,
+    UserNotFoundError,
 )
 from app.exceptions.handlers import (
     invalid_credentials_handler,
@@ -21,6 +22,7 @@ from app.exceptions.handlers import (
     manager_not_found_handler,
     permission_denied_handler,
     user_already_exists_handler,
+    user_not_found_handler,
 )
 from app.models import ErrorCategory, error_ticket, ticket_approval, ticket_remark
 from app.models import ticket_status_history, user
@@ -57,6 +59,7 @@ app.add_exception_handler(InvalidCredentialsError, invalid_credentials_handler)
 app.add_exception_handler(InvalidTokenError, invalid_token_handler)
 app.add_exception_handler(ManagerNotFoundError, manager_not_found_handler)
 app.add_exception_handler(PermissionDeniedError, permission_denied_handler)
+app.add_exception_handler(UserNotFoundError, user_not_found_handler)
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(users_router)

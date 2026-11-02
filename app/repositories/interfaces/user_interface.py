@@ -27,3 +27,11 @@ class UserInterface(ABC):
     @abstractmethod
     async def count_all(self) -> int:
         raise NotImplementedError
+
+    @abstractmethod
+    async def get_by_id(self, user_id: int) -> user | None:
+        raise NotImplementedError
+
+    @abstractmethod
+    async def update(self, user_id: int, changes: dict) -> user:
+        raise NotImplementedError

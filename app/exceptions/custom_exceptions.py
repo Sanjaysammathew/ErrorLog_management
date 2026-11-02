@@ -36,3 +36,7 @@ class ManagerNotFoundError(AppError):
     """Raised when an employee cannot be assigned a manager."""
 
     default_message = "No manager is available for employee assignment"
+
+
+class UserNotFoundError(AppError):
+    default_message = "User not found"
