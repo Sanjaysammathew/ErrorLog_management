@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.exceptions.custom_exceptions import UserAlreadyExistsError
 from app.models.user import UserRole, user
 from app.repositories.interfaces.user_interface import UserInterface
+from sqlalchemy import func, select
 
 
 class UserRepository(UserInterface):
@@ -15,9 +16,7 @@ class UserRepository(UserInterface):
         result = await self.db.execute(select(user).where(user.email == email))
         return result.scalar_one_or_none()
 
-    async def get_by_username_or_email(
-        self, username: str, email: str
-    ) -> user | None:
+    async def get_by_username_or_email(self, username: str, email: str) -> user | None:
         result = await self.db.execute(
             select(user).where((user.username == username) | (user.email == email))
         )
@@ -37,3 +36,11 @@ class UserRepository(UserInterface):
 
         await self.db.refresh(new_user)
         return new_user
+
+    async def get_all(self, offset: int, limit: int) -> list[user]:
+        result = await self.db.execute(select(user).offset(offset).limit(limit))
+        return result.scalars().all()
+
+    async def count_all(self) -> int:
+        result = await self.db.execute(select(func.count(user.id)))
+        return result.scalar_one()

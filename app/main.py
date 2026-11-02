@@ -5,6 +5,7 @@ from collections.abc import AsyncIterator
 from fastapi import FastAPI
 
 from app.api.routers.health import router as health_router
+from app.api.routers.auth import router as auth_router
 from app.core.config import settings
 from app.database.session import engine
 from app.exceptions.custom_exceptions import (
@@ -23,7 +24,7 @@ from app.exceptions.handlers import (
 )
 from app.models import ErrorCategory, error_ticket, ticket_approval, ticket_remark
 from app.models import ticket_status_history, user
-from app.api.routers.users import router as auth_router
+from app.api.routers.users import router as users_router
 from app.scripts.create_admin import create_admin
 from app.scripts.create_manager import create_manager
 from app.utils.logging_config import configure_logging
@@ -58,3 +59,4 @@ app.add_exception_handler(ManagerNotFoundError, manager_not_found_handler)
 app.add_exception_handler(PermissionDeniedError, permission_denied_handler)
 app.include_router(health_router)
 app.include_router(auth_router)
+app.include_router(users_router)

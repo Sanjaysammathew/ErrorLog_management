@@ -9,9 +9,7 @@ class UserInterface(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def get_by_username_or_email(
-        self, username: str, email: str
-    ) -> user | None:
+    async def get_by_username_or_email(self, username: str, email: str) -> user | None:
         raise NotImplementedError
 
     @abstractmethod
@@ -20,4 +18,12 @@ class UserInterface(ABC):
 
     @abstractmethod
     async def create(self, new_user: user) -> user:
+        raise NotImplementedError
+
+    @abstractmethod
+    async def get_all(self, offset: int, limit: int) -> list[user]:
+        raise NotImplementedError
+
+    @abstractmethod
+    async def count_all(self) -> int:
         raise NotImplementedError

@@ -26,6 +26,13 @@ class UserUpdate(BaseModel):
     manager_id: Optional[int] = None
 
 
+class UserListResponse(BaseModel):
+    items: list[UserResponse]
+    total: int
+    page: int
+    page_size: int
+
+
 class UserResponse(UserBase):
     id: int
     manager_id: Optional[int] = None

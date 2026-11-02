@@ -38,12 +38,22 @@ class AuthService:
         return await self.user_repository.create(new_user)
 
     async def authenticate_user(self, login: str, password: str) -> user:
-        current_user = await self.user_repository.get_by_username_or_email(
-            login, login
-        )
+        current_user = await self.user_repository.get_by_username_or_email(login, login)
         if current_user is None or not verify_password(
             password, current_user.hashed_password
         ):
             raise InvalidCredentialsError
 
         return current_user
+
+    async def list_users(
+        self, offset: int = 0, limit: int = 10
+    ) -> tuple[list[user], int]:
+        users = await self.user_repository.get_all(offset, limit)
+        total_count = await self.user_repository.count_all()
+        return {
+            "items": users,
+            "total": total_count,
+            "page": offset // limit + 1,
+            "page_size": limit,
+        }
