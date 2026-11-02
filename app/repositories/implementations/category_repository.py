@@ -31,3 +31,15 @@ class CategoryRepository(CategoryInterface):
     async def get_all(self) -> list[ErrorCategory]:
         result = await self.db.execute(select(ErrorCategory))
         return result.scalars().all()
+
+    async def get_by_id(self, category_id: int) -> ErrorCategory | None:
+        result = await self.db.execute(
+            select(ErrorCategory).where(ErrorCategory.id == category_id)
+        )
+        return result.scalar_one_or_none()
+
+    async def update(self, category: ErrorCategory) -> ErrorCategory:
+        self.db.add(category)
+        await self.db.commit()
+        await self.db.refresh(category)
+        return category

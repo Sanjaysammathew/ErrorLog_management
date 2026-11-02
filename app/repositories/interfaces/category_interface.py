@@ -15,3 +15,11 @@ class CategoryInterface(ABC):
     @abstractmethod
     async def get_all(self) -> list[ErrorCategory]:
         raise NotImplementedError
+
+    @abstractmethod
+    async def get_by_id(self, category_id: int) -> ErrorCategory | None:
+        raise NotImplementedError
+
+    @abstractmethod
+    async def update(self, category: ErrorCategory) -> ErrorCategory:
+        raise NotImplementedError
