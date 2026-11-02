@@ -17,6 +17,12 @@ class Settings(BaseSettings):
     )
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ADMIN_USERNAME: str | None = None
+    ADMIN_EMAIL: str | None = None
+    ADMIN_PASSWORD: SecretStr | None = None
+    MANAGER_USERNAME: str | None = None
+    MANAGER_EMAIL: str | None = None
+    MANAGER_PASSWORD: SecretStr | None = None
 
     @property
     def database_url(self) -> str:
