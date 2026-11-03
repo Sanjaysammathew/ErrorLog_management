@@ -24,6 +24,31 @@ from app.scripts.ticket_number import generate_ticket_number
 
 
 class TicketService:
+    APPROVAL_KEYWORDS = ("paid software", "hardware replacement")
+    SLA_KEYWORDS = (
+        ("hardware replacement", 24),
+        ("paid software", 8),
+        ("network", 2),
+        ("keyboard", 8),
+    )
+
+    @classmethod
+    def _requires_approval(cls, ticket_data: TicketCreate) -> bool:
+        searchable_text = " ".join(
+            value for value in (ticket_data.title, ticket_data.description) if value
+        ).casefold()
+        return any(keyword in searchable_text for keyword in cls.APPROVAL_KEYWORDS)
+
+    @classmethod
+    def _get_sla_hours(cls, ticket_data: TicketCreate, fallback: int) -> int:
+        searchable_text = " ".join(
+            value for value in (ticket_data.title, ticket_data.description) if value
+        ).casefold()
+        for keyword, hours in cls.SLA_KEYWORDS:
+            if keyword in searchable_text:
+                return hours
+        return fallback
+
     def __init__(
         self,
         ticket_repository: TicketInterface,
@@ -62,8 +87,9 @@ class TicketService:
 
         # Database DateTime columns are timezone-naive; store UTC consistently.
         created_at = datetime.now(timezone.utc).replace(tzinfo=None)
-        due_at = created_at + timedelta(hours=category.default_sla_hours)
-        requires_approval = category.requires_approval_default
+        sla_hours = self._get_sla_hours(ticket_data, category.default_sla_hours)
+        due_at = created_at + timedelta(hours=sla_hours)
+        requires_approval = self._requires_approval(ticket_data)
         initial_status = (
             TicketStatus.PENDING_APPROVAL.value
             if requires_approval
