@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import DateTime, ForeignKey, String
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, Index, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
@@ -19,15 +19,39 @@ class ErrorTickets(Base):
     """ErrorTicket model class."""
 
     __tablename__ = "error_tickets"
+    __table_args__ = (
+        CheckConstraint(
+            "status IN ('open', 'in_progress', 'resolved', 'closed')",
+            name="ck_error_tickets_status",
+        ),
+        CheckConstraint(
+            "priority IN ('low', 'medium', 'high')",
+            name="ck_error_tickets_priority",
+        ),
+        Index("ix_error_tickets_category_id", "category_id"),
+        Index("ix_error_tickets_user_id", "user_id"),
+        Index("ix_error_tickets_status", "status"),
+        Index("ix_error_tickets_created_at", "created_at"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str] = mapped_column(String(100), nullable=False)
     description: Mapped[str] = mapped_column(String(255), nullable=True)
-    status: Mapped[str] = mapped_column(String(50), nullable=False, default="open")
-    priority: Mapped[str] = mapped_column(String(50), nullable=False, default="medium")
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    status: Mapped[str] = mapped_column(
+        String(50), nullable=False, default="open", server_default="open"
+    )
+    priority: Mapped[str] = mapped_column(
+        String(50), nullable=False, default="medium", server_default="medium"
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=datetime.utcnow, server_default=func.now(), nullable=False
+    )
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow,
+        server_default=func.now(),
+        nullable=False,
     )
 
     category_id: Mapped[int] = mapped_column(

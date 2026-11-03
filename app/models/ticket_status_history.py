@@ -2,11 +2,14 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
 from sqlalchemy import (
+    CheckConstraint,
     DateTime,
     ForeignKey,
+    Index,
     Integer,
     String,
     Text,
+    func,
 )
 from sqlalchemy.orm import (
     Mapped,
@@ -23,6 +26,20 @@ if TYPE_CHECKING:
 
 class TicketStatusHistory(Base):
     __tablename__ = "ticket_status_history"
+    __table_args__ = (
+        CheckConstraint(
+            "old_status IS NULL OR old_status IN "
+            "('open', 'in_progress', 'resolved', 'closed')",
+            name="ck_status_history_old_status",
+        ),
+        CheckConstraint(
+            "new_status IN ('open', 'in_progress', 'resolved', 'closed')",
+            name="ck_status_history_new_status",
+        ),
+        Index("ix_status_history_ticket_id", "ticket_id"),
+        Index("ix_status_history_changed_by_id", "changed_by_id"),
+        Index("ix_status_history_changed_at", "changed_at"),
+    )
 
     # Primary key
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
@@ -40,7 +57,10 @@ class TicketStatusHistory(Base):
     remarks: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
 
     changed_at: Mapped[datetime] = mapped_column(
-        DateTime, default=datetime.utcnow, nullable=False
+        DateTime,
+        default=datetime.utcnow,
+        server_default=func.now(),
+        nullable=False,
     )
 
     # Relationships
