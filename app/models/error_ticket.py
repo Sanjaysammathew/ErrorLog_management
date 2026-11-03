@@ -39,6 +39,7 @@ class ErrorTickets(Base):
         ),
         Index("ix_error_tickets_category_id", "category_id"),
         Index("ix_error_tickets_user_id", "user_id"),
+        Index("ix_error_tickets_assigned_admin_id", "assigned_admin_id"),
         Index("ix_error_tickets_status", "status"),
         Index("ix_error_tickets_created_at", "created_at"),
     )
@@ -74,6 +75,9 @@ class ErrorTickets(Base):
         ForeignKey("error_categories.id"), nullable=False
     )
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    assigned_admin_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"), nullable=False, default=1, server_default="1"
+    )
 
     # Relationships
     category: Mapped["ErrorCategory"] = relationship(
@@ -81,6 +85,9 @@ class ErrorTickets(Base):
     )
     created_by_user: Mapped["user"] = relationship(
         "user", foreign_keys=[user_id], back_populates="ticket_created"
+    )
+    assigned_admin: Mapped["user"] = relationship(
+        "user", foreign_keys=[assigned_admin_id], back_populates="tickets_assigned"
     )
 
     approvals: Mapped[list["TicketApproval"]] = relationship(

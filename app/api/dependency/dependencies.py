@@ -21,6 +21,8 @@ from app.services.auth_service import AuthService
 from app.services.category_service import CategoryService
 from app.services.user_service import UserService
 from app.services.ticket_service import TicketService
+from app.services.remark_service import RemarkService
+from app.services.history_service import HistoryService
 
 
 def get_user_repository(
@@ -59,6 +61,18 @@ def get_ticket_service(
     user_repository: UserInterface = Depends(get_user_repository),
 ) -> TicketService:
     return TicketService(ticket_repository, category_repository, user_repository)
+
+
+def get_remark_service(
+    ticket_repository: TicketInterface = Depends(get_ticket_repository),
+) -> RemarkService:
+    return RemarkService(ticket_repository)
+
+
+def get_history_service(
+    ticket_repository: TicketInterface = Depends(get_ticket_repository),
+) -> HistoryService:
+    return HistoryService(ticket_repository)
 
 
 def get_user_service(

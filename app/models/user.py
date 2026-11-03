@@ -76,7 +76,14 @@ class user(Base):
         "user", back_populates="manager"
     )
     ticket_created: Mapped[list["ErrorTickets"]] = relationship(
-        "ErrorTickets", back_populates="created_by_user"
+        "ErrorTickets",
+        foreign_keys="ErrorTickets.user_id",
+        back_populates="created_by_user",
+    )
+    tickets_assigned: Mapped[list["ErrorTickets"]] = relationship(
+        "ErrorTickets",
+        foreign_keys="ErrorTickets.assigned_admin_id",
+        back_populates="assigned_admin",
     )
     approvals_given: Mapped[list["TicketApproval"]] = relationship(
         "TicketApproval", back_populates="manager"

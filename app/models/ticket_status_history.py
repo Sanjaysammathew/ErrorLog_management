@@ -8,7 +8,6 @@ from sqlalchemy import (
     Index,
     Integer,
     String,
-    Text,
     func,
 )
 from sqlalchemy.orm import (
@@ -54,8 +53,6 @@ class TicketStatusHistory(Base):
     old_status: Mapped[Optional[str]] = mapped_column(String(30), nullable=True)
 
     new_status: Mapped[str] = mapped_column(String(30), nullable=False)
-
-    remarks: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
 
     changed_at: Mapped[datetime] = mapped_column(
         DateTime,

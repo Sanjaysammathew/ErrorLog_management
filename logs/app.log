@@ -222,3 +222,103 @@
 2026-11-03 13:12:37,868 INFO app: Manager seed: exists
 2026-11-03 13:12:37,868 INFO app: Application started
 2026-11-03 13:17:59,231 INFO app: Application stopped
+2026-11-03 14:58:15,761 INFO app: Admin seed: exists
+2026-11-03 14:58:15,761 INFO app: Manager seed: exists
+2026-11-03 14:58:15,761 INFO app: Application started
+2026-11-03 15:03:27,191 INFO app: Application stopped
+2026-11-03 15:03:30,287 INFO app: Admin seed: exists
+2026-11-03 15:03:30,288 INFO app: Manager seed: exists
+2026-11-03 15:03:30,288 INFO app: Application started
+2026-11-03 15:03:40,579 INFO app: Application stopped
+2026-11-03 15:03:43,268 INFO app: Admin seed: exists
+2026-11-03 15:03:43,268 INFO app: Manager seed: exists
+2026-11-03 15:03:43,268 INFO app: Application started
+2026-11-03 15:05:28,642 INFO app: Application stopped
+2026-11-03 15:05:32,282 INFO app: Admin seed: exists
+2026-11-03 15:05:32,282 INFO app: Manager seed: exists
+2026-11-03 15:05:32,282 INFO app: Application started
+2026-11-03 15:05:48,339 INFO app: Application stopped
+2026-11-03 15:05:51,861 INFO app: Admin seed: exists
+2026-11-03 15:05:51,861 INFO app: Manager seed: exists
+2026-11-03 15:05:51,862 INFO app: Application started
+2026-11-03 15:07:07,931 INFO app: Application stopped
+2026-11-03 15:07:11,036 INFO app: Admin seed: exists
+2026-11-03 15:07:11,036 INFO app: Manager seed: exists
+2026-11-03 15:07:11,036 INFO app: Application started
+2026-11-03 15:10:02,176 INFO app: Application stopped
+2026-11-03 15:10:30,992 INFO app: Admin seed: exists
+2026-11-03 15:10:30,992 INFO app: Manager seed: exists
+2026-11-03 15:10:30,992 INFO app: Application started
+2026-11-03 15:11:51,276 INFO app: Application stopped
+2026-11-03 15:11:55,118 INFO app: Admin seed: exists
+2026-11-03 15:11:55,119 INFO app: Manager seed: exists
+2026-11-03 15:11:55,119 INFO app: Application started
+2026-11-03 15:12:57,320 INFO app: Application stopped
+2026-11-03 15:12:59,943 INFO app: Admin seed: exists
+2026-11-03 15:12:59,943 INFO app: Manager seed: exists
+2026-11-03 15:12:59,943 INFO app: Application started
+2026-11-03 15:14:12,381 INFO app: Application stopped
+2026-11-03 15:14:15,336 INFO app: Admin seed: exists
+2026-11-03 15:14:15,337 INFO app: Manager seed: exists
+2026-11-03 15:14:15,337 INFO app: Application started
+2026-11-03 15:21:08,428 INFO app: Application stopped
+2026-11-03 15:21:18,203 INFO app: Admin seed: exists
+2026-11-03 15:21:18,203 INFO app: Manager seed: exists
+2026-11-03 15:21:18,203 INFO app: Application started
+2026-11-03 15:23:27,555 INFO app: Application stopped
+2026-11-03 15:23:35,262 INFO app: Admin seed: exists
+2026-11-03 15:23:35,262 INFO app: Manager seed: exists
+2026-11-03 15:23:35,262 INFO app: Application started
+2026-11-03 15:25:00,771 INFO app: Application stopped
+2026-11-03 15:25:07,254 INFO app: Admin seed: exists
+2026-11-03 15:25:07,254 INFO app: Manager seed: exists
+2026-11-03 15:25:07,254 INFO app: Application started
+2026-11-03 15:34:13,092 INFO app: Application stopped
+2026-11-03 15:34:18,413 INFO app: Admin seed: exists
+2026-11-03 15:34:18,413 INFO app: Manager seed: exists
+2026-11-03 15:34:18,413 INFO app: Application started
+2026-11-03 15:42:16,741 INFO app: Application stopped
+2026-11-03 15:42:20,620 INFO app: Admin seed: exists
+2026-11-03 15:42:20,621 INFO app: Manager seed: exists
+2026-11-03 15:42:20,621 INFO app: Application started
+2026-11-03 15:44:26,108 INFO app: Application stopped
+2026-11-03 15:44:30,594 INFO app: Admin seed: exists
+2026-11-03 15:44:30,595 INFO app: Manager seed: exists
+2026-11-03 15:44:30,595 INFO app: Application started
+2026-11-03 15:44:31,695 INFO app: Application stopped
+2026-11-03 15:44:35,855 INFO app: Admin seed: exists
+2026-11-03 15:44:35,855 INFO app: Manager seed: exists
+2026-11-03 15:44:35,855 INFO app: Application started
+2026-11-03 15:49:47,368 INFO app: Application stopped
+2026-11-03 15:49:52,526 INFO app: Admin seed: exists
+2026-11-03 15:49:52,527 INFO app: Manager seed: exists
+2026-11-03 15:49:52,527 INFO app: Application started
+2026-11-03 16:01:20,562 INFO app: Application stopped
+2026-11-03 16:01:25,966 INFO app: Admin seed: exists
+2026-11-03 16:01:25,967 INFO app: Manager seed: exists
+2026-11-03 16:01:25,967 INFO app: Application started
+2026-11-03 16:01:29,795 INFO app: Application stopped
+2026-11-03 16:01:35,343 INFO app: Admin seed: exists
+2026-11-03 16:01:35,343 INFO app: Manager seed: exists
+2026-11-03 16:01:35,343 INFO app: Application started
+2026-11-03 16:24:01,363 INFO app: Application stopped
+2026-11-03 16:24:06,750 INFO app: Admin seed: exists
+2026-11-03 16:24:06,751 INFO app: Manager seed: exists
+2026-11-03 16:24:06,751 INFO app: Application started
+2026-11-03 16:24:08,947 INFO app: Application stopped
+2026-11-03 16:24:13,425 INFO app: Admin seed: exists
+2026-11-03 16:24:13,425 INFO app: Manager seed: exists
+2026-11-03 16:24:13,425 INFO app: Application started
+2026-11-03 16:33:57,241 INFO app: Application stopped
+2026-11-03 16:34:02,722 INFO app: Admin seed: exists
+2026-11-03 16:34:02,722 INFO app: Manager seed: exists
+2026-11-03 16:34:02,722 INFO app: Application started
+2026-11-03 16:34:19,215 INFO app: Application stopped
+2026-11-03 16:34:28,897 INFO app: Admin seed: exists
+2026-11-03 16:34:28,897 INFO app: Manager seed: exists
+2026-11-03 16:34:28,898 INFO app: Application started
+2026-11-03 16:52:17,213 INFO app: Application stopped
+2026-11-03 16:52:24,682 INFO app: Admin seed: exists
+2026-11-03 16:52:24,682 INFO app: Manager seed: exists
+2026-11-03 16:52:24,682 INFO app: Application started
+2026-11-03 17:26:45,503 INFO app: Application stopped

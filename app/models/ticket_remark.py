@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, Index, Text, func
+from sqlalchemy import DateTime, ForeignKey, Index, Text, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
@@ -29,10 +29,6 @@ class TicketRemark(Base):
 
     remark: Mapped[str] = mapped_column(Text, nullable=False)
 
-    is_internal: Mapped[bool] = mapped_column(
-        Boolean, default=False, server_default="false", nullable=False
-    )
-
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         default=datetime.utcnow,
@@ -45,3 +41,27 @@ class TicketRemark(Base):
     )
 
     user: Mapped["user"] = relationship("user", back_populates="remarks")
+
+    @property
+    def ticket_number(self) -> str | None:
+        return self.ticket.ticket_number if self.ticket else None
+
+    @property
+    def ticket_created_at(self) -> datetime | None:
+        return self.ticket.created_at if self.ticket else None
+
+    @property
+    def ticket_due_at(self) -> datetime | None:
+        return self.ticket.due_at if self.ticket else None
+
+    @property
+    def admin_id(self) -> int:
+        return self.user_id
+
+    @property
+    def is_overdue(self) -> bool:
+        if self.ticket is None or self.ticket.due_at is None:
+            return False
+        if self.ticket.status in {"resolved", "closed"}:
+            return False
+        return datetime.utcnow() > self.ticket.due_at

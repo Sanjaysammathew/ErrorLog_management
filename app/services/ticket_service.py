@@ -10,10 +10,12 @@ from app.exceptions.custom_exceptions import (
     ManagerNotFoundError,
     PermissionDeniedError,
     TicketCreationError,
+    TicketNotFoundError,
 )
 from app.models.error_ticket import ErrorTickets
 from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.models.ticket_approval import TicketApproval
+from app.models.ticket_remark import TicketRemark
 from app.models.ticket_status_history import TicketStatusHistory
 from app.models.user import ApprovalStatus, UserRole, user
 from app.repositories.interfaces.category_interface import CategoryInterface
@@ -117,6 +119,7 @@ class TicketService:
                 priority=ticket_data.priority.value,
                 category_id=category.id,
                 user_id=current_user.id,
+                assigned_admin_id=1,
                 status=initial_status,
                 requires_approval=requires_approval,
                 due_at=due_at,
@@ -131,7 +134,6 @@ class TicketService:
                     changed_by_id=current_user.id,
                     old_status=None,
                     new_status=initial_status,
-                    remarks="Ticket created",
                     changed_at=created_at,
                 )
             )
@@ -146,7 +148,9 @@ class TicketService:
                 )
 
             await self.ticket_repository.commit()
-            await db.refresh(ticket, ["category", "created_by_user"])
+            await db.refresh(
+                ticket, ["category", "created_by_user", "assigned_admin"]
+            )
             return ticket
         except AppError:
             await db.rollback()
@@ -160,3 +164,55 @@ class TicketService:
             raise PermissionDeniedError
 
         return await self.ticket_repository.get_by_user_id(current_user.id)
+
+    async def get_ticket_by_id(
+        self, ticket_id: int, current_user: user
+    ) -> ErrorTickets | None:
+        ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
+        if ticket is None:
+            raise TicketNotFoundError
+
+        if current_user.role == UserRole.EMPLOYEE and ticket.user_id != current_user.id:
+            raise PermissionDeniedError
+
+        return ticket
+
+    async def get_all_tickets(self) -> list[ErrorTickets]:
+        return await self.ticket_repository.get_user()
+
+    async def update_ticket_status(
+        self,
+        ticket_id: int,
+        new_status: TicketStatus,
+        remarks: str | None,
+        current_user: user,
+    ) -> ErrorTickets:
+        if not current_user.is_active or current_user.role != UserRole.ADMIN:
+            raise PermissionDeniedError
+
+        ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
+        if ticket is None:
+            raise TicketNotFoundError
+
+        old_status = ticket.status
+        ticket.status = new_status.value
+        ticket.updated_at = datetime.now(timezone.utc).replace(tzinfo=None)
+        history = TicketStatusHistory(
+            ticket_id=ticket.id,
+            changed_by_id=current_user.id,
+            old_status=old_status,
+            new_status=new_status.value,
+            changed_at=ticket.updated_at,
+        )
+        status_remark = (
+            TicketRemark(
+                ticket_id=ticket.id,
+                user_id=current_user.id,
+                remark=remarks,
+            )
+            if remarks
+            else None
+        )
+        return await self.ticket_repository.save_status_update(
+            ticket, history, status_remark
+        )

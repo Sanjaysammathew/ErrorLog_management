@@ -1,24 +1,18 @@
 from datetime import datetime
-from typing import Optional
-
 from pydantic import BaseModel, ConfigDict, Field
-
-from app.schemas.userSchema import UserResponse
 
 
 class RemarkCreate(BaseModel):
     remark: str = Field(..., min_length=1)
-    is_internal: bool = False
 
 
 class RemarkResponse(BaseModel):
     id: int
     ticket_id: int
+    ticket_number: str | None = None
     user_id: int
+    admin_id: int
     remark: str
-    is_internal: bool
-    created_at: datetime
-
-    user: Optional[UserResponse] = None
+    is_overdue: bool
 
     model_config = ConfigDict(from_attributes=True)

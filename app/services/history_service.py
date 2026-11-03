@@ -1,0 +1,24 @@
+from app.exceptions.custom_exceptions import PermissionDeniedError, TicketNotFoundError
+from app.models.ticket_status_history import TicketStatusHistory
+from app.models.user import UserRole, user
+from app.repositories.interfaces.ticket_interface import TicketInterface
+
+
+class HistoryService:
+    def __init__(self, ticket_repository: TicketInterface) -> None:
+        self.ticket_repository = ticket_repository
+
+    async def get_history(
+        self, ticket_id: int, current_user: user
+    ) -> list[TicketStatusHistory]:
+        ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
+        if ticket is None:
+            raise TicketNotFoundError
+        if not current_user.is_active or (
+            current_user.role == UserRole.EMPLOYEE
+            and ticket.user_id != current_user.id
+        ):
+            raise PermissionDeniedError
+        if current_user.role not in (UserRole.EMPLOYEE, UserRole.ADMIN):
+            raise PermissionDeniedError
+        return await self.ticket_repository.get_status_history(ticket_id)

@@ -4,6 +4,8 @@ from app.api.routers import (
     health_router,
     tickets_router,
     users_router,
+    remarks_router,
+    history_router,
 )
 
 __all__ = [
@@ -12,4 +14,6 @@ __all__ = [
     "health_router",
     "tickets_router",
     "users_router",
+    "remarks_router",
+    "history_router",
 ]

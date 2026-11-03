@@ -30,7 +30,6 @@ class TicketCreate(TicketBase):
 
 class TicketUpdateStatus(BaseModel):
     status: TicketStatus
-    assigned_admin_id: Optional[int] = None
     status_change_remark: Optional[str] = None
 
 
@@ -39,6 +38,7 @@ class TicketResponse(TicketBase):
     ticket_number: str
     status: TicketStatus
     user_id: int
+    assigned_admin_id: int
     requires_approval: bool
     created_at: datetime
     updated_at: datetime
@@ -46,5 +46,6 @@ class TicketResponse(TicketBase):
 
     category: Optional[CategoryResponse] = None
     created_by_user: Optional[UserResponse] = None
+    assigned_admin: Optional[UserResponse] = None
 
     model_config = ConfigDict(from_attributes=True)

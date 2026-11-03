@@ -30,14 +30,12 @@ from app.schemas.ticket_remarkSchema import (
     RemarkResponse,
 )
 
-from app.schemas.ticket_status_historySchema import (
-    StatusHistoryResponse,
-)
 
 from app.schemas.authSchema import (
     Token,
     TokenData,
 )
+from app.schemas.ticket_status_historySchema import StatusHistoryResponse
 
 __all__ = [
     "ApprovalDecision",
@@ -48,7 +46,6 @@ __all__ = [
     "CategoryUpdate",
     "RemarkCreate",
     "RemarkResponse",
-    "StatusHistoryResponse",
     "TicketBase",
     "TicketCreate",
     "TicketResponse",
@@ -60,4 +57,5 @@ __all__ = [
     "UserCreate",
     "UserResponse",
     "UserUpdate",
+    "StatusHistoryResponse",
 ]

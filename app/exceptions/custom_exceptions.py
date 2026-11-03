@@ -52,3 +52,7 @@ class CategoryNotFoundError(AppError):
 
 class TicketCreationError(AppError):
     default_message = "Ticket could not be created"
+
+
+class TicketNotFoundError(AppError):
+    default_message = "Ticket not found"
