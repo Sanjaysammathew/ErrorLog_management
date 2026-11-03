@@ -22,6 +22,7 @@ from app.schemas.error_ticketSchema import (
 
 from app.schemas.ticket_approvalSchema import (
     ApprovalDecision,
+    ApprovalAction,
     ApprovalResponse,
 )
 
@@ -39,6 +40,7 @@ from app.schemas.ticket_status_historySchema import StatusHistoryResponse
 
 __all__ = [
     "ApprovalDecision",
+    "ApprovalAction",
     "ApprovalResponse",
     "CategoryBase",
     "CategoryCreate",

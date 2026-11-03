@@ -21,6 +21,7 @@ from app.exceptions.custom_exceptions import (
     TicketCreationError,
     TicketNotFoundError,
     TicketNotResolvedError,
+    ApprovalAlreadyDecidedError,
 )
 from app.exceptions.handlers import (
     invalid_credentials_handler,
@@ -34,6 +35,7 @@ from app.exceptions.handlers import (
     ticket_creation_handler,
     ticket_not_found_handler,
     ticket_not_resolved_handler,
+    approval_already_decided_handler,
 )
 from app.models import ErrorCategory, error_ticket, ticket_approval, ticket_remark
 from app.models import ticket_status_history, user
@@ -82,6 +84,9 @@ app.add_exception_handler(CategoryNotFoundError, category_not_found_handler)
 app.add_exception_handler(TicketCreationError, ticket_creation_handler)
 app.add_exception_handler(TicketNotFoundError, ticket_not_found_handler)
 app.add_exception_handler(TicketNotResolvedError, ticket_not_resolved_handler)
+app.add_exception_handler(
+    ApprovalAlreadyDecidedError, approval_already_decided_handler
+)
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(users_router)

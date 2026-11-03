@@ -30,7 +30,8 @@ class ErrorTickets(Base):
     __table_args__ = (
         CheckConstraint(
             "status IN "
-            "('pending_approval', 'open', 'in_progress', 'resolved', 'closed')",
+            "('pending_approval', 'open', 'in_progress', 'resolved', "
+            "'rejected', 'closed')",
             name="ck_error_tickets_status",
         ),
         CheckConstraint(

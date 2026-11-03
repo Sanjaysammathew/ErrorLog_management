@@ -12,6 +12,10 @@ class ApprovalDecision(BaseModel):
     decision_reason: Optional[str] = None
 
 
+class ApprovalAction(BaseModel):
+    decision_reason: Optional[str] = None
+
+
 class ApprovalResponse(BaseModel):
     id: int
     ticket_id: int

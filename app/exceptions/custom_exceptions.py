@@ -60,3 +60,7 @@ class TicketNotFoundError(AppError):
 
 class TicketNotResolvedError(AppError):
     default_message = "Only resolved tickets can be closed"
+
+
+class ApprovalAlreadyDecidedError(AppError):
+    default_message = "This approval has already been decided"

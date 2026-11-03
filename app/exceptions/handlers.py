@@ -11,6 +11,7 @@ from app.exceptions.custom_exceptions import (
     TicketCreationError,
     TicketNotFoundError,
     TicketNotResolvedError,
+    ApprovalAlreadyDecidedError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -108,6 +109,15 @@ async def ticket_not_found_handler(
 
 async def ticket_not_resolved_handler(
     _: Request, exc: TicketNotResolvedError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT,
+        content={"detail": exc.message},
+    )
+
+
+async def approval_already_decided_handler(
+    _: Request, exc: ApprovalAlreadyDecidedError
 ) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT,

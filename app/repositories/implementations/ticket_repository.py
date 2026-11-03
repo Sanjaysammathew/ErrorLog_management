@@ -86,7 +86,7 @@ class TicketRepository(TicketInterface):
             .where(
                 ErrorTickets.due_at.is_not(None),
                 ErrorTickets.due_at < datetime.utcnow(),
-                ErrorTickets.status.notin_(("resolved", "closed")),
+                ErrorTickets.status.notin_(("resolved", "rejected", "closed")),
             )
             .order_by(ErrorTickets.due_at.asc())
         )

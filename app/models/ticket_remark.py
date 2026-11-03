@@ -62,6 +62,6 @@ class TicketRemark(Base):
     def is_overdue(self) -> bool:
         if self.ticket is None or self.ticket.due_at is None:
             return False
-        if self.ticket.status in {"resolved", "closed"}:
+        if self.ticket.status in {"resolved", "rejected", "closed"}:
             return False
         return datetime.utcnow() > self.ticket.due_at

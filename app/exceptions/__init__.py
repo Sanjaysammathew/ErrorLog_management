@@ -8,6 +8,7 @@ from app.exceptions.custom_exceptions import (
     PermissionDeniedError,
     TicketCreationError,
     TicketNotResolvedError,
+    ApprovalAlreadyDecidedError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -20,6 +21,7 @@ from app.exceptions.handlers import (
     permission_denied_handler,
     ticket_creation_handler,
     ticket_not_resolved_handler,
+    approval_already_decided_handler,
     user_already_exists_handler,
     user_not_found_handler,
 )
@@ -34,6 +36,7 @@ __all__ = [
     "PermissionDeniedError",
     "TicketCreationError",
     "TicketNotResolvedError",
+    "ApprovalAlreadyDecidedError",
     "UserAlreadyExistsError",
     "UserNotFoundError",
     "category_already_exists_handler",
@@ -44,6 +47,7 @@ __all__ = [
     "permission_denied_handler",
     "ticket_creation_handler",
     "ticket_not_resolved_handler",
+    "approval_already_decided_handler",
     "user_already_exists_handler",
     "user_not_found_handler",
 ]
