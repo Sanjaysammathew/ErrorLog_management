@@ -1,3 +1,6 @@
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
+
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -33,6 +36,29 @@ class TicketRepository(TicketInterface):
         self.db.add(approval)
         await self.db.flush()
         return approval
+
+    async def get_by_user_id(self, user_id: int) -> list[ErrorTickets]:
+        result = await self.db.execute(
+            select(ErrorTickets)
+            .options(
+                selectinload(ErrorTickets.category),
+                selectinload(ErrorTickets.created_by_user),
+            )
+            .where(ErrorTickets.user_id == user_id)
+            .order_by(ErrorTickets.created_at.desc())
+        )
+        return list(result.scalars().all())
+
+    async def get_ticket_by_id(self, ticket_id: int) -> ErrorTickets | None:
+        result = await self.db.execute(
+            select(ErrorTickets)
+            .options(
+                selectinload(ErrorTickets.category),
+                selectinload(ErrorTickets.created_by_user),
+            )
+            .where(ErrorTickets.id == ticket_id)
+        )
+        return result.scalar_one_or_none()
 
     async def commit(self) -> None:
         try:

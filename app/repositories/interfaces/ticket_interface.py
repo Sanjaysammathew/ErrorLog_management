@@ -23,3 +23,7 @@ class TicketInterface(ABC):
     @abstractmethod
     async def commit(self) -> None:
         raise NotImplementedError
+
+    @abstractmethod
+    async def get_by_user_id(self, user_id: int) -> list[ErrorTickets]:
+        raise NotImplementedError

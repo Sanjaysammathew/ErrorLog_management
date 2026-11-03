@@ -154,3 +154,9 @@ class TicketService:
         except SQLAlchemyError as exc:
             await db.rollback()
             raise TicketCreationError from exc
+
+    async def get_my_tickets(self, current_user: user) -> list[ErrorTickets]:
+        if not current_user.is_active or current_user.role != UserRole.EMPLOYEE:
+            raise PermissionDeniedError
+
+        return await self.ticket_repository.get_by_user_id(current_user.id)
