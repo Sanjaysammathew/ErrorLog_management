@@ -17,6 +17,8 @@ from app.exceptions.custom_exceptions import (
     PermissionDeniedError,
     UserAlreadyExistsError,
     UserNotFoundError,
+    CategoryNotFoundError,
+    TicketCreationError,
 )
 from app.exceptions.handlers import (
     invalid_credentials_handler,
@@ -26,10 +28,13 @@ from app.exceptions.handlers import (
     permission_denied_handler,
     user_already_exists_handler,
     user_not_found_handler,
+    category_not_found_handler,
+    ticket_creation_handler,
 )
 from app.models import ErrorCategory, error_ticket, ticket_approval, ticket_remark
 from app.models import ticket_status_history, user
 from app.api.routers.users import router as users_router
+from app.api.routers.tickets import router as tickets_router
 from app.scripts.create_admin import create_admin
 from app.scripts.create_manager import create_manager
 from app.utils.logging_config import configure_logging
@@ -66,7 +71,10 @@ app.add_exception_handler(
 app.add_exception_handler(ManagerNotFoundError, manager_not_found_handler)
 app.add_exception_handler(PermissionDeniedError, permission_denied_handler)
 app.add_exception_handler(UserNotFoundError, user_not_found_handler)
+app.add_exception_handler(CategoryNotFoundError, category_not_found_handler)
+app.add_exception_handler(TicketCreationError, ticket_creation_handler)
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(categories_router)
+app.include_router(tickets_router)

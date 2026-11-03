@@ -29,11 +29,12 @@ class TicketStatusHistory(Base):
     __table_args__ = (
         CheckConstraint(
             "old_status IS NULL OR old_status IN "
-            "('open', 'in_progress', 'resolved', 'closed')",
+            "('pending_approval', 'open', 'in_progress', 'resolved', 'closed')",
             name="ck_status_history_old_status",
         ),
         CheckConstraint(
-            "new_status IN ('open', 'in_progress', 'resolved', 'closed')",
+            "new_status IN "
+            "('pending_approval', 'open', 'in_progress', 'resolved', 'closed')",
             name="ck_status_history_new_status",
         ),
         Index("ix_status_history_ticket_id", "ticket_id"),

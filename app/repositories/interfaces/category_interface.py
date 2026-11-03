@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from app.models.ErrorCategory import ErrorCategory
+from app.models.ErrorCategory import ErrorCategory, IssueType
 
 
 class CategoryInterface(ABC):
@@ -9,7 +9,15 @@ class CategoryInterface(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    async def get_by_issue_type(self, issue_type: IssueType) -> ErrorCategory | None:
+        raise NotImplementedError
+
+    @abstractmethod
     async def create(self, category: ErrorCategory) -> ErrorCategory:
+        raise NotImplementedError
+
+    @abstractmethod
+    async def add_pending(self, category: ErrorCategory) -> ErrorCategory:
         raise NotImplementedError
 
     @abstractmethod

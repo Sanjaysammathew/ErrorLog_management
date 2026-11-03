@@ -15,6 +15,7 @@ from app.schemas.error_categorySchema import (
 from app.schemas.error_ticketSchema import (
     TicketBase,
     TicketCreate,
+    TicketStatus,
     TicketUpdateStatus,
     TicketResponse,
 )
@@ -51,6 +52,7 @@ __all__ = [
     "TicketBase",
     "TicketCreate",
     "TicketResponse",
+    "TicketStatus",
     "TicketUpdateStatus",
     "Token",
     "TokenData",

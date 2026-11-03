@@ -3,7 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.exceptions.custom_exceptions import CategoryAlreadyExistsError
-from app.models.ErrorCategory import ErrorCategory
+from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.repositories.interfaces.category_interface import CategoryInterface
 
 
@@ -17,6 +17,17 @@ class CategoryRepository(CategoryInterface):
         )
         return result.scalar_one_or_none()
 
+    async def get_by_issue_type(
+        self, issue_type: IssueType
+    ) -> ErrorCategory | None:
+        result = await self.db.execute(
+            select(ErrorCategory).where(
+                ErrorCategory.issue_type == issue_type,
+                ErrorCategory.is_active.is_(True),
+            ).order_by(ErrorCategory.id)
+        )
+        return result.scalars().first()
+
     async def create(self, category: ErrorCategory) -> ErrorCategory:
         self.db.add(category)
         try:
@@ -26,6 +37,15 @@ class CategoryRepository(CategoryInterface):
             raise CategoryAlreadyExistsError from exc
 
         await self.db.refresh(category)
+        return category
+
+    async def add_pending(self, category: ErrorCategory) -> ErrorCategory:
+        self.db.add(category)
+        try:
+            await self.db.flush()
+        except IntegrityError as exc:
+            await self.db.rollback()
+            raise CategoryAlreadyExistsError from exc
         return category
 
     async def get_all(self) -> list[ErrorCategory]:

@@ -5,8 +5,10 @@ from app.exceptions.custom_exceptions import (
     InvalidCredentialsError,
     InvalidTokenError,
     CategoryAlreadyExistsError,
+    CategoryNotFoundError,
     ManagerNotFoundError,
     PermissionDeniedError,
+    TicketCreationError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -68,6 +70,24 @@ async def user_not_found_handler(
 
 async def category_already_exists_handler(
     _: Request, exc: CategoryAlreadyExistsError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT,
+        content={"detail": exc.message},
+    )
+
+
+async def category_not_found_handler(
+    _: Request, exc: CategoryNotFoundError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND,
+        content={"detail": exc.message},
+    )
+
+
+async def ticket_creation_handler(
+    _: Request, exc: TicketCreationError
 ) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT,

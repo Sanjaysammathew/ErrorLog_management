@@ -14,10 +14,13 @@ from app.models.user import UserRole, user
 from app.repositories.implementations import UserRepository
 from app.repositories.interfaces import UserInterface
 from app.repositories.implementations import CategoryRepository
+from app.repositories.implementations import TicketRepository
 from app.repositories.interfaces import CategoryInterface
+from app.repositories.interfaces import TicketInterface
 from app.services.auth_service import AuthService
 from app.services.category_service import CategoryService
 from app.services.user_service import UserService
+from app.services.ticket_service import TicketService
 
 
 def get_user_repository(
@@ -42,6 +45,20 @@ def get_category_service(
     category_repository: CategoryInterface = Depends(get_category_repository),
 ) -> CategoryService:
     return CategoryService(category_repository)
+
+
+def get_ticket_repository(
+    db: AsyncSession = Depends(get_db),
+) -> TicketInterface:
+    return TicketRepository(db)
+
+
+def get_ticket_service(
+    ticket_repository: TicketInterface = Depends(get_ticket_repository),
+    category_repository: CategoryInterface = Depends(get_category_repository),
+    user_repository: UserInterface = Depends(get_user_repository),
+) -> TicketService:
+    return TicketService(ticket_repository, category_repository, user_repository)
 
 
 def get_user_service(

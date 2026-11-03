@@ -4,12 +4,14 @@ from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from app.models.ErrorCategory import IssueType
 from app.models.user import TicketPriority
 from app.schemas.error_categorySchema import CategoryResponse
 from app.schemas.userSchema import UserResponse
 
 
 class TicketStatus(str, Enum):
+    PENDING_APPROVAL = "pending_approval"
     OPEN = "open"
     IN_PROGRESS = "in_progress"
     RESOLVED = "resolved"
@@ -17,15 +19,13 @@ class TicketStatus(str, Enum):
 
 
 class TicketBase(BaseModel):
-    title: str = Field(..., min_length=3, max_length=200)
-    description: str
-    asset_tag: Optional[str] = None
-    category_id: int
+    title: str = Field(..., min_length=3, max_length=100)
+    description: Optional[str] = None
     priority: TicketPriority = TicketPriority.MEDIUM
 
 
 class TicketCreate(TicketBase):
-    pass
+    issue_type: IssueType
 
 
 class TicketUpdateStatus(BaseModel):
@@ -36,16 +36,15 @@ class TicketUpdateStatus(BaseModel):
 
 class TicketResponse(TicketBase):
     id: int
-    ticket_code: str
-    employee_id: int
-    assigned_admin_id: Optional[int] = None
+    ticket_number: str
     status: TicketStatus
+    user_id: int
     requires_approval: bool
     created_at: datetime
+    updated_at: datetime
     due_at: Optional[datetime] = None
-    resolved_at: Optional[datetime] = None
 
-    employee: Optional[UserResponse] = None
     category: Optional[CategoryResponse] = None
+    created_by_user: Optional[UserResponse] = None
 
     model_config = ConfigDict(from_attributes=True)

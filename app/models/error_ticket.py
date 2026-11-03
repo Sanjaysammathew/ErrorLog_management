@@ -1,7 +1,15 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import CheckConstraint, DateTime, ForeignKey, Index, String, func
+from sqlalchemy import (
+    Boolean,
+    CheckConstraint,
+    DateTime,
+    ForeignKey,
+    Index,
+    String,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
@@ -21,7 +29,8 @@ class ErrorTickets(Base):
     __tablename__ = "error_tickets"
     __table_args__ = (
         CheckConstraint(
-            "status IN ('open', 'in_progress', 'resolved', 'closed')",
+            "status IN "
+            "('pending_approval', 'open', 'in_progress', 'resolved', 'closed')",
             name="ck_error_tickets_status",
         ),
         CheckConstraint(
@@ -35,6 +44,9 @@ class ErrorTickets(Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    ticket_number: Mapped[str | None] = mapped_column(
+        String(20), unique=True, nullable=True
+    )
     title: Mapped[str] = mapped_column(String(100), nullable=False)
     description: Mapped[str] = mapped_column(String(255), nullable=True)
     status: Mapped[str] = mapped_column(
@@ -43,6 +55,10 @@ class ErrorTickets(Base):
     priority: Mapped[str] = mapped_column(
         String(50), nullable=False, default="medium", server_default="medium"
     )
+    requires_approval: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False, server_default="false"
+    )
+    due_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime, default=datetime.utcnow, server_default=func.now(), nullable=False
     )

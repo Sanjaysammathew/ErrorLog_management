@@ -44,3 +44,11 @@ class UserNotFoundError(AppError):
 
 class CategoryAlreadyExistsError(AppError):
     default_message = "Category name is already registered"
+
+
+class CategoryNotFoundError(AppError):
+    default_message = "Category not found"
+
+
+class TicketCreationError(AppError):
+    default_message = "Ticket could not be created"

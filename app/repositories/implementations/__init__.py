@@ -1,4 +1,5 @@
 from app.repositories.implementations.user_repository import UserRepository
 from app.repositories.implementations.category_repository import CategoryRepository
+from app.repositories.implementations.ticket_repository import TicketRepository
 
-__all__ = ["UserRepository", "CategoryRepository"]
+__all__ = ["UserRepository", "CategoryRepository", "TicketRepository"]
