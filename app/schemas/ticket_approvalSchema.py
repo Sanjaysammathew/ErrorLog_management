@@ -4,6 +4,7 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 from app.models.user import ApprovalStatus
+from app.schemas.error_ticketSchema import TicketResponse
 
 
 class ApprovalDecision(BaseModel):
@@ -18,5 +19,6 @@ class ApprovalResponse(BaseModel):
     status: ApprovalStatus
     decision_reason: Optional[str] = None
     approved_at: Optional[datetime] = None
+    ticket: TicketResponse
 
     model_config = ConfigDict(from_attributes=True)

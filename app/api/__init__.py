@@ -6,6 +6,7 @@ from app.api.routers import (
     users_router,
     remarks_router,
     history_router,
+    approval_router,
 )
 
 __all__ = [
@@ -16,4 +17,5 @@ __all__ = [
     "users_router",
     "remarks_router",
     "history_router",
+    "approval_router",
 ]

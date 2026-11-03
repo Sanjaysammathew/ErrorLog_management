@@ -41,6 +41,7 @@ from app.api.routers.users import router as users_router
 from app.api.routers.tickets import router as tickets_router
 from app.api.routers.remarks import router as remarks_router
 from app.api.routers.history import router as history_router
+from app.api.routers.approval import router as approval_router
 from app.scripts.create_admin import create_admin
 from app.scripts.create_manager import create_manager
 from app.utils.logging_config import configure_logging
@@ -88,3 +89,4 @@ app.include_router(categories_router)
 app.include_router(tickets_router)
 app.include_router(remarks_router)
 app.include_router(history_router)
+app.include_router(approval_router)

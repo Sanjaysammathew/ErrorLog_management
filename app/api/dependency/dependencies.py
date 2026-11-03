@@ -23,6 +23,9 @@ from app.services.user_service import UserService
 from app.services.ticket_service import TicketService
 from app.services.remark_service import RemarkService
 from app.services.history_service import HistoryService
+from app.repositories.implementations.approval_repository import ApprovalRepository
+from app.repositories.interfaces.approval_interface import ApprovalInterface
+from app.services.approval_service import ApprovalService
 
 
 def get_user_repository(
@@ -73,6 +76,18 @@ def get_history_service(
     ticket_repository: TicketInterface = Depends(get_ticket_repository),
 ) -> HistoryService:
     return HistoryService(ticket_repository)
+
+
+def get_approval_repository(
+    db: AsyncSession = Depends(get_db),
+) -> ApprovalInterface:
+    return ApprovalRepository(db)
+
+
+def get_approval_service(
+    approval_repository: ApprovalInterface = Depends(get_approval_repository),
+) -> ApprovalService:
+    return ApprovalService(approval_repository)
 
 
 def get_user_service(

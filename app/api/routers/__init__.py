@@ -5,6 +5,7 @@ from app.api.routers.users import router as users_router
 from app.api.routers.tickets import router as tickets_router
 from app.api.routers.remarks import router as remarks_router
 from app.api.routers.history import router as history_router
+from app.api.routers.approval import router as approval_router
 
 __all__ = [
     "auth_router",
@@ -14,4 +15,5 @@ __all__ = [
     "tickets_router",
     "remarks_router",
     "history_router",
+    "approval_router",
 ]
