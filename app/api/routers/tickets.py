@@ -44,6 +44,23 @@ async def get_all_tickets(
     return await ticket_service.get_all_tickets()
 
 
+@router.get("/overdue", response_model=list[TicketResponse])
+async def get_overdue_tickets(
+    ticket_service: TicketService = Depends(get_ticket_service),
+    current_user: user = Depends(require_roles(UserRole.ADMIN)),
+) -> list[TicketResponse]:
+    return await ticket_service.get_overdue_tickets(current_user)
+
+
+@router.patch("/{ticket_id}/close", response_model=TicketResponse)
+async def close_ticket(
+    ticket_id: int,
+    ticket_service: TicketService = Depends(get_ticket_service),
+    current_user: user = Depends(require_roles(UserRole.ADMIN)),
+) -> TicketResponse:
+    return await ticket_service.close_ticket(ticket_id, current_user)
+
+
 @router.patch("/{ticket_id}/status", response_model=TicketResponse)
 async def update_ticket_status(
     ticket_id: int,

@@ -38,6 +38,10 @@ class TicketInterface(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    async def get_overdue_tickets(self) -> list[ErrorTickets]:
+        raise NotImplementedError
+
+    @abstractmethod
     async def save_status_update(
         self,
         ticket: ErrorTickets,

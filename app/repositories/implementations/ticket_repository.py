@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload
 
@@ -70,6 +72,23 @@ class TicketRepository(TicketInterface):
                 selectinload(ErrorTickets.created_by_user),
                 selectinload(ErrorTickets.assigned_admin),
             )
+        )
+        return list(result.scalars().all())
+
+    async def get_overdue_tickets(self) -> list[ErrorTickets]:
+        result = await self.db.execute(
+            select(ErrorTickets)
+            .options(
+                selectinload(ErrorTickets.category),
+                selectinload(ErrorTickets.created_by_user),
+                selectinload(ErrorTickets.assigned_admin),
+            )
+            .where(
+                ErrorTickets.due_at.is_not(None),
+                ErrorTickets.due_at < datetime.utcnow(),
+                ErrorTickets.status.notin_(("resolved", "closed")),
+            )
+            .order_by(ErrorTickets.due_at.asc())
         )
         return list(result.scalars().all())
 

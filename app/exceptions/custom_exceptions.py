@@ -56,3 +56,7 @@ class TicketCreationError(AppError):
 
 class TicketNotFoundError(AppError):
     default_message = "Ticket not found"
+
+
+class TicketNotResolvedError(AppError):
+    default_message = "Only resolved tickets can be closed"

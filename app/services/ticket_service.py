@@ -11,6 +11,7 @@ from app.exceptions.custom_exceptions import (
     PermissionDeniedError,
     TicketCreationError,
     TicketNotFoundError,
+    TicketNotResolvedError,
 )
 from app.models.error_ticket import ErrorTickets
 from app.models.ErrorCategory import ErrorCategory, IssueType
@@ -74,6 +75,10 @@ class TicketService:
             category = ErrorCategory(
                 name=f"{ticket_data.issue_type.value.title()} Issues",
                 issue_type=ticket_data.issue_type,
+                description=(
+                    f"Automatically created category for "
+                    f"{ticket_data.issue_type.value.lower()} issues."
+                ),
             )
             try:
                 await self.category_repository.add_pending(category)
@@ -180,6 +185,38 @@ class TicketService:
     async def get_all_tickets(self) -> list[ErrorTickets]:
         return await self.ticket_repository.get_user()
 
+    async def get_overdue_tickets(
+        self, current_user: user
+    ) -> list[ErrorTickets]:
+        if not current_user.is_active or current_user.role != UserRole.ADMIN:
+            raise PermissionDeniedError
+
+        return await self.ticket_repository.get_overdue_tickets()
+
+    async def close_ticket(
+        self, ticket_id: int, current_user: user
+    ) -> ErrorTickets:
+        if not current_user.is_active or current_user.role != UserRole.ADMIN:
+            raise PermissionDeniedError
+
+        ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
+        if ticket is None:
+            raise TicketNotFoundError
+        if ticket.status != TicketStatus.RESOLVED.value:
+            raise TicketNotResolvedError
+
+        closed_at = datetime.now(timezone.utc).replace(tzinfo=None)
+        ticket.status = TicketStatus.CLOSED.value
+        ticket.updated_at = closed_at
+        history = TicketStatusHistory(
+            ticket_id=ticket.id,
+            changed_by_id=current_user.id,
+            old_status=TicketStatus.RESOLVED.value,
+            new_status=TicketStatus.CLOSED.value,
+            changed_at=closed_at,
+        )
+        return await self.ticket_repository.save_status_update(ticket, history)
+
     async def update_ticket_status(
         self,
         ticket_id: int,
@@ -193,6 +230,11 @@ class TicketService:
         ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
         if ticket is None:
             raise TicketNotFoundError
+        if (
+            new_status == TicketStatus.CLOSED
+            and ticket.status != TicketStatus.RESOLVED.value
+        ):
+            raise TicketNotResolvedError
 
         old_status = ticket.status
         ticket.status = new_status.value

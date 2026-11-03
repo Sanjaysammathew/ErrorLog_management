@@ -23,7 +23,6 @@ class UserUpdate(BaseModel):
     username: Optional[str] = None
     email: Optional[EmailStr] = None
     department: Optional[str] = None
-    manager_id: Optional[int] = None
     password: Optional[str] = Field(default=None, min_length=6)
 
 

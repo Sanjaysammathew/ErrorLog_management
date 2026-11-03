@@ -60,6 +60,10 @@ class UserService:
         changes = user_data.model_dump(exclude_unset=True)
         if "password" in changes:
             changes["hashed_password"] = hash_password(changes.pop("password"))
+        if existing_user.role == UserRole.EMPLOYEE and existing_user.manager_id is None:
+            manager = await self.user_repository.get_by_role(UserRole.MANAGER)
+            if manager is not None:
+                changes["manager_id"] = manager.id
         return await self.user_repository.update(user_id, changes)
 
     async def deactivate_user(self, user_id: int) -> user:

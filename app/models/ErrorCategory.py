@@ -20,6 +20,7 @@ from app.models.error_ticket import ErrorTickets
 class IssueType(str, PyEnum):
     HARDWARE = "HARDWARE"
     SOFTWARE = "SOFTWARE"
+    NETWORK = "NETWORK"
 
 
 class ErrorCategory(Base):

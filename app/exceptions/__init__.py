@@ -7,6 +7,7 @@ from app.exceptions.custom_exceptions import (
     ManagerNotFoundError,
     PermissionDeniedError,
     TicketCreationError,
+    TicketNotResolvedError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -18,6 +19,7 @@ from app.exceptions.handlers import (
     manager_not_found_handler,
     permission_denied_handler,
     ticket_creation_handler,
+    ticket_not_resolved_handler,
     user_already_exists_handler,
     user_not_found_handler,
 )
@@ -31,6 +33,7 @@ __all__ = [
     "ManagerNotFoundError",
     "PermissionDeniedError",
     "TicketCreationError",
+    "TicketNotResolvedError",
     "UserAlreadyExistsError",
     "UserNotFoundError",
     "category_already_exists_handler",
@@ -40,6 +43,7 @@ __all__ = [
     "manager_not_found_handler",
     "permission_denied_handler",
     "ticket_creation_handler",
+    "ticket_not_resolved_handler",
     "user_already_exists_handler",
     "user_not_found_handler",
 ]
