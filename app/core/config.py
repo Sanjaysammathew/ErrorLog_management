@@ -23,6 +23,10 @@ class Settings(BaseSettings):
     MANAGER_USERNAME: str | None = None
     MANAGER_EMAIL: str | None = None
     MANAGER_PASSWORD: SecretStr | None = None
+    MAILJET_API_KEY: str | None = None
+    MAILJET_API_SECRET: SecretStr | None = None
+    MAIL_FROM: str | None = None
+    MAIL_FROM_NAME: str = "ErrorLog Management"
 
     @property
     def database_url(self) -> str:

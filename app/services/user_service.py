@@ -7,11 +7,15 @@ from app.exceptions.custom_exceptions import (
 from app.models.user import UserRole, user
 from app.repositories.interfaces.user_interface import UserInterface
 from app.schemas.userSchema import UserCreate, UserUpdate
+from app.services.email_service import EmailService
 
 
 class UserService:
-    def __init__(self, user_repository: UserInterface) -> None:
+    def __init__(
+        self, user_repository: UserInterface, email_service: EmailService
+    ) -> None:
         self.user_repository = user_repository
+        self.email_service = email_service
 
     async def register_user(self, user_data: UserCreate) -> user:
         existing_user = await self.user_repository.get_by_username_or_email(
@@ -27,7 +31,7 @@ class UserService:
                 raise ManagerNotFoundError
             manager_id = manager.id
 
-        return await self.user_repository.create(
+        created_user = await self.user_repository.create(
             user(
                 username=user_data.username,
                 email=user_data.email,
@@ -37,6 +41,9 @@ class UserService:
                 manager_id=manager_id,
             )
         )
+        if created_user.role == UserRole.EMPLOYEE:
+            await self.email_service.send_account_created(created_user)
+        return created_user
 
     async def list_users(self, page: int = 1, page_size: int = 10) -> dict:
         offset = (page - 1) * page_size

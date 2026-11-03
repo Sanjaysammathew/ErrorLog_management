@@ -24,6 +24,7 @@ from app.repositories.interfaces.ticket_interface import TicketInterface
 from app.repositories.interfaces.user_interface import UserInterface
 from app.schemas.error_ticketSchema import TicketCreate, TicketStatus
 from app.scripts.ticket_number import generate_ticket_number
+from app.services.email_service import EmailService
 
 
 class TicketService:
@@ -57,10 +58,12 @@ class TicketService:
         ticket_repository: TicketInterface,
         category_repository: CategoryInterface,
         user_repository: UserInterface,
+        email_service: EmailService,
     ) -> None:
         self.ticket_repository = ticket_repository
         self.category_repository = category_repository
         self.user_repository = user_repository
+        self.email_service = email_service
 
     async def create_ticket(
         self, db: AsyncSession, ticket_data: TicketCreate, current_user: user
@@ -156,6 +159,11 @@ class TicketService:
             await db.refresh(
                 ticket, ["category", "created_by_user", "assigned_admin"]
             )
+            if ticket.assigned_admin is None:
+                raise TicketCreationError("Assigned admin is unavailable")
+            await self.email_service.send_ticket_created(
+                ticket, ticket.assigned_admin.email
+            )
             return ticket
         except AppError:
             await db.rollback()
@@ -215,7 +223,9 @@ class TicketService:
             new_status=TicketStatus.CLOSED.value,
             changed_at=closed_at,
         )
-        return await self.ticket_repository.save_status_update(ticket, history)
+        closed_ticket = await self.ticket_repository.save_status_update(ticket, history)
+        await self.email_service.send_ticket_closed(closed_ticket)
+        return closed_ticket
 
     async def update_ticket_status(
         self,
@@ -255,6 +265,9 @@ class TicketService:
             if remarks
             else None
         )
-        return await self.ticket_repository.save_status_update(
+        updated_ticket = await self.ticket_repository.save_status_update(
             ticket, history, status_remark
         )
+        if new_status == TicketStatus.CLOSED:
+            await self.email_service.send_ticket_closed(updated_ticket)
+        return updated_ticket

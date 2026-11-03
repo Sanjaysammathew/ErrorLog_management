@@ -10,11 +10,15 @@ from app.exceptions.custom_exceptions import (
 from app.models.user import UserRole, user
 from app.models.user import ApprovalStatus
 from app.repositories.interfaces.approval_interface import ApprovalInterface
+from app.services.email_service import EmailService
 
 
 class ApprovalService:
-    def __init__(self, approval_repository: ApprovalInterface) -> None:
+    def __init__(
+        self, approval_repository: ApprovalInterface, email_service: EmailService
+    ) -> None:
         self.approval_repository = approval_repository
+        self.email_service = email_service
 
     async def get_pending_approvals(self, current_user: user) -> list[TicketApproval]:
         if not current_user.is_active or current_user.role != UserRole.MANAGER:
@@ -68,6 +72,10 @@ class ApprovalService:
             changed_at=decision_at,
         )
 
-        return await self.approval_repository.save_decision(
+        decided_approval = await self.approval_repository.save_decision(
             approval, history
         )
+        # Approval email notification is intentionally disabled for now.
+        # if status == ApprovalStatus.APPROVED:
+        #     await self.email_service.send_approval_approved(decided_approval.ticket)
+        return decided_approval

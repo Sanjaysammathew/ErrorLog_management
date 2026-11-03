@@ -64,3 +64,7 @@ class TicketNotResolvedError(AppError):
 
 class ApprovalAlreadyDecidedError(AppError):
     default_message = "This approval has already been decided"
+
+
+class EmailDeliveryError(AppError):
+    default_message = "Email notification could not be sent"

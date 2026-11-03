@@ -12,6 +12,7 @@ from app.exceptions.custom_exceptions import (
     TicketNotFoundError,
     TicketNotResolvedError,
     ApprovalAlreadyDecidedError,
+    EmailDeliveryError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -121,5 +122,14 @@ async def approval_already_decided_handler(
 ) -> JSONResponse:
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT,
+        content={"detail": exc.message},
+    )
+
+
+async def email_delivery_handler(
+    _: Request, exc: EmailDeliveryError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_502_BAD_GATEWAY,
         content={"detail": exc.message},
     )

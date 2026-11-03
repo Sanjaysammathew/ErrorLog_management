@@ -26,6 +26,7 @@ from app.services.history_service import HistoryService
 from app.repositories.implementations.approval_repository import ApprovalRepository
 from app.repositories.interfaces.approval_interface import ApprovalInterface
 from app.services.approval_service import ApprovalService
+from app.services.email_service import EmailService
 
 
 def get_user_repository(
@@ -52,6 +53,10 @@ def get_category_service(
     return CategoryService(category_repository)
 
 
+def get_email_service() -> EmailService:
+    return EmailService()
+
+
 def get_ticket_repository(
     db: AsyncSession = Depends(get_db),
 ) -> TicketInterface:
@@ -62,8 +67,11 @@ def get_ticket_service(
     ticket_repository: TicketInterface = Depends(get_ticket_repository),
     category_repository: CategoryInterface = Depends(get_category_repository),
     user_repository: UserInterface = Depends(get_user_repository),
+    email_service: EmailService = Depends(get_email_service),
 ) -> TicketService:
-    return TicketService(ticket_repository, category_repository, user_repository)
+    return TicketService(
+        ticket_repository, category_repository, user_repository, email_service
+    )
 
 
 def get_remark_service(
@@ -86,14 +94,16 @@ def get_approval_repository(
 
 def get_approval_service(
     approval_repository: ApprovalInterface = Depends(get_approval_repository),
+    email_service: EmailService = Depends(get_email_service),
 ) -> ApprovalService:
-    return ApprovalService(approval_repository)
+    return ApprovalService(approval_repository, email_service)
 
 
 def get_user_service(
     user_repository: UserInterface = Depends(get_user_repository),
+    email_service: EmailService = Depends(get_email_service),
 ) -> UserService:
-    return UserService(user_repository)
+    return UserService(user_repository, email_service)
 
 
 async def get_current_user(
