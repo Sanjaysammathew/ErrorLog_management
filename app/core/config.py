@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     )
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    JWT_REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     ADMIN_USERNAME: str | None = None
     ADMIN_EMAIL: str | None = None
     ADMIN_PASSWORD: SecretStr | None = None

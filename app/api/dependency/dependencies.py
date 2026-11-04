@@ -136,6 +136,8 @@ async def get_current_user(
         email = payload.get("sub")
         if not isinstance(email, str) or not email:
             raise InvalidTokenAppError
+        if payload.get("type") not in (None, "access"):
+            raise InvalidTokenAppError
     except InvalidTokenError as exc:
         raise InvalidTokenAppError from exc
 
