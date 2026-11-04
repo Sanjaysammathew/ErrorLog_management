@@ -159,11 +159,7 @@ class TicketService:
             await db.refresh(
                 ticket, ["category", "created_by_user", "assigned_admin"]
             )
-            if ticket.assigned_admin is None:
-                raise TicketCreationError("Assigned admin is unavailable")
-            await self.email_service.send_ticket_created(
-                ticket, ticket.assigned_admin.email
-            )
+            await self.email_service.send_ticket_created(ticket)
             return ticket
         except AppError:
             await db.rollback()

@@ -374,3 +374,7 @@
 2026-11-03 21:10:32,243 INFO app: Manager seed: exists
 2026-11-03 21:10:32,243 INFO app: Application started
 2026-11-03 21:14:12,458 INFO app: Application stopped
+2026-11-04 09:54:54,842 INFO app: Admin seed: exists
+2026-11-04 09:54:54,842 INFO app: Manager seed: exists
+2026-11-04 09:54:54,842 INFO app: Application started
+2026-11-04 10:20:22,233 INFO app: Application stopped

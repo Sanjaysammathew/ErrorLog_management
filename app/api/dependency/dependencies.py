@@ -27,6 +27,7 @@ from app.repositories.implementations.approval_repository import ApprovalReposit
 from app.repositories.interfaces.approval_interface import ApprovalInterface
 from app.services.approval_service import ApprovalService
 from app.services.email_service import EmailService
+from app.services.smtp_email_service import SMTPEmailService
 
 
 def get_user_repository(
@@ -55,6 +56,10 @@ def get_category_service(
 
 def get_email_service() -> EmailService:
     return EmailService()
+
+
+def get_smtp_email_service() -> SMTPEmailService:
+    return SMTPEmailService()
 
 
 def get_ticket_repository(
@@ -94,9 +99,9 @@ def get_approval_repository(
 
 def get_approval_service(
     approval_repository: ApprovalInterface = Depends(get_approval_repository),
-    email_service: EmailService = Depends(get_email_service),
+    smtp_email_service: SMTPEmailService = Depends(get_smtp_email_service),
 ) -> ApprovalService:
-    return ApprovalService(approval_repository, email_service)
+    return ApprovalService(approval_repository, smtp_email_service)
 
 
 def get_user_service(

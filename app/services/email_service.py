@@ -60,11 +60,11 @@ class EmailService:
             ),
         )
 
-    async def send_ticket_created(
-        self, ticket: ErrorTickets, recipient_email: str
-    ) -> None:
+    async def send_ticket_created(self, ticket: ErrorTickets) -> None:
+        if ticket.created_by_user is None:
+            raise EmailDeliveryError("Ticket owner is unavailable for notification")
         await self.send_email(
-            recipient_email,
+            ticket.created_by_user.email,
             f"New ticket created: {ticket.ticket_number}",
             (
                 f"A new ticket was created.\n\n"
@@ -82,19 +82,6 @@ class EmailService:
             f"Ticket closed: {ticket.ticket_number}",
             (
                 f"Your ticket {ticket.ticket_number} has been closed.\n\n"
-                f"Title: {ticket.title}\n"
-                f"Status: {ticket.status}\n"
-            ),
-        )
-
-    async def send_approval_approved(self, ticket: ErrorTickets) -> None:
-        if ticket.assigned_admin is None:
-            raise EmailDeliveryError("Assigned admin is unavailable for notification")
-        await self.send_email(
-            ticket.assigned_admin.email,
-            f"Ticket approved: {ticket.ticket_number}",
-            (
-                f"Manager approval was granted for ticket {ticket.ticket_number}.\n\n"
                 f"Title: {ticket.title}\n"
                 f"Status: {ticket.status}\n"
             ),

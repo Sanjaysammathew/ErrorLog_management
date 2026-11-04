@@ -27,6 +27,12 @@ class Settings(BaseSettings):
     MAILJET_API_SECRET: SecretStr | None = None
     MAIL_FROM: str | None = None
     MAIL_FROM_NAME: str = "ErrorLog Management"
+    SMTP_HOST: str | None = None
+    SMTP_PORT: int = 587
+    SMTP_USERNAME: str | None = None
+    SMTP_PASSWORD: SecretStr | None = None
+    SMTP_USE_TLS: bool = True
+    SMTP_USE_SSL: bool = False
 
     @property
     def database_url(self) -> str:
