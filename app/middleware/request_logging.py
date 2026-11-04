@@ -38,4 +38,5 @@ async def log_requests(
         process_time,
         correlation_id,
     )
+
     return response
