@@ -482,3 +482,39 @@
 2026-11-04 13:07:16,687 INFO app: Manager seed: exists
 2026-11-04 13:07:16,687 INFO app: Application started
 2026-11-04 13:09:50,909 INFO app: Application stopped
+2026-11-04 14:44:09,949 INFO app: Admin seed: exists
+2026-11-04 14:44:09,949 INFO app: Manager seed: exists
+2026-11-04 14:44:09,950 INFO app: Application started
+2026-11-04 14:45:03,013 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: 63e87fd6-0c7b-4066-b314-575bf5ea304c
+2026-11-04 14:45:03,015 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0013 seconds | Correlation ID: 63e87fd6-0c7b-4066-b314-575bf5ea304c
+2026-11-04 14:45:03,187 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: 71762926-136c-4dc8-8276-e19e91f546be
+2026-11-04 14:45:03,391 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.2039 seconds | Correlation ID: 71762926-136c-4dc8-8276-e19e91f546be
+2026-11-04 14:45:13,081 INFO app.middleware.request_logging: Request started: GET /health | Correlation ID: 44a9a278-d59c-4407-945d-5ee941260726
+2026-11-04 14:45:13,088 INFO app.middleware.request_logging: Request completed: GET /health | Status: 200 | Time: 0.0066 seconds | Correlation ID: 44a9a278-d59c-4407-945d-5ee941260726
+2026-11-04 14:47:30,710 INFO app: Application stopped
+2026-11-04 14:47:34,551 INFO app: Admin seed: exists
+2026-11-04 14:47:34,551 INFO app: Manager seed: exists
+2026-11-04 14:47:34,551 INFO app: Application started
+2026-11-04 14:51:41,926 INFO app: Application stopped
+2026-11-04 14:51:46,663 INFO app: Admin seed: exists
+2026-11-04 14:51:46,664 INFO app: Manager seed: exists
+2026-11-04 14:51:46,664 INFO app: Application started
+2026-11-04 14:52:13,803 INFO app: Application stopped
+2026-11-04 14:52:20,350 INFO app: Admin seed: exists
+2026-11-04 14:52:20,350 INFO app: Manager seed: exists
+2026-11-04 14:52:20,350 INFO app: Application started
+2026-11-04 14:52:22,374 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: ebd2a4e7-0f89-4562-930b-c08206196dc4
+2026-11-04 14:52:22,375 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0007 seconds | Correlation ID: ebd2a4e7-0f89-4562-930b-c08206196dc4
+2026-11-04 14:52:22,456 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: fe9eb1c7-440a-4c93-9f0e-4ba7e7d80038
+2026-11-04 14:52:22,656 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.1996 seconds | Correlation ID: fe9eb1c7-440a-4c93-9f0e-4ba7e7d80038
+2026-11-04 14:52:31,608 INFO app.middleware.request_logging: Request started: GET /health | Correlation ID: 4227fd7f-0962-46da-920b-9a544e40de75
+2026-11-04 14:52:31,628 INFO app.middleware.request_logging: Request completed: GET /health | Status: 200 | Time: 0.0196 seconds | Correlation ID: 4227fd7f-0962-46da-920b-9a544e40de75
+2026-11-04 15:17:34,026 INFO app: Application stopped
+2026-11-04 15:17:37,383 INFO app: Admin seed: exists
+2026-11-04 15:17:37,383 INFO app: Manager seed: exists
+2026-11-04 15:17:37,383 INFO app: Application started
+2026-11-04 15:24:00,820 INFO app.middleware.request_logging: Request started: GET /health | Correlation ID: 35356d8c-e311-421d-b62a-69e820bd50eb
+2026-11-04 15:24:00,833 INFO app.middleware.request_logging: Request completed: GET /health | Status: 200 | Time: 0.0130 seconds | Correlation ID: 35356d8c-e311-421d-b62a-69e820bd50eb
+2026-11-04 15:24:44,601 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: de227900-381d-43e3-ab10-f22423d13866
+2026-11-04 15:24:44,699 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0984 seconds | Correlation ID: de227900-381d-43e3-ab10-f22423d13866
+2026-11-04 15:24:51,150 INFO app: Application stopped

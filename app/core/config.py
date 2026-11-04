@@ -6,6 +6,7 @@ from sqlalchemy import URL
 class Settings(BaseSettings):
     APP_NAME: str = "ErrorLog Management"
     APP_VERSION: str = "1.0.0"
+    API_PREFIX: str = ""
     DATABASE_NAME: str
     DATABASE_USER: str
     DATABASE_PASSWORD: SecretStr
