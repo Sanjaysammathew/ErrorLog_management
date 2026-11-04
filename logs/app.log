@@ -518,3 +518,630 @@
 2026-11-04 15:24:44,601 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: de227900-381d-43e3-ab10-f22423d13866
 2026-11-04 15:24:44,699 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0984 seconds | Correlation ID: de227900-381d-43e3-ab10-f22423d13866
 2026-11-04 15:24:51,150 INFO app: Application stopped
+2026-11-04 17:09:43,680 INFO app: Admin seed: exists
+2026-11-04 17:09:43,680 INFO app: Manager seed: exists
+2026-11-04 17:09:43,680 INFO app: Application started
+2026-11-04 17:09:43,683 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 13aecf16-911e-4b65-ba9d-3dac6598feba
+2026-11-04 17:09:43,902 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-04 17:09:43,902 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.2186 seconds | Correlation ID: 13aecf16-911e-4b65-ba9d-3dac6598feba
+2026-11-04 17:09:44,067 INFO app: Application stopped
+2026-11-04 17:09:44,680 INFO app: Admin seed: exists
+2026-11-04 17:09:44,680 INFO app: Manager seed: exists
+2026-11-04 17:09:44,680 INFO app: Application started
+2026-11-04 17:09:44,682 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 5f4525c8-1deb-4a05-a05a-3f20eb63527a
+2026-11-04 17:09:44,848 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-04 17:09:44,848 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.1666 seconds | Correlation ID: 5f4525c8-1deb-4a05-a05a-3f20eb63527a
+2026-11-04 17:09:44,864 INFO app: Application stopped
+2026-11-04 17:09:45,295 INFO app: Admin seed: exists
+2026-11-04 17:09:45,295 INFO app: Manager seed: exists
+2026-11-04 17:09:45,295 INFO app: Application started
+2026-11-04 17:09:45,298 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 0f21d72f-6658-4949-9642-b6280ef5f9cf
+2026-11-04 17:09:45,521 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-04 17:09:45,522 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.2238 seconds | Correlation ID: 0f21d72f-6658-4949-9642-b6280ef5f9cf
+2026-11-04 17:09:45,538 INFO app: Application stopped
+2026-11-04 17:09:46,056 INFO app: Admin seed: exists
+2026-11-04 17:09:46,056 INFO app: Manager seed: exists
+2026-11-04 17:09:46,056 INFO app: Application started
+2026-11-04 17:09:46,060 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: b35db949-751f-451e-99e6-52e4c3cd296c
+2026-11-04 17:09:46,274 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-04 17:09:46,274 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.2145 seconds | Correlation ID: b35db949-751f-451e-99e6-52e4c3cd296c
+2026-11-04 17:09:46,291 INFO app: Application stopped
+2026-11-04 17:09:46,752 INFO app: Admin seed: exists
+2026-11-04 17:09:46,752 INFO app: Manager seed: exists
+2026-11-04 17:09:46,752 INFO app: Application started
+2026-11-04 17:09:46,754 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 511334e7-de9f-4080-8257-bb23a1798ac1
+2026-11-04 17:09:46,934 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-04 17:09:46,935 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.1810 seconds | Correlation ID: 511334e7-de9f-4080-8257-bb23a1798ac1
+2026-11-04 17:09:46,949 INFO app: Application stopped
+2026-11-04 17:09:47,401 INFO app: Admin seed: exists
+2026-11-04 17:09:47,401 INFO app: Manager seed: exists
+2026-11-04 17:09:47,402 INFO app: Application started
+2026-11-04 17:09:47,404 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 19e5edb3-3d37-45a6-b10b-d7f55468b2c0
+2026-11-04 17:09:47,601 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-04 17:09:47,601 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.1975 seconds | Correlation ID: 19e5edb3-3d37-45a6-b10b-d7f55468b2c0
+2026-11-04 17:09:47,615 INFO app: Application stopped
+2026-11-04 17:09:48,133 INFO app: Admin seed: exists
+2026-11-04 17:09:48,133 INFO app: Manager seed: exists
+2026-11-04 17:09:48,133 INFO app: Application started
+2026-11-04 17:09:48,137 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: e03fccfe-c9b3-4249-8080-11cc0128fe71
+2026-11-04 17:09:48,160 INFO app.middleware.request_logging: Request completed: GET /users | Status: 401 | Time: 0.0235 seconds | Correlation ID: e03fccfe-c9b3-4249-8080-11cc0128fe71
+2026-11-04 17:09:48,170 INFO app: Application stopped
+2026-11-04 17:09:48,724 INFO app: Admin seed: exists
+2026-11-04 17:09:48,733 INFO app: Manager seed: exists
+2026-11-04 17:09:48,733 INFO app: Application started
+2026-11-04 17:09:48,736 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 8460e279-0d64-43c5-8751-7f2a9abdb083
+2026-11-04 17:09:48,917 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-04 17:09:48,918 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.1819 seconds | Correlation ID: 8460e279-0d64-43c5-8751-7f2a9abdb083
+2026-11-04 17:09:48,934 INFO app: Application stopped
+2026-11-04 17:10:24,177 INFO app: Admin seed: exists
+2026-11-04 17:10:24,177 INFO app: Manager seed: exists
+2026-11-04 17:10:24,177 INFO app: Application started
+2026-11-04 17:10:24,179 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: a5c3a6e8-0265-4799-a408-106a828756bf
+2026-11-04 17:10:24,518 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3387 seconds | Correlation ID: a5c3a6e8-0265-4799-a408-106a828756bf
+2026-11-04 17:10:24,529 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 3fe027eb-3b5a-471b-ba89-8737d6bd0a67
+2026-11-04 17:10:24,787 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2577 seconds | Correlation ID: 3fe027eb-3b5a-471b-ba89-8737d6bd0a67
+2026-11-04 17:10:24,960 INFO app: Application stopped
+2026-11-04 17:10:26,127 INFO app: Admin seed: exists
+2026-11-04 17:10:26,127 INFO app: Manager seed: exists
+2026-11-04 17:10:26,128 INFO app: Application started
+2026-11-04 17:10:26,130 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 5b741d6b-4275-4052-9d4a-8fa405321b9b
+2026-11-04 17:10:26,577 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.4471 seconds | Correlation ID: 5b741d6b-4275-4052-9d4a-8fa405321b9b
+2026-11-04 17:10:26,587 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: ef471857-aed5-477f-a2b1-d0c845479872
+2026-11-04 17:10:26,914 INFO app.middleware.request_logging: Request completed: GET /users | Status: 200 | Time: 0.3272 seconds | Correlation ID: ef471857-aed5-477f-a2b1-d0c845479872
+2026-11-04 17:10:26,949 INFO app: Application stopped
+2026-11-04 17:10:27,785 INFO app: Admin seed: exists
+2026-11-04 17:10:27,786 INFO app: Manager seed: exists
+2026-11-04 17:10:27,786 INFO app: Application started
+2026-11-04 17:10:27,789 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 8df1d730-c569-40ed-8ce2-861339fafaaa
+2026-11-04 17:10:28,146 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3568 seconds | Correlation ID: 8df1d730-c569-40ed-8ce2-861339fafaaa
+2026-11-04 17:10:28,159 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 0452cd3c-e256-415c-a811-4b90a760677d
+2026-11-04 17:10:28,686 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.5270 seconds | Correlation ID: 0452cd3c-e256-415c-a811-4b90a760677d
+2026-11-04 17:10:28,720 INFO app: Application stopped
+2026-11-04 17:10:29,800 INFO app: Admin seed: exists
+2026-11-04 17:10:29,801 INFO app: Manager seed: exists
+2026-11-04 17:10:29,801 INFO app: Application started
+2026-11-04 17:10:29,803 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: ec90ef66-d4f9-4203-96c9-f10e27c0f50f
+2026-11-04 17:10:30,114 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3107 seconds | Correlation ID: ec90ef66-d4f9-4203-96c9-f10e27c0f50f
+2026-11-04 17:10:30,125 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 41074bef-bf83-4332-b575-8d142f1be017
+2026-11-04 17:10:30,393 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2680 seconds | Correlation ID: 41074bef-bf83-4332-b575-8d142f1be017
+2026-11-04 17:10:30,462 INFO app: Application stopped
+2026-11-04 17:10:31,237 INFO app: Admin seed: exists
+2026-11-04 17:10:31,237 INFO app: Manager seed: exists
+2026-11-04 17:10:31,237 INFO app: Application started
+2026-11-04 17:10:31,240 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 62cb946e-88c7-41c8-8c84-10b9a759aa9a
+2026-11-04 17:10:31,564 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3235 seconds | Correlation ID: 62cb946e-88c7-41c8-8c84-10b9a759aa9a
+2026-11-04 17:10:31,575 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: b439b3df-f61e-46b3-88d7-d7a3c24d8a1a
+2026-11-04 17:10:31,834 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2587 seconds | Correlation ID: b439b3df-f61e-46b3-88d7-d7a3c24d8a1a
+2026-11-04 17:10:31,851 INFO app: Application stopped
+2026-11-04 17:10:33,104 INFO app: Admin seed: exists
+2026-11-04 17:10:33,104 INFO app: Manager seed: exists
+2026-11-04 17:10:33,104 INFO app: Application started
+2026-11-04 17:10:33,109 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: dd275b62-180b-4cca-a0fc-eb620b51f436
+2026-11-04 17:10:33,487 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3784 seconds | Correlation ID: dd275b62-180b-4cca-a0fc-eb620b51f436
+2026-11-04 17:10:33,503 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: b0b153ad-fbc2-4623-8d63-496e29026908
+2026-11-04 17:10:33,927 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.4243 seconds | Correlation ID: b0b153ad-fbc2-4623-8d63-496e29026908
+2026-11-04 17:10:33,950 INFO app: Application stopped
+2026-11-04 17:10:35,807 INFO app: Admin seed: exists
+2026-11-04 17:10:35,807 INFO app: Manager seed: exists
+2026-11-04 17:10:35,807 INFO app: Application started
+2026-11-04 17:10:35,811 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: a45b08b3-46ff-450c-9b6c-651cc7de0968
+2026-11-04 17:10:35,815 INFO app.middleware.request_logging: Request completed: GET /users | Status: 401 | Time: 0.0042 seconds | Correlation ID: a45b08b3-46ff-450c-9b6c-651cc7de0968
+2026-11-04 17:10:35,827 INFO app: Application stopped
+2026-11-04 17:10:36,690 INFO app: Admin seed: exists
+2026-11-04 17:10:36,690 INFO app: Manager seed: exists
+2026-11-04 17:10:36,690 INFO app: Application started
+2026-11-04 17:10:36,693 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 04f21aba-28b5-49d5-a829-44015445f670
+2026-11-04 17:10:37,123 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.4292 seconds | Correlation ID: 04f21aba-28b5-49d5-a829-44015445f670
+2026-11-04 17:10:37,137 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 3db181b0-33b8-41b7-b853-6db3357b241b
+2026-11-04 17:10:37,466 INFO app.middleware.request_logging: Request completed: GET /users | Status: 422 | Time: 0.3290 seconds | Correlation ID: 3db181b0-33b8-41b7-b853-6db3357b241b
+2026-11-04 17:10:37,483 INFO app: Application stopped
+2026-11-04 17:11:20,517 INFO app: Admin seed: exists
+2026-11-04 17:11:20,517 INFO app: Manager seed: exists
+2026-11-04 17:11:20,517 INFO app: Application started
+2026-11-04 17:11:20,522 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 77557ae3-bb14-4de9-a814-4b41a43e37f5
+2026-11-04 17:11:20,897 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3748 seconds | Correlation ID: 77557ae3-bb14-4de9-a814-4b41a43e37f5
+2026-11-04 17:11:20,913 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: f49c40d0-bb19-432e-aeb1-38c3f4f02af3
+2026-11-04 17:11:21,279 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.3658 seconds | Correlation ID: f49c40d0-bb19-432e-aeb1-38c3f4f02af3
+2026-11-04 17:11:21,524 INFO app: Application stopped
+2026-11-04 17:11:22,621 INFO app: Admin seed: exists
+2026-11-04 17:11:22,621 INFO app: Manager seed: exists
+2026-11-04 17:11:22,621 INFO app: Application started
+2026-11-04 17:11:22,624 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: dd1e4936-9d78-4228-9308-b06b2267bd24
+2026-11-04 17:11:23,022 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3981 seconds | Correlation ID: dd1e4936-9d78-4228-9308-b06b2267bd24
+2026-11-04 17:11:23,038 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 93a88f7b-52d5-482a-a12e-24a12633b24e
+2026-11-04 17:11:23,393 INFO app.middleware.request_logging: Request completed: GET /users | Status: 200 | Time: 0.3551 seconds | Correlation ID: 93a88f7b-52d5-482a-a12e-24a12633b24e
+2026-11-04 17:11:23,416 INFO app: Application stopped
+2026-11-04 17:11:24,460 INFO app: Admin seed: exists
+2026-11-04 17:11:24,460 INFO app: Manager seed: exists
+2026-11-04 17:11:24,460 INFO app: Application started
+2026-11-04 17:11:24,462 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 6b0e3617-c268-42dd-a0cf-44079b94affc
+2026-11-04 17:11:24,751 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2895 seconds | Correlation ID: 6b0e3617-c268-42dd-a0cf-44079b94affc
+2026-11-04 17:11:24,763 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: ae6bf40b-49ae-4a5e-ab19-022d93e9b7cf
+2026-11-04 17:11:25,052 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2881 seconds | Correlation ID: ae6bf40b-49ae-4a5e-ab19-022d93e9b7cf
+2026-11-04 17:11:25,130 INFO app: Application stopped
+2026-11-04 17:11:26,175 INFO app: Admin seed: exists
+2026-11-04 17:11:26,175 INFO app: Manager seed: exists
+2026-11-04 17:11:26,175 INFO app: Application started
+2026-11-04 17:11:26,177 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 84c29618-01c9-4a21-843d-dddf161b7c22
+2026-11-04 17:11:26,459 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2820 seconds | Correlation ID: 84c29618-01c9-4a21-843d-dddf161b7c22
+2026-11-04 17:11:26,469 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 108b43df-0206-4e54-a59b-37f0893a3383
+2026-11-04 17:11:26,695 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2256 seconds | Correlation ID: 108b43df-0206-4e54-a59b-37f0893a3383
+2026-11-04 17:11:26,708 INFO app: Application stopped
+2026-11-04 17:11:27,396 INFO app: Admin seed: exists
+2026-11-04 17:11:27,396 INFO app: Manager seed: exists
+2026-11-04 17:11:27,396 INFO app: Application started
+2026-11-04 17:11:27,398 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 3524371a-de09-4f0a-9ef7-16b1ab68a1dd
+2026-11-04 17:11:27,672 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2738 seconds | Correlation ID: 3524371a-de09-4f0a-9ef7-16b1ab68a1dd
+2026-11-04 17:11:27,682 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 0b614ef4-9d2f-4e15-84a1-fe2425aa3365
+2026-11-04 17:11:27,909 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2276 seconds | Correlation ID: 0b614ef4-9d2f-4e15-84a1-fe2425aa3365
+2026-11-04 17:11:27,923 INFO app: Application stopped
+2026-11-04 17:11:28,644 INFO app: Admin seed: exists
+2026-11-04 17:11:28,644 INFO app: Manager seed: exists
+2026-11-04 17:11:28,645 INFO app: Application started
+2026-11-04 17:11:28,646 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 3bcb0778-a68f-45fb-ab27-4742f3abb71c
+2026-11-04 17:11:28,921 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2749 seconds | Correlation ID: 3bcb0778-a68f-45fb-ab27-4742f3abb71c
+2026-11-04 17:11:28,931 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 0dfa8a0a-2609-48ab-8b67-6901843aed8e
+2026-11-04 17:11:29,154 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2224 seconds | Correlation ID: 0dfa8a0a-2609-48ab-8b67-6901843aed8e
+2026-11-04 17:11:29,167 INFO app: Application stopped
+2026-11-04 17:11:29,849 INFO app: Admin seed: exists
+2026-11-04 17:11:29,849 INFO app: Manager seed: exists
+2026-11-04 17:11:29,849 INFO app: Application started
+2026-11-04 17:11:29,855 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: b964c1cd-81c5-4cab-a05a-caca28ac337e
+2026-11-04 17:11:29,857 INFO app.middleware.request_logging: Request completed: GET /users | Status: 401 | Time: 0.0024 seconds | Correlation ID: b964c1cd-81c5-4cab-a05a-caca28ac337e
+2026-11-04 17:11:29,865 INFO app: Application stopped
+2026-11-04 17:11:30,538 INFO app: Admin seed: exists
+2026-11-04 17:11:30,538 INFO app: Manager seed: exists
+2026-11-04 17:11:30,538 INFO app: Application started
+2026-11-04 17:11:30,540 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: a68d3b22-9d5b-40fb-ae03-b8ce8cab70b9
+2026-11-04 17:11:30,923 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3825 seconds | Correlation ID: a68d3b22-9d5b-40fb-ae03-b8ce8cab70b9
+2026-11-04 17:11:30,938 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: b5dc6eda-0aca-4cfe-a7f3-b0d7e548b1f0
+2026-11-04 17:11:31,278 INFO app.middleware.request_logging: Request completed: GET /users | Status: 422 | Time: 0.3396 seconds | Correlation ID: b5dc6eda-0aca-4cfe-a7f3-b0d7e548b1f0
+2026-11-04 17:11:31,298 INFO app: Application stopped
+2026-11-04 17:11:52,118 INFO app: Admin seed: exists
+2026-11-04 17:11:52,118 INFO app: Manager seed: exists
+2026-11-04 17:11:52,118 INFO app: Application started
+2026-11-04 17:11:52,122 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 884c2347-0d62-4d5c-adc9-e7ae22b4a3f8
+2026-11-04 17:11:52,502 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3804 seconds | Correlation ID: 884c2347-0d62-4d5c-adc9-e7ae22b4a3f8
+2026-11-04 17:11:52,513 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 393ca3bb-3f25-4b66-9d97-72773dfd2df5
+2026-11-04 17:11:52,754 ERROR app.exceptions.handlers: Manager not found error (ManagerNotFoundError) for POST /users
+2026-11-04 17:11:52,754 INFO app.middleware.request_logging: Request completed: POST /users | Status: 409 | Time: 0.2406 seconds | Correlation ID: 393ca3bb-3f25-4b66-9d97-72773dfd2df5
+2026-11-04 17:11:52,915 INFO app: Application stopped
+2026-11-04 17:11:53,560 INFO app: Admin seed: exists
+2026-11-04 17:11:53,560 INFO app: Manager seed: exists
+2026-11-04 17:11:53,560 INFO app: Application started
+2026-11-04 17:11:53,561 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: dc1f73f0-9adb-4e57-892b-3e01fd502d0e
+2026-11-04 17:11:53,807 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2451 seconds | Correlation ID: dc1f73f0-9adb-4e57-892b-3e01fd502d0e
+2026-11-04 17:11:53,816 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 5e20c3c5-c33b-4f93-95a4-3cae4a2b7455
+2026-11-04 17:11:54,025 INFO app.middleware.request_logging: Request completed: GET /users | Status: 200 | Time: 0.2089 seconds | Correlation ID: 5e20c3c5-c33b-4f93-95a4-3cae4a2b7455
+2026-11-04 17:11:54,042 INFO app: Application stopped
+2026-11-04 17:11:54,747 INFO app: Admin seed: exists
+2026-11-04 17:11:54,747 INFO app: Manager seed: exists
+2026-11-04 17:11:54,748 INFO app: Application started
+2026-11-04 17:11:54,750 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 16a3bd01-3c70-4ca5-8fa5-008f68a86638
+2026-11-04 17:11:55,012 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2618 seconds | Correlation ID: 16a3bd01-3c70-4ca5-8fa5-008f68a86638
+2026-11-04 17:11:55,027 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 9044e55b-f701-4eb0-b943-d915026c74c4
+2026-11-04 17:11:55,484 ERROR app.exceptions.handlers: Manager not found error (ManagerNotFoundError) for POST /users
+2026-11-04 17:11:55,485 INFO app.middleware.request_logging: Request completed: POST /users | Status: 409 | Time: 0.4577 seconds | Correlation ID: 9044e55b-f701-4eb0-b943-d915026c74c4
+2026-11-04 17:11:55,552 INFO app: Application stopped
+2026-11-04 17:11:56,218 INFO app: Admin seed: exists
+2026-11-04 17:11:56,219 INFO app: Manager seed: exists
+2026-11-04 17:11:56,219 INFO app: Application started
+2026-11-04 17:11:56,220 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 819d0003-fbfa-406a-9609-97c07ccbe80d
+2026-11-04 17:11:56,627 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.4067 seconds | Correlation ID: 819d0003-fbfa-406a-9609-97c07ccbe80d
+2026-11-04 17:11:56,637 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 65a06237-2e33-4233-8aae-5452e9e13e75
+2026-11-04 17:11:56,853 ERROR app.exceptions.handlers: Manager not found error (ManagerNotFoundError) for POST /users
+2026-11-04 17:11:56,853 INFO app.middleware.request_logging: Request completed: POST /users | Status: 409 | Time: 0.2161 seconds | Correlation ID: 65a06237-2e33-4233-8aae-5452e9e13e75
+2026-11-04 17:11:56,865 INFO app: Application stopped
+2026-11-04 17:11:57,477 INFO app: Admin seed: exists
+2026-11-04 17:11:57,477 INFO app: Manager seed: exists
+2026-11-04 17:11:57,477 INFO app: Application started
+2026-11-04 17:11:57,479 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 1190a432-58ce-4f8c-b81d-b4ad97090e2b
+2026-11-04 17:11:57,800 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3213 seconds | Correlation ID: 1190a432-58ce-4f8c-b81d-b4ad97090e2b
+2026-11-04 17:11:57,810 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 27d0025d-d362-462f-9839-a3ee6a027dc1
+2026-11-04 17:11:58,123 ERROR app.exceptions.handlers: Manager not found error (ManagerNotFoundError) for POST /users
+2026-11-04 17:11:58,123 INFO app.middleware.request_logging: Request completed: POST /users | Status: 409 | Time: 0.3128 seconds | Correlation ID: 27d0025d-d362-462f-9839-a3ee6a027dc1
+2026-11-04 17:11:58,137 INFO app: Application stopped
+2026-11-04 17:11:58,807 INFO app: Admin seed: exists
+2026-11-04 17:11:58,807 INFO app: Manager seed: exists
+2026-11-04 17:11:58,807 INFO app: Application started
+2026-11-04 17:11:58,808 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 485d1640-592d-47b0-9d02-47548049380f
+2026-11-04 17:11:59,078 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2699 seconds | Correlation ID: 485d1640-592d-47b0-9d02-47548049380f
+2026-11-04 17:11:59,093 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 931d5639-f776-4010-a98c-e6623e67c127
+2026-11-04 17:11:59,303 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.2098 seconds | Correlation ID: 931d5639-f776-4010-a98c-e6623e67c127
+2026-11-04 17:11:59,316 INFO app: Application stopped
+2026-11-04 17:11:59,933 INFO app: Admin seed: exists
+2026-11-04 17:11:59,933 INFO app: Manager seed: exists
+2026-11-04 17:11:59,933 INFO app: Application started
+2026-11-04 17:11:59,936 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 6b6b8305-b11b-4d6d-ac32-609311fcdce8
+2026-11-04 17:11:59,939 INFO app.middleware.request_logging: Request completed: GET /users | Status: 401 | Time: 0.0030 seconds | Correlation ID: 6b6b8305-b11b-4d6d-ac32-609311fcdce8
+2026-11-04 17:11:59,946 INFO app: Application stopped
+2026-11-04 17:12:00,594 INFO app: Admin seed: exists
+2026-11-04 17:12:00,594 INFO app: Manager seed: exists
+2026-11-04 17:12:00,594 INFO app: Application started
+2026-11-04 17:12:00,597 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: ce4b0ffb-4ead-46ac-95c3-238e057f5488
+2026-11-04 17:12:01,066 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.4693 seconds | Correlation ID: ce4b0ffb-4ead-46ac-95c3-238e057f5488
+2026-11-04 17:12:01,077 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: b7bb4d98-5a09-4a88-9730-9a9859d7b98b
+2026-11-04 17:12:01,322 INFO app.middleware.request_logging: Request completed: GET /users | Status: 422 | Time: 0.2450 seconds | Correlation ID: b7bb4d98-5a09-4a88-9730-9a9859d7b98b
+2026-11-04 17:12:01,337 INFO app: Application stopped
+2026-11-04 17:12:29,224 INFO app: Admin seed: exists
+2026-11-04 17:12:29,225 INFO app: Manager seed: exists
+2026-11-04 17:12:29,225 INFO app: Application started
+2026-11-04 17:12:29,227 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: cd597a71-6087-4d86-a670-22f6cfe4b5e5
+2026-11-04 17:12:29,550 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3227 seconds | Correlation ID: cd597a71-6087-4d86-a670-22f6cfe4b5e5
+2026-11-04 17:12:29,560 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: ba5d463e-5607-4338-a72e-c5e8543a9a75
+2026-11-04 17:12:31,067 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.5070 seconds | Correlation ID: ba5d463e-5607-4338-a72e-c5e8543a9a75
+2026-11-04 17:12:31,086 INFO app: Application stopped
+2026-11-04 17:12:32,107 INFO app: Admin seed: exists
+2026-11-04 17:12:32,107 INFO app: Manager seed: exists
+2026-11-04 17:12:32,107 INFO app: Application started
+2026-11-04 17:12:32,109 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: b4e58f7d-842e-40af-bca0-4414b0b8c0e5
+2026-11-04 17:12:32,412 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3030 seconds | Correlation ID: b4e58f7d-842e-40af-bca0-4414b0b8c0e5
+2026-11-04 17:12:32,422 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 37a82646-8e53-4329-88d6-746713a6718b
+2026-11-04 17:12:32,689 INFO app.middleware.request_logging: Request completed: GET /users | Status: 200 | Time: 0.2677 seconds | Correlation ID: 37a82646-8e53-4329-88d6-746713a6718b
+2026-11-04 17:12:32,707 INFO app: Application stopped
+2026-11-04 17:12:33,498 INFO app: Admin seed: exists
+2026-11-04 17:12:33,498 INFO app: Manager seed: exists
+2026-11-04 17:12:33,498 INFO app: Application started
+2026-11-04 17:12:33,500 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: ff86056a-67d0-4187-ace4-898aa157646e
+2026-11-04 17:12:33,798 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2980 seconds | Correlation ID: ff86056a-67d0-4187-ace4-898aa157646e
+2026-11-04 17:12:33,808 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: def3b6b1-c91a-4ef1-97ff-b558c951c8ff
+2026-11-04 17:12:35,028 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.2202 seconds | Correlation ID: def3b6b1-c91a-4ef1-97ff-b558c951c8ff
+2026-11-04 17:12:35,038 INFO app.middleware.request_logging: Request started: GET /users/8 | Correlation ID: 11445508-486e-43e8-a6f0-01eb39cc56d5
+2026-11-04 17:12:35,356 INFO app.middleware.request_logging: Request completed: GET /users/8 | Status: 200 | Time: 0.3177 seconds | Correlation ID: 11445508-486e-43e8-a6f0-01eb39cc56d5
+2026-11-04 17:12:35,378 INFO app: Application stopped
+2026-11-04 17:12:36,270 INFO app: Admin seed: exists
+2026-11-04 17:12:36,270 INFO app: Manager seed: exists
+2026-11-04 17:12:36,270 INFO app: Application started
+2026-11-04 17:12:36,271 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 4c57c96f-6d6d-4370-bd94-981764dda022
+2026-11-04 17:12:36,510 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2389 seconds | Correlation ID: 4c57c96f-6d6d-4370-bd94-981764dda022
+2026-11-04 17:12:36,521 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: df0380ea-0bd7-4a3f-9599-bf08c8c8bca0
+2026-11-04 17:12:37,583 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.0617 seconds | Correlation ID: df0380ea-0bd7-4a3f-9599-bf08c8c8bca0
+2026-11-04 17:12:37,591 INFO app.middleware.request_logging: Request started: PUT /users/11 | Correlation ID: 74759efe-99bb-4aa1-b798-ec6f2f923ca9
+2026-11-04 17:12:38,032 INFO app.middleware.request_logging: Request completed: PUT /users/11 | Status: 200 | Time: 0.4408 seconds | Correlation ID: 74759efe-99bb-4aa1-b798-ec6f2f923ca9
+2026-11-04 17:12:38,049 INFO app: Application stopped
+2026-11-04 17:12:38,813 INFO app: Admin seed: exists
+2026-11-04 17:12:38,813 INFO app: Manager seed: exists
+2026-11-04 17:12:38,813 INFO app: Application started
+2026-11-04 17:12:38,816 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: f2c1766f-3252-4120-8a18-2ffe5e8e8413
+2026-11-04 17:12:39,071 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2553 seconds | Correlation ID: f2c1766f-3252-4120-8a18-2ffe5e8e8413
+2026-11-04 17:12:39,081 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 31557678-6156-48fa-8987-d97d19f7ee8a
+2026-11-04 17:12:40,067 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 0.9853 seconds | Correlation ID: 31557678-6156-48fa-8987-d97d19f7ee8a
+2026-11-04 17:12:40,076 INFO app.middleware.request_logging: Request started: PATCH /users/14 | Correlation ID: f51fd40e-3d15-4f9d-b126-f82cf4eda991
+2026-11-04 17:12:40,516 INFO app.middleware.request_logging: Request completed: PATCH /users/14 | Status: 200 | Time: 0.4402 seconds | Correlation ID: f51fd40e-3d15-4f9d-b126-f82cf4eda991
+2026-11-04 17:12:40,534 INFO app: Application stopped
+2026-11-04 17:12:41,262 INFO app: Admin seed: exists
+2026-11-04 17:12:41,262 INFO app: Manager seed: exists
+2026-11-04 17:12:41,262 INFO app: Application started
+2026-11-04 17:12:41,265 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 18714e2e-9b4c-4e25-b235-faf4a84f49aa
+2026-11-04 17:12:41,504 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2396 seconds | Correlation ID: 18714e2e-9b4c-4e25-b235-faf4a84f49aa
+2026-11-04 17:12:41,514 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 923c1bb2-fef3-4ab9-9d91-2589dfee35a6
+2026-11-04 17:12:41,713 INFO app.middleware.request_logging: Request completed: POST /users | Status: 422 | Time: 0.1994 seconds | Correlation ID: 923c1bb2-fef3-4ab9-9d91-2589dfee35a6
+2026-11-04 17:12:41,898 INFO app: Application stopped
+2026-11-04 17:12:42,684 INFO app: Admin seed: exists
+2026-11-04 17:12:42,684 INFO app: Manager seed: exists
+2026-11-04 17:12:42,684 INFO app: Application started
+2026-11-04 17:12:42,687 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 3e605472-cff4-49a4-8d03-42fd82741438
+2026-11-04 17:12:42,690 INFO app.middleware.request_logging: Request completed: GET /users | Status: 401 | Time: 0.0028 seconds | Correlation ID: 3e605472-cff4-49a4-8d03-42fd82741438
+2026-11-04 17:12:42,699 INFO app: Application stopped
+2026-11-04 17:12:43,327 INFO app: Admin seed: exists
+2026-11-04 17:12:43,328 INFO app: Manager seed: exists
+2026-11-04 17:12:43,328 INFO app: Application started
+2026-11-04 17:12:43,330 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: faefa086-2957-4698-89ff-2d10687e31d7
+2026-11-04 17:12:43,627 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2973 seconds | Correlation ID: faefa086-2957-4698-89ff-2d10687e31d7
+2026-11-04 17:12:43,665 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 635eeeee-dcfb-4425-ab13-1bec5313d499
+2026-11-04 17:12:44,638 INFO app.middleware.request_logging: Request completed: GET /users | Status: 422 | Time: 0.9732 seconds | Correlation ID: 635eeeee-dcfb-4425-ab13-1bec5313d499
+2026-11-04 17:12:44,652 INFO app: Application stopped
+2026-11-04 17:13:02,054 INFO app: Admin seed: exists
+2026-11-04 17:13:02,054 INFO app: Manager seed: exists
+2026-11-04 17:13:02,054 INFO app: Application started
+2026-11-04 17:13:02,060 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 02e2be0f-b367-47d4-a67d-f4fa4167074f
+2026-11-04 17:13:02,383 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3233 seconds | Correlation ID: 02e2be0f-b367-47d4-a67d-f4fa4167074f
+2026-11-04 17:13:02,395 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 50590dab-c2fa-4d6c-81c5-79aa66aeeba4
+2026-11-04 17:13:04,286 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.8907 seconds | Correlation ID: 50590dab-c2fa-4d6c-81c5-79aa66aeeba4
+2026-11-04 17:13:04,310 INFO app: Application stopped
+2026-11-04 17:13:05,114 INFO app: Admin seed: exists
+2026-11-04 17:13:05,114 INFO app: Manager seed: exists
+2026-11-04 17:13:05,114 INFO app: Application started
+2026-11-04 17:13:05,116 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: bdfb17f6-480a-4d1c-8e1b-1f7ef1c5f7db
+2026-11-04 17:13:05,501 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3857 seconds | Correlation ID: bdfb17f6-480a-4d1c-8e1b-1f7ef1c5f7db
+2026-11-04 17:13:05,515 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: e9d71276-395b-4ed7-b92f-a85cf2099b9f
+2026-11-04 17:13:05,855 INFO app.middleware.request_logging: Request completed: GET /users | Status: 200 | Time: 0.3398 seconds | Correlation ID: e9d71276-395b-4ed7-b92f-a85cf2099b9f
+2026-11-04 17:13:05,879 INFO app: Application stopped
+2026-11-04 17:13:07,050 INFO app: Admin seed: exists
+2026-11-04 17:13:07,050 INFO app: Manager seed: exists
+2026-11-04 17:13:07,050 INFO app: Application started
+2026-11-04 17:13:07,053 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 868df675-6863-4146-9976-7f24462545c9
+2026-11-04 17:13:07,359 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3067 seconds | Correlation ID: 868df675-6863-4146-9976-7f24462545c9
+2026-11-04 17:13:07,372 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 3386984a-215b-4c3d-a792-8ae316800a6c
+2026-11-04 17:13:08,789 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.4175 seconds | Correlation ID: 3386984a-215b-4c3d-a792-8ae316800a6c
+2026-11-04 17:13:08,801 INFO app.middleware.request_logging: Request started: GET /users/8 | Correlation ID: a629adc6-5f04-4c29-81be-aa8eb6e46410
+2026-11-04 17:13:09,136 INFO app.middleware.request_logging: Request completed: GET /users/8 | Status: 200 | Time: 0.3354 seconds | Correlation ID: a629adc6-5f04-4c29-81be-aa8eb6e46410
+2026-11-04 17:13:09,160 INFO app: Application stopped
+2026-11-04 17:13:10,163 INFO app: Admin seed: exists
+2026-11-04 17:13:10,163 INFO app: Manager seed: exists
+2026-11-04 17:13:10,163 INFO app: Application started
+2026-11-04 17:13:10,167 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 4d55fb83-c1c8-4da3-bf13-220e23f3ab60
+2026-11-04 17:13:10,508 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3412 seconds | Correlation ID: 4d55fb83-c1c8-4da3-bf13-220e23f3ab60
+2026-11-04 17:13:10,520 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: e651280b-f755-4fad-8359-3145c9a53d6a
+2026-11-04 17:13:11,726 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.2064 seconds | Correlation ID: e651280b-f755-4fad-8359-3145c9a53d6a
+2026-11-04 17:13:11,738 INFO app.middleware.request_logging: Request started: PUT /users/11 | Correlation ID: 72e9a605-977f-4cfc-982f-62890944dbe7
+2026-11-04 17:13:12,198 INFO app.middleware.request_logging: Request completed: PUT /users/11 | Status: 200 | Time: 0.4604 seconds | Correlation ID: 72e9a605-977f-4cfc-982f-62890944dbe7
+2026-11-04 17:13:12,218 INFO app: Application stopped
+2026-11-04 17:13:13,141 INFO app: Admin seed: exists
+2026-11-04 17:13:13,141 INFO app: Manager seed: exists
+2026-11-04 17:13:13,141 INFO app: Application started
+2026-11-04 17:13:13,143 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 201916b0-6b70-423a-9913-c2c77ae98189
+2026-11-04 17:13:13,387 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2438 seconds | Correlation ID: 201916b0-6b70-423a-9913-c2c77ae98189
+2026-11-04 17:13:13,397 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: f8c0cb53-1a72-4ee4-bc15-f27eedca38d1
+2026-11-04 17:13:14,606 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.2099 seconds | Correlation ID: f8c0cb53-1a72-4ee4-bc15-f27eedca38d1
+2026-11-04 17:13:14,619 INFO app.middleware.request_logging: Request started: PATCH /users/14 | Correlation ID: e467a713-f59a-49fd-81c1-36234a74ad37
+2026-11-04 17:13:15,284 INFO app.middleware.request_logging: Request completed: PATCH /users/14 | Status: 200 | Time: 0.6658 seconds | Correlation ID: e467a713-f59a-49fd-81c1-36234a74ad37
+2026-11-04 17:13:15,304 INFO app: Application stopped
+2026-11-04 17:13:16,212 INFO app: Admin seed: exists
+2026-11-04 17:13:16,212 INFO app: Manager seed: exists
+2026-11-04 17:13:16,212 INFO app: Application started
+2026-11-04 17:13:16,215 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 9fa13342-5a18-4288-a239-dde4054d225a
+2026-11-04 17:13:16,493 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2776 seconds | Correlation ID: 9fa13342-5a18-4288-a239-dde4054d225a
+2026-11-04 17:13:16,505 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 01fa6bcb-dce3-4426-b13b-29e60d3e7fdc
+2026-11-04 17:13:18,217 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.7110 seconds | Correlation ID: 01fa6bcb-dce3-4426-b13b-29e60d3e7fdc
+2026-11-04 17:13:18,231 INFO app.middleware.request_logging: Request started: DELETE /users/17 | Correlation ID: 958add6b-e500-4e01-8708-d9dd647873e6
+2026-11-04 17:13:18,879 INFO app.middleware.request_logging: Request completed: DELETE /users/17 | Status: 200 | Time: 0.6480 seconds | Correlation ID: 958add6b-e500-4e01-8708-d9dd647873e6
+2026-11-04 17:13:18,908 INFO app: Application stopped
+2026-11-04 17:13:19,851 INFO app: Admin seed: exists
+2026-11-04 17:13:19,851 INFO app: Manager seed: exists
+2026-11-04 17:13:19,851 INFO app: Application started
+2026-11-04 17:13:19,856 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: b4348749-435c-41a1-8256-490a0d0cd8a3
+2026-11-04 17:13:19,862 INFO app.middleware.request_logging: Request completed: GET /users | Status: 401 | Time: 0.0058 seconds | Correlation ID: b4348749-435c-41a1-8256-490a0d0cd8a3
+2026-11-04 17:13:19,874 INFO app: Application stopped
+2026-11-04 17:13:20,987 INFO app: Admin seed: exists
+2026-11-04 17:13:20,987 INFO app: Manager seed: exists
+2026-11-04 17:13:20,988 INFO app: Application started
+2026-11-04 17:13:20,993 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: aae7b24f-cad8-4274-bb86-821b51deda0e
+2026-11-04 17:13:21,388 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3947 seconds | Correlation ID: aae7b24f-cad8-4274-bb86-821b51deda0e
+2026-11-04 17:13:21,402 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: c1a16b5a-4a28-4586-9505-ba1aafdc358b
+2026-11-04 17:13:21,771 INFO app.middleware.request_logging: Request completed: GET /users | Status: 422 | Time: 0.3682 seconds | Correlation ID: c1a16b5a-4a28-4586-9505-ba1aafdc358b
+2026-11-04 17:13:21,788 INFO app: Application stopped
+2026-11-04 17:14:32,370 INFO app: Admin seed: exists
+2026-11-04 17:14:32,371 INFO app: Manager seed: exists
+2026-11-04 17:14:32,371 INFO app: Application started
+2026-11-04 17:14:32,373 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 378e4595-f2de-4fe1-b51a-213899f084dc
+2026-11-04 17:14:32,631 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2582 seconds | Correlation ID: 378e4595-f2de-4fe1-b51a-213899f084dc
+2026-11-04 17:14:32,641 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: b5f51aeb-8552-4d6f-873b-f64b39c6ae35
+2026-11-04 17:14:33,980 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.3389 seconds | Correlation ID: b5f51aeb-8552-4d6f-873b-f64b39c6ae35
+2026-11-04 17:14:34,004 INFO app: Application stopped
+2026-11-04 17:14:34,658 INFO app: Admin seed: exists
+2026-11-04 17:14:34,658 INFO app: Manager seed: exists
+2026-11-04 17:14:34,658 INFO app: Application started
+2026-11-04 17:14:34,660 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: e3138d21-cb69-476c-b199-2c99707b26c2
+2026-11-04 17:14:34,996 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3359 seconds | Correlation ID: e3138d21-cb69-476c-b199-2c99707b26c2
+2026-11-04 17:14:35,008 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 84c2c0b2-eeae-4e42-916d-240dd537de95
+2026-11-04 17:14:35,213 INFO app.middleware.request_logging: Request completed: GET /users | Status: 200 | Time: 0.2052 seconds | Correlation ID: 84c2c0b2-eeae-4e42-916d-240dd537de95
+2026-11-04 17:14:35,228 INFO app: Application stopped
+2026-11-04 17:14:35,959 INFO app: Admin seed: exists
+2026-11-04 17:14:35,959 INFO app: Manager seed: exists
+2026-11-04 17:14:35,959 INFO app: Application started
+2026-11-04 17:14:35,961 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 7bd3d1de-f4cf-4ca2-acc6-8c51a8e1d129
+2026-11-04 17:14:36,192 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2311 seconds | Correlation ID: 7bd3d1de-f4cf-4ca2-acc6-8c51a8e1d129
+2026-11-04 17:14:36,202 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 4ab19ec6-963b-45d6-8951-ebfa08d5bd92
+2026-11-04 17:14:37,250 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.0483 seconds | Correlation ID: 4ab19ec6-963b-45d6-8951-ebfa08d5bd92
+2026-11-04 17:14:37,261 INFO app.middleware.request_logging: Request started: GET /users/8 | Correlation ID: 2a322943-b0d6-4944-b04c-76022944f66a
+2026-11-04 17:14:37,535 INFO app.middleware.request_logging: Request completed: GET /users/8 | Status: 200 | Time: 0.2746 seconds | Correlation ID: 2a322943-b0d6-4944-b04c-76022944f66a
+2026-11-04 17:14:37,556 INFO app: Application stopped
+2026-11-04 17:14:38,325 INFO app: Admin seed: exists
+2026-11-04 17:14:38,325 INFO app: Manager seed: exists
+2026-11-04 17:14:38,325 INFO app: Application started
+2026-11-04 17:14:38,330 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 65783316-0d04-4fe4-a042-b305e4fa2c1e
+2026-11-04 17:14:38,668 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3376 seconds | Correlation ID: 65783316-0d04-4fe4-a042-b305e4fa2c1e
+2026-11-04 17:14:38,678 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: dbb37650-0c92-4c42-9598-0cd42b8c83b9
+2026-11-04 17:14:39,938 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.2606 seconds | Correlation ID: dbb37650-0c92-4c42-9598-0cd42b8c83b9
+2026-11-04 17:14:39,947 INFO app.middleware.request_logging: Request started: PUT /users/11 | Correlation ID: a0893d9b-6c4f-444f-9b19-7fa3a037c3cc
+2026-11-04 17:14:40,378 INFO app.middleware.request_logging: Request completed: PUT /users/11 | Status: 200 | Time: 0.4312 seconds | Correlation ID: a0893d9b-6c4f-444f-9b19-7fa3a037c3cc
+2026-11-04 17:14:40,402 INFO app: Application stopped
+2026-11-04 17:14:41,087 INFO app: Admin seed: exists
+2026-11-04 17:14:41,087 INFO app: Manager seed: exists
+2026-11-04 17:14:41,087 INFO app: Application started
+2026-11-04 17:14:41,089 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: eba4f4a6-8ef8-491e-ac24-c8d39ea231f4
+2026-11-04 17:14:41,322 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2332 seconds | Correlation ID: eba4f4a6-8ef8-491e-ac24-c8d39ea231f4
+2026-11-04 17:14:41,331 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 8fcbdd74-a82c-42d9-b00e-09b95b0b725e
+2026-11-04 17:14:42,353 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.0219 seconds | Correlation ID: 8fcbdd74-a82c-42d9-b00e-09b95b0b725e
+2026-11-04 17:14:42,363 INFO app.middleware.request_logging: Request started: PATCH /users/14 | Correlation ID: 6356d483-6937-4166-9915-a756b3b3fd76
+2026-11-04 17:14:42,791 INFO app.middleware.request_logging: Request completed: PATCH /users/14 | Status: 200 | Time: 0.4282 seconds | Correlation ID: 6356d483-6937-4166-9915-a756b3b3fd76
+2026-11-04 17:14:42,806 INFO app: Application stopped
+2026-11-04 17:14:43,480 INFO app: Admin seed: exists
+2026-11-04 17:14:43,480 INFO app: Manager seed: exists
+2026-11-04 17:14:43,480 INFO app: Application started
+2026-11-04 17:14:43,482 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: da41cb28-3f35-40f3-b97a-b9b55158af54
+2026-11-04 17:14:43,715 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2332 seconds | Correlation ID: da41cb28-3f35-40f3-b97a-b9b55158af54
+2026-11-04 17:14:43,725 INFO app.middleware.request_logging: Request started: POST /users | Correlation ID: 1d019b4a-5f7e-4789-9295-31b64b04ecbe
+2026-11-04 17:14:44,856 INFO app.middleware.request_logging: Request completed: POST /users | Status: 201 | Time: 1.1312 seconds | Correlation ID: 1d019b4a-5f7e-4789-9295-31b64b04ecbe
+2026-11-04 17:14:44,867 INFO app.middleware.request_logging: Request started: DELETE /users/17 | Correlation ID: b26f33cc-2d6a-4ac3-adc5-9ea5b1591d16
+2026-11-04 17:14:45,278 INFO app.middleware.request_logging: Request completed: DELETE /users/17 | Status: 200 | Time: 0.4116 seconds | Correlation ID: b26f33cc-2d6a-4ac3-adc5-9ea5b1591d16
+2026-11-04 17:14:45,301 INFO app: Application stopped
+2026-11-04 17:14:45,954 INFO app: Admin seed: exists
+2026-11-04 17:14:45,954 INFO app: Manager seed: exists
+2026-11-04 17:14:45,954 INFO app: Application started
+2026-11-04 17:14:45,956 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 73baf54e-03e9-4eb0-89cb-1e2043ad7113
+2026-11-04 17:14:45,958 INFO app.middleware.request_logging: Request completed: GET /users | Status: 401 | Time: 0.0022 seconds | Correlation ID: 73baf54e-03e9-4eb0-89cb-1e2043ad7113
+2026-11-04 17:14:45,965 INFO app: Application stopped
+2026-11-04 17:14:46,575 INFO app: Admin seed: exists
+2026-11-04 17:14:46,575 INFO app: Manager seed: exists
+2026-11-04 17:14:46,575 INFO app: Application started
+2026-11-04 17:14:46,577 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: fff4e1ad-99eb-42d0-852d-9d63abdf0216
+2026-11-04 17:14:46,808 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2312 seconds | Correlation ID: fff4e1ad-99eb-42d0-852d-9d63abdf0216
+2026-11-04 17:14:46,817 INFO app.middleware.request_logging: Request started: GET /users | Correlation ID: 0099cd40-c70e-4077-b436-97c602610794
+2026-11-04 17:14:47,002 INFO app.middleware.request_logging: Request completed: GET /users | Status: 422 | Time: 0.1848 seconds | Correlation ID: 0099cd40-c70e-4077-b436-97c602610794
+2026-11-04 17:14:47,017 INFO app: Application stopped
+2026-11-04 17:21:56,627 INFO app: Admin seed: exists
+2026-11-04 17:21:56,628 INFO app: Manager seed: exists
+2026-11-04 17:21:56,628 INFO app: Application started
+2026-11-04 17:21:56,632 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 5049ee23-7935-4474-bdb5-47826ceb80bd
+2026-11-04 17:21:56,870 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2378 seconds | Correlation ID: 5049ee23-7935-4474-bdb5-47826ceb80bd
+2026-11-04 17:21:56,880 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: a70db0c2-aa2f-46f1-913f-2b8be2c53721
+2026-11-04 17:21:57,399 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 201 | Time: 0.5197 seconds | Correlation ID: a70db0c2-aa2f-46f1-913f-2b8be2c53721
+2026-11-04 17:21:57,417 INFO app: Application stopped
+2026-11-04 17:21:58,141 INFO app: Admin seed: exists
+2026-11-04 17:21:58,141 INFO app: Manager seed: exists
+2026-11-04 17:21:58,141 INFO app: Application started
+2026-11-04 17:21:58,143 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: b3c35e2d-9057-447b-a675-73a3cf2dcb44
+2026-11-04 17:21:58,386 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2429 seconds | Correlation ID: b3c35e2d-9057-447b-a675-73a3cf2dcb44
+2026-11-04 17:21:58,397 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: 2d43844b-7a0a-4a08-9ba2-6fb9c4aed231
+2026-11-04 17:21:58,838 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 201 | Time: 0.4411 seconds | Correlation ID: 2d43844b-7a0a-4a08-9ba2-6fb9c4aed231
+2026-11-04 17:21:58,848 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: a36a7dc4-0afb-49d7-9c0e-ad002be18771
+2026-11-04 17:21:59,096 ERROR app.exceptions.handlers: Category already exists error (CategoryAlreadyExistsError) for POST /categories
+2026-11-04 17:21:59,097 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 409 | Time: 0.2491 seconds | Correlation ID: a36a7dc4-0afb-49d7-9c0e-ad002be18771
+2026-11-04 17:21:59,113 INFO app: Application stopped
+2026-11-04 17:21:59,901 INFO app: Admin seed: exists
+2026-11-04 17:21:59,901 INFO app: Manager seed: exists
+2026-11-04 17:21:59,901 INFO app: Application started
+2026-11-04 17:21:59,903 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 77cd13cf-1b6c-4b27-ba6b-b967daf3ae14
+2026-11-04 17:22:00,221 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.3183 seconds | Correlation ID: 77cd13cf-1b6c-4b27-ba6b-b967daf3ae14
+2026-11-04 17:22:00,231 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: b4dfc0bf-a8b1-43ee-a896-734277d3ca27
+2026-11-04 17:22:00,486 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 422 | Time: 0.2543 seconds | Correlation ID: b4dfc0bf-a8b1-43ee-a896-734277d3ca27
+2026-11-04 17:22:00,501 INFO app: Application stopped
+2026-11-04 17:22:01,559 INFO app: Admin seed: exists
+2026-11-04 17:22:01,559 INFO app: Manager seed: exists
+2026-11-04 17:22:01,560 INFO app: Application started
+2026-11-04 17:22:01,561 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: c660029a-567d-4709-a60c-effd3d812bd5
+2026-11-04 17:22:01,857 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2955 seconds | Correlation ID: c660029a-567d-4709-a60c-effd3d812bd5
+2026-11-04 17:22:01,868 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: 3d4f6286-1fea-49c0-98f2-ca61c44f0036
+2026-11-04 17:22:02,472 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 201 | Time: 0.6039 seconds | Correlation ID: 3d4f6286-1fea-49c0-98f2-ca61c44f0036
+2026-11-04 17:22:02,479 INFO app.middleware.request_logging: Request started: GET /categories | Correlation ID: 0fa8ccdf-c442-46c5-8219-825ca0c46d07
+2026-11-04 17:22:02,739 INFO app.middleware.request_logging: Request completed: GET /categories | Status: 200 | Time: 0.2593 seconds | Correlation ID: 0fa8ccdf-c442-46c5-8219-825ca0c46d07
+2026-11-04 17:22:02,759 INFO app: Application stopped
+2026-11-04 17:22:03,534 INFO app: Admin seed: exists
+2026-11-04 17:22:03,534 INFO app: Manager seed: exists
+2026-11-04 17:22:03,534 INFO app: Application started
+2026-11-04 17:22:03,536 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 4756340f-9cb2-4fa5-88c3-297bb6e0d20e
+2026-11-04 17:22:03,826 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2900 seconds | Correlation ID: 4756340f-9cb2-4fa5-88c3-297bb6e0d20e
+2026-11-04 17:22:03,836 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: 97637f10-0202-4702-a9d7-07c7e472e989
+2026-11-04 17:22:04,307 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 201 | Time: 0.4707 seconds | Correlation ID: 97637f10-0202-4702-a9d7-07c7e472e989
+2026-11-04 17:22:04,319 INFO app.middleware.request_logging: Request started: GET /categories/4 | Correlation ID: 89094f5c-04b0-49f8-ab3c-495833b30a85
+2026-11-04 17:22:04,609 INFO app.middleware.request_logging: Request completed: GET /categories/4 | Status: 200 | Time: 0.2897 seconds | Correlation ID: 89094f5c-04b0-49f8-ab3c-495833b30a85
+2026-11-04 17:22:04,626 INFO app: Application stopped
+2026-11-04 17:22:05,321 INFO app: Admin seed: exists
+2026-11-04 17:22:05,321 INFO app: Manager seed: exists
+2026-11-04 17:22:05,321 INFO app: Application started
+2026-11-04 17:22:05,323 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 65ffa964-ca3a-4380-b39e-d9d8b76359da
+2026-11-04 17:22:05,554 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2310 seconds | Correlation ID: 65ffa964-ca3a-4380-b39e-d9d8b76359da
+2026-11-04 17:22:05,565 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: 04a51706-671e-474b-b3e4-ca770ad724ac
+2026-11-04 17:22:06,046 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 201 | Time: 0.4810 seconds | Correlation ID: 04a51706-671e-474b-b3e4-ca770ad724ac
+2026-11-04 17:22:06,058 INFO app.middleware.request_logging: Request started: PUT /categories/5 | Correlation ID: 7cee5130-230d-49a8-a4fe-92a372ec678e
+2026-11-04 17:22:06,632 INFO app.middleware.request_logging: Request completed: PUT /categories/5 | Status: 200 | Time: 0.5740 seconds | Correlation ID: 7cee5130-230d-49a8-a4fe-92a372ec678e
+2026-11-04 17:22:06,654 INFO app: Application stopped
+2026-11-04 17:22:07,431 INFO app: Admin seed: exists
+2026-11-04 17:22:07,431 INFO app: Manager seed: exists
+2026-11-04 17:22:07,431 INFO app: Application started
+2026-11-04 17:22:07,433 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: e49f4930-6c8c-42b0-9aa6-9f72c50c591a
+2026-11-04 17:22:07,662 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2287 seconds | Correlation ID: e49f4930-6c8c-42b0-9aa6-9f72c50c591a
+2026-11-04 17:22:07,672 INFO app.middleware.request_logging: Request started: PUT /categories/9999 | Correlation ID: 880794cf-3703-4b68-8183-8c568c28c971
+2026-11-04 17:22:07,942 ERROR app.exceptions.handlers: User not found error (UserNotFoundError) for PUT /categories/9999
+2026-11-04 17:22:07,943 INFO app.middleware.request_logging: Request completed: PUT /categories/9999 | Status: 404 | Time: 0.2706 seconds | Correlation ID: 880794cf-3703-4b68-8183-8c568c28c971
+2026-11-04 17:22:07,962 INFO app: Application stopped
+2026-11-04 17:22:08,793 INFO app: Admin seed: exists
+2026-11-04 17:22:08,793 INFO app: Manager seed: exists
+2026-11-04 17:22:08,793 INFO app: Application started
+2026-11-04 17:22:08,795 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 06d0ae9f-04b1-47b6-bb7b-794ff4855a84
+2026-11-04 17:22:09,049 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2540 seconds | Correlation ID: 06d0ae9f-04b1-47b6-bb7b-794ff4855a84
+2026-11-04 17:22:09,059 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: d19162d5-4db8-4846-aad7-a2a369fe9112
+2026-11-04 17:22:09,472 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 201 | Time: 0.4135 seconds | Correlation ID: d19162d5-4db8-4846-aad7-a2a369fe9112
+2026-11-04 17:22:09,480 INFO app.middleware.request_logging: Request started: PATCH /categories/6/deactivate | Correlation ID: c4829934-241d-4e0f-b756-99aa912eca3a
+2026-11-04 17:22:09,894 INFO app.middleware.request_logging: Request completed: PATCH /categories/6/deactivate | Status: 200 | Time: 0.4136 seconds | Correlation ID: c4829934-241d-4e0f-b756-99aa912eca3a
+2026-11-04 17:22:09,910 INFO app: Application stopped
+2026-11-04 17:22:10,664 INFO app: Admin seed: exists
+2026-11-04 17:22:10,664 INFO app: Manager seed: exists
+2026-11-04 17:22:10,664 INFO app: Application started
+2026-11-04 17:22:10,666 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: e8df5bcd-7608-44e4-b318-5946e30d85cf
+2026-11-04 17:22:10,903 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2365 seconds | Correlation ID: e8df5bcd-7608-44e4-b318-5946e30d85cf
+2026-11-04 17:22:10,911 INFO app.middleware.request_logging: Request started: PATCH /categories/9999/deactivate | Correlation ID: d2f31f3a-071e-40f8-ad63-c2c2d86f501c
+2026-11-04 17:22:11,157 ERROR app.exceptions.handlers: User not found error (UserNotFoundError) for PATCH /categories/9999/deactivate
+2026-11-04 17:22:11,157 INFO app.middleware.request_logging: Request completed: PATCH /categories/9999/deactivate | Status: 404 | Time: 0.2461 seconds | Correlation ID: d2f31f3a-071e-40f8-ad63-c2c2d86f501c
+2026-11-04 17:22:11,169 INFO app: Application stopped
+2026-11-04 17:22:11,902 INFO app: Admin seed: exists
+2026-11-04 17:22:11,902 INFO app: Manager seed: exists
+2026-11-04 17:22:11,902 INFO app: Application started
+2026-11-04 17:22:11,904 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: b358ec8b-0c0c-453d-80bf-91ef0b05a89c
+2026-11-04 17:22:12,131 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2276 seconds | Correlation ID: b358ec8b-0c0c-453d-80bf-91ef0b05a89c
+2026-11-04 17:22:12,140 INFO app.middleware.request_logging: Request started: GET /categories | Correlation ID: 5a5313aa-9c3d-4eb2-a868-be0fabe0a9a6
+2026-11-04 17:22:12,323 INFO app.middleware.request_logging: Request completed: GET /categories | Status: 200 | Time: 0.1829 seconds | Correlation ID: 5a5313aa-9c3d-4eb2-a868-be0fabe0a9a6
+2026-11-04 17:22:12,342 INFO app: Application stopped
+2026-11-04 17:22:13,104 INFO app: Admin seed: exists
+2026-11-04 17:22:13,104 INFO app: Manager seed: exists
+2026-11-04 17:22:13,104 INFO app: Application started
+2026-11-04 17:22:13,106 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 0c899870-5886-4def-a120-24281d58975f
+2026-11-04 17:22:13,335 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.2282 seconds | Correlation ID: 0c899870-5886-4def-a120-24281d58975f
+2026-11-04 17:22:13,344 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: 9ccc200b-6bec-4028-9dec-e19f0eb8ecdf
+2026-11-04 17:22:13,615 ERROR app.exceptions.handlers: Permission denied error (PermissionDeniedError) for POST /categories
+2026-11-04 17:22:13,616 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 403 | Time: 0.2718 seconds | Correlation ID: 9ccc200b-6bec-4028-9dec-e19f0eb8ecdf
+2026-11-04 17:22:13,625 INFO app: Application stopped
+2026-11-04 17:22:14,396 INFO app: Admin seed: exists
+2026-11-04 17:22:14,397 INFO app: Manager seed: exists
+2026-11-04 17:22:14,397 INFO app: Application started
+2026-11-04 17:22:14,399 INFO app.middleware.request_logging: Request started: POST /categories | Correlation ID: c705c6bf-1165-4100-9bf6-e724b8ff9e36
+2026-11-04 17:22:14,404 INFO app.middleware.request_logging: Request completed: POST /categories | Status: 401 | Time: 0.0048 seconds | Correlation ID: c705c6bf-1165-4100-9bf6-e724b8ff9e36
+2026-11-04 17:22:14,411 INFO app: Application stopped
+2026-11-04 17:28:09,119 INFO app: Admin seed: exists
+2026-11-04 17:28:09,120 INFO app: Manager seed: exists
+2026-11-04 17:28:09,120 INFO app: Application started
+2026-11-04 17:28:09,130 INFO app: Application stopped
+2026-11-04 17:28:09,940 INFO app: Admin seed: exists
+2026-11-04 17:28:09,940 INFO app: Manager seed: exists
+2026-11-04 17:28:09,940 INFO app: Application started
+2026-11-04 17:28:09,947 INFO app: Application stopped
+2026-11-04 17:28:10,578 INFO app: Admin seed: exists
+2026-11-04 17:28:10,578 INFO app: Manager seed: exists
+2026-11-04 17:28:10,578 INFO app: Application started
+2026-11-04 17:28:10,581 INFO app.middleware.request_logging: Request started: POST /tickets | Correlation ID: 604ed73e-3e23-475a-86ad-3137c29bb3ef
+2026-11-04 17:28:10,661 INFO app.middleware.request_logging: Request completed: POST /tickets | Status: 401 | Time: 0.0801 seconds | Correlation ID: 604ed73e-3e23-475a-86ad-3137c29bb3ef
+2026-11-04 17:28:10,671 INFO app: Application stopped
+2026-11-04 17:28:11,400 INFO app: Admin seed: exists
+2026-11-04 17:28:11,400 INFO app: Manager seed: exists
+2026-11-04 17:28:11,400 INFO app: Application started
+2026-11-04 17:28:11,406 INFO app: Application stopped
+2026-11-04 17:28:11,989 INFO app: Admin seed: exists
+2026-11-04 17:28:11,989 INFO app: Manager seed: exists
+2026-11-04 17:28:11,989 INFO app: Application started
+2026-11-04 17:28:11,996 INFO app: Application stopped
+2026-11-04 17:28:12,595 INFO app: Admin seed: exists
+2026-11-04 17:28:12,595 INFO app: Manager seed: exists
+2026-11-04 17:28:12,595 INFO app: Application started
+2026-11-04 17:28:12,601 INFO app: Application stopped
+2026-11-04 17:28:13,265 INFO app: Admin seed: exists
+2026-11-04 17:28:13,265 INFO app: Manager seed: exists
+2026-11-04 17:28:13,265 INFO app: Application started
+2026-11-04 17:28:13,275 INFO app: Application stopped
+2026-11-04 17:28:13,918 INFO app: Admin seed: exists
+2026-11-04 17:28:13,918 INFO app: Manager seed: exists
+2026-11-04 17:28:13,918 INFO app: Application started
+2026-11-04 17:28:13,925 INFO app: Application stopped
+2026-11-04 17:28:14,524 INFO app: Admin seed: exists
+2026-11-04 17:28:14,524 INFO app: Manager seed: exists
+2026-11-04 17:28:14,524 INFO app: Application started
+2026-11-04 17:28:14,529 INFO app: Application stopped
+2026-11-04 17:28:15,375 INFO app: Admin seed: exists
+2026-11-04 17:28:15,375 INFO app: Manager seed: exists
+2026-11-04 17:28:15,375 INFO app: Application started
+2026-11-04 17:28:15,381 INFO app: Application stopped
+2026-11-04 17:28:15,995 INFO app: Admin seed: exists
+2026-11-04 17:28:15,995 INFO app: Manager seed: exists
+2026-11-04 17:28:15,995 INFO app: Application started
+2026-11-04 17:28:16,001 INFO app: Application stopped
+2026-11-04 17:28:16,594 INFO app: Admin seed: exists
+2026-11-04 17:28:16,595 INFO app: Manager seed: exists
+2026-11-04 17:28:16,595 INFO app: Application started
+2026-11-04 17:28:16,604 INFO app: Application stopped
+2026-11-04 17:28:17,284 INFO app: Admin seed: exists
+2026-11-04 17:28:17,284 INFO app: Manager seed: exists
+2026-11-04 17:28:17,284 INFO app: Application started
+2026-11-04 17:28:17,291 INFO app: Application stopped
+2026-11-04 17:28:18,012 INFO app: Admin seed: exists
+2026-11-04 17:28:18,013 INFO app: Manager seed: exists
+2026-11-04 17:28:18,013 INFO app: Application started
+2026-11-04 17:28:18,020 INFO app: Application stopped
+2026-11-04 17:28:18,604 INFO app: Admin seed: exists
+2026-11-04 17:28:18,605 INFO app: Manager seed: exists
+2026-11-04 17:28:18,605 INFO app: Application started
+2026-11-04 17:28:18,612 INFO app: Application stopped
+2026-11-04 17:28:19,225 INFO app: Admin seed: exists
+2026-11-04 17:28:19,225 INFO app: Manager seed: exists
+2026-11-04 17:28:19,225 INFO app: Application started
+2026-11-04 17:28:19,231 INFO app: Application stopped

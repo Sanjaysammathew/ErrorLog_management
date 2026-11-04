@@ -13,6 +13,12 @@ class Settings(BaseSettings):
     DATABASE_HOST: str
     DATABASE_PORT: int
     DATABASE_DRIVER: str = "postgresql+asyncpg"
+    TEST_DATABASE_NAME: str | None = None
+    TEST_DATABASE_USER: str | None = None
+    TEST_DATABASE_PASSWORD: SecretStr | None = None
+    TEST_DATABASE_HOST: str | None = None
+    TEST_DATABASE_PORT: int | None = None
+    TEST_DATABASE_DRIVER: str | None = None
     JWT_SECRET_KEY: SecretStr = Field(
         default="None", min_length=32, description="Secret key for JWT token generation"
     )
