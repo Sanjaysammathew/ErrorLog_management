@@ -12,6 +12,7 @@ from app.exceptions.custom_exceptions import InvalidTokenError as InvalidTokenAp
 from app.exceptions.custom_exceptions import PermissionDeniedError
 from app.models.user import UserRole, user
 from app.repositories.implementations import UserRepository
+from app.repositories.implementations import TicketImageRepository
 from app.repositories.interfaces import UserInterface
 from app.repositories.implementations import CategoryRepository
 from app.repositories.implementations import TicketRepository
@@ -27,6 +28,8 @@ from app.repositories.implementations.approval_repository import ApprovalReposit
 from app.repositories.interfaces.approval_interface import ApprovalInterface
 from app.services.approval_service import ApprovalService
 from app.services.email_service import EmailService
+from app.repositories.interfaces.ticket_image_interface import TicketImageInterface
+from app.services.ticket_image_service import TicketImageService
 
 
 def get_user_repository(
@@ -72,6 +75,19 @@ def get_ticket_service(
     return TicketService(
         ticket_repository, category_repository, user_repository, email_service
     )
+
+
+def get_ticket_image_repository(
+    db: AsyncSession = Depends(get_db),
+) -> TicketImageInterface:
+    return TicketImageRepository(db)
+
+
+def get_ticket_image_service(
+    image_repository: TicketImageInterface = Depends(get_ticket_image_repository),
+    ticket_service: TicketService = Depends(get_ticket_service),
+) -> TicketImageService:
+    return TicketImageService(image_repository, ticket_service)
 
 
 def get_remark_service(

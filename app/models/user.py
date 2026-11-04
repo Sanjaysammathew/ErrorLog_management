@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from app.models.ticket_remark import TicketRemark
     from app.models.ticket_status_history import TicketStatusHistory
     from app.models.ticket_remark import TicketRemark
+    from app.models.ticket_image import TicketImage
 
 
 class UserRole(str, PyEnum):
@@ -93,6 +94,9 @@ class user(Base):
     )
     status_history: Mapped[list["TicketStatusHistory"]] = relationship(
         "TicketStatusHistory", back_populates="changed_by"
+    )
+    ticket_images_uploaded: Mapped[list["TicketImage"]] = relationship(
+        "TicketImage", back_populates="uploaded_by"
     )
     remarks: Mapped[list["TicketRemark"]] = relationship(
         "TicketRemark", back_populates="user"

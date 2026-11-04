@@ -23,6 +23,11 @@ from app.exceptions.custom_exceptions import (
     TicketNotResolvedError,
     ApprovalAlreadyDecidedError,
     EmailDeliveryError,
+    ImageNotFoundError,
+    InvalidImageError,
+    ImageStorageError,
+    ImageCreationError,
+    ImageDeletionError,
 )
 from app.exceptions.handlers import (
     invalid_credentials_handler,
@@ -38,14 +43,21 @@ from app.exceptions.handlers import (
     ticket_not_resolved_handler,
     approval_already_decided_handler,
     email_delivery_handler,
+    image_not_found_handler,
+    image_validation_handler,
+    image_storage_handler,
+    image_creation_handler,
+    image_deletion_handler,
 )
 from app.models import ErrorCategory, error_ticket, ticket_approval, ticket_remark
 from app.models import ticket_status_history, user
+from app.models import ticket_image
 from app.api.routers.users import router as users_router
 from app.api.routers.tickets import router as tickets_router
 from app.api.routers.remarks import router as remarks_router
 from app.api.routers.history import router as history_router
 from app.api.routers.approval import router as approval_router
+from app.api.routers.ticket_image_router import router as ticket_image_router
 from app.scripts.create_admin import create_admin
 from app.scripts.create_manager import create_manager
 from app.utils.logging_config import configure_logging
@@ -90,6 +102,11 @@ app.add_exception_handler(
     ApprovalAlreadyDecidedError, approval_already_decided_handler
 )
 app.add_exception_handler(EmailDeliveryError, email_delivery_handler)
+app.add_exception_handler(ImageNotFoundError, image_not_found_handler)
+app.add_exception_handler(InvalidImageError, image_validation_handler)
+app.add_exception_handler(ImageStorageError, image_storage_handler)
+app.add_exception_handler(ImageCreationError, image_creation_handler)
+app.add_exception_handler(ImageDeletionError, image_deletion_handler)
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(users_router)
@@ -98,3 +115,4 @@ app.include_router(tickets_router)
 app.include_router(remarks_router)
 app.include_router(history_router)
 app.include_router(approval_router)
+app.include_router(ticket_image_router)

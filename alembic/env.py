@@ -13,6 +13,7 @@ from app.database.base import Base
 from app.models import ErrorCategory  # noqa: F401
 from app.models import error_ticket, ticket_approval, ticket_remark  # noqa: F401
 from app.models import ticket_status_history, user  # noqa: F401
+from app.models import ticket_image  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

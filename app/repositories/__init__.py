@@ -1,9 +1,15 @@
-from app.repositories.implementations import UserRepository
-from app.repositories.implementations import CategoryRepository
-from app.repositories.interfaces import UserInterface
-from app.repositories.interfaces import CategoryInterface
-from app.repositories.implementations import TicketRepository
-from app.repositories.interfaces import TicketInterface
+from app.repositories.implementations import (
+    CategoryRepository,
+    TicketImageRepository,
+    TicketRepository,
+    UserRepository,
+)
+from app.repositories.interfaces import (
+    CategoryInterface,
+    TicketImageInterface,
+    TicketInterface,
+    UserInterface,
+)
 
 __all__ = [
     "UserRepository",
@@ -12,4 +18,6 @@ __all__ = [
     "CategoryInterface",
     "TicketRepository",
     "TicketInterface",
+    "TicketImageRepository",
+    "TicketImageInterface",
 ]

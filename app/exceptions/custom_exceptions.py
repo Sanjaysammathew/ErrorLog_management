@@ -68,3 +68,23 @@ class ApprovalAlreadyDecidedError(AppError):
 
 class EmailDeliveryError(AppError):
     default_message = "Email notification could not be sent"
+
+
+class ImageNotFoundError(AppError):
+    default_message = "Image not found"
+
+
+class InvalidImageError(AppError):
+    default_message = "Invalid image"
+
+
+class ImageStorageError(AppError):
+    default_message = "Image storage operation failed"
+
+
+class ImageCreationError(AppError):
+    default_message = "Image could not be created"
+
+
+class ImageDeletionError(AppError):
+    default_message = "Image could not be deleted"

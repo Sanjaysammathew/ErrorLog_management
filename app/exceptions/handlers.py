@@ -15,6 +15,11 @@ from app.exceptions.custom_exceptions import (
     EmailDeliveryError,
     UserAlreadyExistsError,
     UserNotFoundError,
+    ImageNotFoundError,
+    InvalidImageError,
+    ImageStorageError,
+    ImageCreationError,
+    ImageDeletionError,
 )
 
 
@@ -132,4 +137,45 @@ async def email_delivery_handler(
     return JSONResponse(
         status_code=status.HTTP_502_BAD_GATEWAY,
         content={"detail": exc.message},
+    )
+
+
+async def image_not_found_handler(
+    _: Request, exc: ImageNotFoundError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_404_NOT_FOUND, content={"detail": exc.message}
+    )
+
+
+async def image_validation_handler(
+    _: Request, exc: InvalidImageError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_400_BAD_REQUEST, content={"detail": exc.message}
+    )
+
+
+async def image_storage_handler(
+    _: Request, exc: ImageStorageError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        content={"detail": exc.message},
+    )
+
+
+async def image_creation_handler(
+    _: Request, exc: ImageCreationError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT, content={"detail": exc.message}
+    )
+
+
+async def image_deletion_handler(
+    _: Request, exc: ImageDeletionError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT, content={"detail": exc.message}
     )

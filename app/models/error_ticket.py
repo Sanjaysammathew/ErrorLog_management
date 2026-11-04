@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from app.models.ticket_remark import TicketRemark
     from app.models.ticket_status_history import TicketStatusHistory
     from app.models.ticket_remark import TicketRemark
+    from app.models.ticket_image import TicketImage
     from app.models.user import user
 
 
@@ -101,6 +102,10 @@ class ErrorTickets(Base):
 
     status_history: Mapped[list["TicketStatusHistory"]] = relationship(
         "TicketStatusHistory", back_populates="ticket", cascade="all, delete-orphan"
+    )
+
+    images: Mapped[list["TicketImage"]] = relationship(
+        "TicketImage", back_populates="ticket", cascade="all, delete-orphan"
     )
 
     remarks: Mapped[list["TicketRemark"]] = relationship(

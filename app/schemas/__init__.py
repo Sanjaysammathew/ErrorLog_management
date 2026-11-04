@@ -37,6 +37,7 @@ from app.schemas.authSchema import (
     TokenData,
 )
 from app.schemas.ticket_status_historySchema import StatusHistoryResponse
+from app.schemas.ticket_image import TicketImageResponse
 
 __all__ = [
     "ApprovalDecision",
@@ -60,4 +61,5 @@ __all__ = [
     "UserResponse",
     "UserUpdate",
     "StatusHistoryResponse",
+    "TicketImageResponse",
 ]
