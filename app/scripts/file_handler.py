@@ -11,7 +11,11 @@ from app.exceptions.custom_exceptions import (
 
 UPLOAD_DIRECTORY = Path("uploads")
 MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024
-ALLOWED_IMAGE_EXTENSIONS = {".jpg", ".jpeg"}
+ALLOWED_IMAGE_TYPES = {
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+}
 CHUNK_SIZE = 1024 * 1024
 
 
@@ -22,8 +26,11 @@ def validate_image(upload_file: UploadFile) -> tuple[str, str]:
 
     extension = Path(filename).suffix.casefold()
     content_type = (upload_file.content_type or "").casefold()
-    if extension not in ALLOWED_IMAGE_EXTENSIONS or content_type != "image/jpeg":
-        raise InvalidImageError("Only JPEG images are supported")
+    if (
+        extension not in ALLOWED_IMAGE_TYPES
+        or content_type != ALLOWED_IMAGE_TYPES[extension]
+    ):
+        raise InvalidImageError("Only JPEG and PNG images are supported")
     return filename, content_type
 
 

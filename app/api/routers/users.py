@@ -51,8 +51,18 @@ async def update_user(
     return await user_service.update_user(user_id, user_data)
 
 
-@router.patch("/{user_id}/deactivate", response_model=UserResponse)
-async def deactivate_user(
+@router.patch("/{user_id}", response_model=UserResponse)
+async def patch_user(
+    user_id: int,
+    user_data: UserUpdate,
+    user_service: UserService = Depends(get_user_service),
+    _: user = Depends(require_roles(UserRole.ADMIN)),
+) -> user:
+    return await user_service.update_user(user_id, user_data)
+
+
+@router.delete("/{user_id}", response_model=UserResponse)
+async def delete_user(
     user_id: int,
     user_service: UserService = Depends(get_user_service),
     _: user = Depends(require_roles(UserRole.ADMIN)),
