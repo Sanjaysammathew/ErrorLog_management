@@ -19,6 +19,10 @@ from app.utils.logging_config import configure_logging
 
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    """Manage application startup and shutdown resources.
+
+        This context runs initialization before serving requests and cleanup on exit.
+    """
     configure_logging()
     logger = logging.getLogger("app")
     admin_created = await create_admin()

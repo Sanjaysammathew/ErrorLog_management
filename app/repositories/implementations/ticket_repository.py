@@ -15,10 +15,22 @@ from app.repositories.interfaces.ticket_interface import TicketInterface
 
 
 class TicketRepository(TicketInterface):
+    """Provide database access for ticket records.
+
+        The repository implements persistence operations used by services.
+    """
     def __init__(self, db: AsyncSession) -> None:
+        """Initialize the ticket repository with its database session.
+
+            The session is used for the repository's persistence operations.
+        """
         self.db = db
 
     async def create_ticket(self, new_ticket: ErrorTickets) -> ErrorTickets:
+        """Create a support ticket and its initial workflow records.
+
+            The operation applies category, approval, and due-date rules.
+        """
         self.db.add(new_ticket)
         try:
             await self.db.flush()
@@ -31,16 +43,28 @@ class TicketRepository(TicketInterface):
     async def create_status_history(
         self, history: TicketStatusHistory
     ) -> TicketStatusHistory:
+        """Record a ticket status change in the database.
+
+            The history entry preserves the ticket workflow timeline.
+        """
         self.db.add(history)
         await self.db.flush()
         return history
 
     async def create_approval(self, approval: TicketApproval) -> TicketApproval:
+        """Create an approval request for a ticket.
+
+            The repository stores the request for manager review.
+        """
         self.db.add(approval)
         await self.db.flush()
         return approval
 
     async def get_by_user_id(self, user_id: int) -> list[ErrorTickets]:
+        """Find tickets associated with a specific user account.
+
+            The repository returns matching records from the database.
+        """
         result = await self.db.execute(
             select(ErrorTickets)
             .options(
@@ -54,6 +78,10 @@ class TicketRepository(TicketInterface):
         return list(result.scalars().all())
 
     async def get_ticket_by_id(self, ticket_id: int) -> ErrorTickets | None:
+        """Find a support ticket by its identifier.
+
+            The service checks whether the current user may view it.
+        """
         result = await self.db.execute(
             select(ErrorTickets)
             .options(
@@ -66,6 +94,10 @@ class TicketRepository(TicketInterface):
         return result.scalar_one_or_none()
 
     async def get_user(self):
+        """Find the user account needed by the operation.
+
+            The service returns the matching account or reports that it is missing.
+        """
         result = await self.db.execute(
             select(ErrorTickets).options(
                 selectinload(ErrorTickets.category),
@@ -76,6 +108,10 @@ class TicketRepository(TicketInterface):
         return list(result.scalars().all())
 
     async def get_overdue_tickets(self) -> list[ErrorTickets]:
+        """Find tickets that remain open past their due time.
+
+            The result supports administrative follow-up on overdue work.
+        """
         result = await self.db.execute(
             select(ErrorTickets)
             .options(
@@ -98,6 +134,10 @@ class TicketRepository(TicketInterface):
         history: TicketStatusHistory,
         remark: TicketRemark | None = None,
     ) -> ErrorTickets:
+        """Persist a ticket status change and its workflow details.
+
+            The repository commits the update to the database.
+        """
         self.db.add(ticket)
         self.db.add(history)
         if remark is not None:
@@ -109,6 +149,10 @@ class TicketRepository(TicketInterface):
         return ticket
 
     async def commit(self) -> None:
+        """Persist the pending database changes.
+
+            The operation finalizes the current transaction.
+        """
         try:
             await self.db.commit()
         except IntegrityError as exc:
@@ -116,6 +160,10 @@ class TicketRepository(TicketInterface):
             raise TicketCreationError from exc
 
     async def create_remark(self, remark: TicketRemark) -> TicketRemark:
+        """Save a remark associated with a ticket.
+
+            The repository preserves the remark and its author relationship.
+        """
         self.db.add(remark)
         try:
             await self.db.commit()
@@ -126,6 +174,10 @@ class TicketRepository(TicketInterface):
         return remark
 
     async def get_remarks(self, ticket_id: int) -> list[TicketRemark]:
+        """Retrieve remarks attached to a ticket.
+
+            The service checks ticket access before returning the discussion.
+        """
         result = await self.db.execute(
             select(TicketRemark)
             .options(
@@ -140,6 +192,10 @@ class TicketRepository(TicketInterface):
     async def get_status_history(
         self, ticket_id: int
     ) -> list[TicketStatusHistory]:
+        """Retrieve the status history entries for a ticket.
+
+            The repository returns the recorded workflow transitions in chronological order.
+        """
         result = await self.db.execute(
             select(TicketStatusHistory)
             .where(TicketStatusHistory.ticket_id == ticket_id)

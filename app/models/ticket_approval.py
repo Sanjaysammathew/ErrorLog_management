@@ -21,6 +21,10 @@ if TYPE_CHECKING:
 
 
 class TicketApproval(Base):
+    """Represent a manager's approval decision for a ticket.
+
+        The record links a ticket to its approval status and decision details.
+    """
     __tablename__ = "ticket_approvals"
     __table_args__ = (
         UniqueConstraint(

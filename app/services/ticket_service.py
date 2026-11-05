@@ -28,6 +28,10 @@ from app.services.email_service import EmailService
 
 
 class TicketService:
+    """Apply business rules for ticket operations.
+
+        The service coordinates validation and the required data access.
+    """
     APPROVAL_KEYWORDS = ("paid software", "hardware replacement")
     SLA_KEYWORDS = (
         ("hardware replacement", 24),
@@ -38,6 +42,10 @@ class TicketService:
 
     @classmethod
     def _requires_approval(cls, ticket_data: TicketCreate) -> bool:
+        """Check whether a ticket request requires manager approval.
+
+            Configured keywords in the ticket details determine this rule.
+        """
         searchable_text = " ".join(
             value for value in (ticket_data.title, ticket_data.description) if value
         ).casefold()
@@ -45,6 +53,10 @@ class TicketService:
 
     @classmethod
     def _get_sla_hours(cls, ticket_data: TicketCreate, fallback: int) -> int:
+        """Select the response target for a ticket request.
+
+            Configured issue keywords determine the SLA, with a fallback when none match.
+        """
         searchable_text = " ".join(
             value for value in (ticket_data.title, ticket_data.description) if value
         ).casefold()
@@ -60,6 +72,10 @@ class TicketService:
         user_repository: UserInterface,
         email_service: EmailService,
     ) -> None:
+        """Initialize the ticket service with its collaborators.
+
+            These dependencies provide the business logic with data access and related services.
+        """
         self.ticket_repository = ticket_repository
         self.category_repository = category_repository
         self.user_repository = user_repository
@@ -68,6 +84,10 @@ class TicketService:
     async def create_ticket(
         self, db: AsyncSession, ticket_data: TicketCreate, current_user: user
     ) -> ErrorTickets:
+        """Create a support ticket and its initial workflow records.
+
+            The operation applies category, approval, and due-date rules.
+        """
         if not current_user.is_active or current_user.role != UserRole.EMPLOYEE:
             raise PermissionDeniedError
 
@@ -169,6 +189,10 @@ class TicketService:
             raise TicketCreationError from exc
 
     async def get_my_tickets(self, current_user: user) -> list[ErrorTickets]:
+        """Retrieve tickets owned by the current employee.
+
+            The result is limited to tickets created by that user.
+        """
         if not current_user.is_active or current_user.role != UserRole.EMPLOYEE:
             raise PermissionDeniedError
 
@@ -177,6 +201,10 @@ class TicketService:
     async def get_ticket_by_id(
         self, ticket_id: int, current_user: user
     ) -> ErrorTickets | None:
+        """Find a support ticket by its identifier.
+
+            The service checks whether the current user may view it.
+        """
         ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
         if ticket is None:
             raise TicketNotFoundError
@@ -187,11 +215,19 @@ class TicketService:
         return ticket
 
     async def get_all_tickets(self) -> list[ErrorTickets]:
+        """Retrieve the complete support ticket queue.
+
+            This supports administrative review across all users.
+        """
         return await self.ticket_repository.get_user()
 
     async def get_overdue_tickets(
         self, current_user: user
     ) -> list[ErrorTickets]:
+        """Find tickets that remain open past their due time.
+
+            The result supports administrative follow-up on overdue work.
+        """
         if not current_user.is_active or current_user.role != UserRole.ADMIN:
             raise PermissionDeniedError
 
@@ -200,6 +236,10 @@ class TicketService:
     async def close_ticket(
         self, ticket_id: int, current_user: user
     ) -> ErrorTickets:
+        """Close a resolved support ticket.
+
+            The service verifies the ticket state and records its closure.
+        """
         if not current_user.is_active or current_user.role != UserRole.ADMIN:
             raise PermissionDeniedError
 
@@ -230,6 +270,10 @@ class TicketService:
         remarks: str | None,
         current_user: user,
     ) -> ErrorTickets:
+        """Change a ticket workflow status.
+
+            The operation records the transition and applies related workflow rules.
+        """
         if not current_user.is_active or current_user.role != UserRole.ADMIN:
             raise PermissionDeniedError
 

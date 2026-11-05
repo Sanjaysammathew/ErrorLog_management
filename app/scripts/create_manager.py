@@ -6,6 +6,10 @@ from app.repositories.implementations import UserRepository
 
 
 async def create_manager() -> str:
+    """Create a manager account for the application.
+
+        This setup task stores the account with manager permissions.
+    """
     if (
         settings.MANAGER_USERNAME is None
         or settings.MANAGER_EMAIL is None

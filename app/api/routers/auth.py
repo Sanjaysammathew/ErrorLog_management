@@ -21,11 +21,10 @@ async def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
     auth_service: AuthService = Depends(get_auth_service),
 ) -> Token:
-    """
-    Authenticate a user with the submitted username and password.
+    """Authenticate a user with the submitted username and password.
 
-    The credentials are verified by the authentication service. On success, return
-    bearer access and refresh tokens containing the user's identity and role.
+        The credentials are verified by the authentication service. On success, return
+        bearer access and refresh tokens containing the user's identity and role.
     """
     current_user = await auth_service.authenticate_user(
         form_data.username, form_data.password
@@ -44,11 +43,10 @@ async def refresh_access_token(
     token_data: RefreshTokenRequest,
     auth_service: AuthService = Depends(get_auth_service),
 ) -> Token:
-    """
-    Issue a new token pair from a valid refresh token.
+    """Issue a new token pair from a valid refresh token.
 
-    The token subject must belong to an active user. Return fresh bearer access
-    and refresh tokens so the user can continue making authenticated requests.
+        The token subject must belong to an active user. Return fresh bearer access
+        and refresh tokens so the user can continue making authenticated requests.
     """
     try:
         payload = decode_refresh_token(token_data.refresh_token)
@@ -74,10 +72,9 @@ async def refresh_access_token(
 async def read_current_user(
     current_user: user = Depends(get_current_user),
 ) -> user:
-    """
-    Return the profile for the user identified by the request's access token.
+    """Return the profile for the user identified by the request's access token.
 
-    Authentication is required; the response contains the current user's public
-    profile fields without requiring a user ID in the URL.
+        Authentication is required; the response contains the current user's public
+        profile fields without requiring a user ID in the URL.
     """
     return current_user

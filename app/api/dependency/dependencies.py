@@ -35,34 +35,58 @@ from app.services.ticket_image_service import TicketImageService
 def get_user_repository(
     db: AsyncSession = Depends(get_db),
 ) -> UserInterface:
+    """Provide a user repository backed by the request's database session.
+
+        FastAPI injects this dependency wherever a route needs user data access.
+    """
     return UserRepository(db)
 
 
 def get_auth_service(
     user_repository: UserInterface = Depends(get_user_repository),
 ) -> AuthService:
+    """Provide the authentication service with its user repository.
+
+        FastAPI injects the service into routes that handle sign-in and token refresh.
+    """
     return AuthService(user_repository)
 
 
 def get_category_repository(
     db: AsyncSession = Depends(get_db),
 ) -> CategoryInterface:
+    """Provide a category repository backed by the request's database session.
+
+        FastAPI injects this dependency into category operations.
+    """
     return CategoryRepository(db)
 
 
 def get_category_service(
     category_repository: CategoryInterface = Depends(get_category_repository),
 ) -> CategoryService:
+    """Provide the category service with its repository.
+
+        FastAPI injects the service into routes that create or browse categories.
+    """
     return CategoryService(category_repository)
 
 
 def get_email_service() -> EmailService:
+    """Provide the email service used to send application notifications.
+
+        FastAPI injects it into operations that notify users about account or ticket events.
+    """
     return EmailService()
 
 
 def get_ticket_repository(
     db: AsyncSession = Depends(get_db),
 ) -> TicketInterface:
+    """Provide a ticket repository backed by the request's database session.
+
+        FastAPI injects this dependency into ticket-related services.
+    """
     return TicketRepository(db)
 
 
@@ -72,6 +96,10 @@ def get_ticket_service(
     user_repository: UserInterface = Depends(get_user_repository),
     email_service: EmailService = Depends(get_email_service),
 ) -> TicketService:
+    """Provide the ticket service with its repository and supporting services.
+
+        FastAPI injects it into routes that create and manage tickets.
+    """
     return TicketService(
         ticket_repository, category_repository, user_repository, email_service
     )
@@ -80,6 +108,10 @@ def get_ticket_service(
 def get_ticket_image_repository(
     db: AsyncSession = Depends(get_db),
 ) -> TicketImageInterface:
+    """Provide an image repository backed by the request's database session.
+
+        FastAPI injects it into image attachment operations.
+    """
     return TicketImageRepository(db)
 
 
@@ -87,24 +119,40 @@ def get_ticket_image_service(
     image_repository: TicketImageInterface = Depends(get_ticket_image_repository),
     ticket_service: TicketService = Depends(get_ticket_service),
 ) -> TicketImageService:
+    """Provide the image service with its repository and file handling dependencies.
+
+        FastAPI injects it into routes that upload or delete ticket images.
+    """
     return TicketImageService(image_repository, ticket_service)
 
 
 def get_remark_service(
     ticket_repository: TicketInterface = Depends(get_ticket_repository),
 ) -> RemarkService:
+    """Provide the remark service with ticket data access.
+
+        FastAPI injects it into routes that add or retrieve ticket remarks.
+    """
     return RemarkService(ticket_repository)
 
 
 def get_history_service(
     ticket_repository: TicketInterface = Depends(get_ticket_repository),
 ) -> HistoryService:
+    """Provide the history service with ticket data access.
+
+        FastAPI injects it into routes that retrieve status history.
+    """
     return HistoryService(ticket_repository)
 
 
 def get_approval_repository(
     db: AsyncSession = Depends(get_db),
 ) -> ApprovalInterface:
+    """Provide an approval repository backed by the request's database session.
+
+        FastAPI injects this dependency into approval operations.
+    """
     return ApprovalRepository(db)
 
 
@@ -112,6 +160,10 @@ def get_approval_service(
     approval_repository: ApprovalInterface = Depends(get_approval_repository),
     email_service: EmailService = Depends(get_email_service),
 ) -> ApprovalService:
+    """Provide the approval service with its repository and supporting dependencies.
+
+        FastAPI injects it into routes that review and decide approvals.
+    """
     return ApprovalService(approval_repository, email_service)
 
 
@@ -119,6 +171,10 @@ def get_user_service(
     user_repository: UserInterface = Depends(get_user_repository),
     email_service: EmailService = Depends(get_email_service),
 ) -> UserService:
+    """Provide the user service with its repository and notification dependencies.
+
+        FastAPI injects it into routes that manage user accounts.
+    """
     return UserService(user_repository, email_service)
 
 
@@ -127,6 +183,10 @@ async def get_current_user(
     user_repository: UserInterface = Depends(get_user_repository),
 ) -> user:
 
+    """Resolve the user authenticated by the request's access token.
+
+        Invalid or missing credentials prevent access to protected routes.
+    """
     try:
         payload = jwt.decode(
             token,
@@ -149,9 +209,17 @@ async def get_current_user(
 
 
 def require_roles(*allowed_roles: UserRole) -> Callable:
+    """Create an access dependency that permits only specified user roles.
+
+        Routes use it to enforce role-based authorization.
+    """
     async def role_checker(
         current_user: user = Depends(get_current_user),
     ) -> user:
+        """Check that the current user has one of the required roles.
+
+            Requests from users without an allowed role are rejected.
+        """
         if current_user.role not in allowed_roles:
             raise PermissionDeniedError
         return current_user

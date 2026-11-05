@@ -9,11 +9,10 @@ router = APIRouter(tags=["health"])
 
 @router.get("/health")
 async def health_check() -> dict[str, str]:
-    """
-    Check that the API process can respond and the database can execute a query.
+    """Check that the API process can respond and the database can execute a query.
 
-    Return an `ok` status when both checks succeed. If the database is
-    unavailable, return a service unavailable error for monitoring systems.
+        Return an `ok` status when both checks succeed. If the database is
+        unavailable, return a service unavailable error for monitoring systems.
     """
     try:
         async with engine.connect() as connection:

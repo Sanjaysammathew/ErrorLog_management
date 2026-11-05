@@ -259,7 +259,7 @@ pytest -v
 ### Run only router/API tests
 
 ```bash
-pytest tests/routers -v
+pytest tests/api_testing -v
 ```
 
 ### Run only service unit tests

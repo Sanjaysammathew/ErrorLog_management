@@ -4,6 +4,11 @@ from pydantic import BaseModel, ConfigDict
 
 
 class StatusHistoryResponse(BaseModel):
+    """Define one ticket status history entry returned by the API.
+
+        The schema presents the recorded status transition details.
+    """
+
     id: int
     ticket_id: int
     changed_by_id: int

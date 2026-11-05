@@ -7,9 +7,17 @@ from app.models.user import user
 
 
 class EmailService:
+    """Apply business rules for email operations.
+
+        The service coordinates validation and the required data access.
+    """
     MAILJET_SEND_URL = "https://api.mailjet.com/v3.1/send"
 
     def __init__(self) -> None:
+        """Initialize the email service with its collaborators.
+
+            These dependencies provide the business logic with data access and related services.
+        """
         self.api_key = settings.MAILJET_API_KEY
         self.api_secret = (
             settings.MAILJET_API_SECRET.get_secret_value()
@@ -27,6 +35,10 @@ class EmailService:
         html_part: str | None = None,
         sender_email: str | None = None,
     ) -> None:
+        """Send a email notification.
+
+            The operation prepares and delivers the message through the configured email service.
+        """
         message_sender = sender_email or self.sender_email
         if not self.api_key or not self.api_secret or not message_sender:
             raise EmailDeliveryError("Mailjet email settings are not configured")
@@ -56,6 +68,10 @@ class EmailService:
             raise EmailDeliveryError("Mailjet could not be reached") from exc
 
     async def send_account_created(self, new_user: user) -> None:
+        """Send a account created notification.
+
+            The operation prepares and delivers the message through the configured email service.
+        """
         await self.send_email(
             new_user.email,
             "Your ErrorLog account was created",
@@ -67,6 +83,10 @@ class EmailService:
         )
 
     async def send_ticket_created(self, ticket: ErrorTickets) -> None:
+        """Send a ticket created notification.
+
+            The operation prepares and delivers the message through the configured email service.
+        """
         if ticket.created_by_user is None:
             raise EmailDeliveryError("Ticket owner is unavailable for notification")
         await self.send_email(
@@ -81,6 +101,10 @@ class EmailService:
         )
 
     async def send_ticket_closed(self, ticket: ErrorTickets) -> None:
+        """Send a ticket closed notification.
+
+            The operation prepares and delivers the message through the configured email service.
+        """
         if ticket.created_by_user is None:
             raise EmailDeliveryError("Ticket owner is unavailable for notification")
         await self.send_email(
@@ -99,6 +123,10 @@ class EmailService:
         status: str,
         decision_reason: str | None,
     ) -> None:
+        """Send a approval decision notification.
+
+            The operation prepares and delivers the message through the configured email service.
+        """
         if ticket.assigned_admin is None:
             raise EmailDeliveryError("Assigned admin is unavailable for notification")
         if not settings.MAILJET_APPROVAL_FROM:

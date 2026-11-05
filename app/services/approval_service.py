@@ -14,15 +14,27 @@ from app.services.email_service import EmailService
 
 
 class ApprovalService:
+    """Apply business rules for approval operations.
+
+        The service coordinates validation and the required data access.
+    """
     def __init__(
         self,
         approval_repository: ApprovalInterface,
         email_service: EmailService,
     ) -> None:
+        """Initialize the approval service with its collaborators.
+
+            These dependencies provide the business logic with data access and related services.
+        """
         self.approval_repository = approval_repository
         self.email_service = email_service
 
     async def get_pending_approvals(self, current_user: user) -> list[TicketApproval]:
+        """Retrieve approval requests that are waiting for a manager's decision.
+
+            The service or repository returns pending requests for review.
+        """
         if not current_user.is_active or current_user.role != UserRole.MANAGER:
             raise PermissionDeniedError
         return await self.approval_repository.get_pending_approvals(current_user.id)
@@ -30,6 +42,10 @@ class ApprovalService:
     async def get_approval_by_id(
         self, approval_id: int, current_user: user
     ) -> TicketApproval:
+        """Find one approval request by its identifier.
+
+            The service checks manager access before returning its details.
+        """
         if not current_user.is_active or current_user.role != UserRole.MANAGER:
             raise PermissionDeniedError
 
@@ -46,6 +62,10 @@ class ApprovalService:
         decision_reason: str | None,
         current_user: user,
     ) -> TicketApproval:
+        """Record a manager's approval or rejection decision.
+
+            The decision updates the request and the related ticket workflow.
+        """
         if not current_user.is_active or current_user.role != UserRole.MANAGER:
             raise PermissionDeniedError
 

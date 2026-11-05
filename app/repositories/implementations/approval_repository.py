@@ -10,10 +10,23 @@ from app.repositories.interfaces.approval_interface import ApprovalInterface
 
 
 class ApprovalRepository(ApprovalInterface):
+    """Provide database access for approval records.
+
+        The repository implements persistence operations used by services.
+    """
+
     def __init__(self, db: AsyncSession) -> None:
+        """Initialize the approval repository with its database session.
+
+            The session is used for the repository's persistence operations.
+        """
         self.db = db
 
     async def get_pending_approvals(self, manager_id: int) -> list[TicketApproval]:
+        """Retrieve approval requests that are waiting for a manager's decision.
+
+            The service or repository returns pending requests for review.
+        """
         result = await self.db.execute(
             select(TicketApproval)
             .options(
@@ -34,6 +47,10 @@ class ApprovalRepository(ApprovalInterface):
         return list(result.scalars().all())
 
     async def get_approval_by_id(self, approval_id: int) -> TicketApproval | None:
+        """Find one approval request by its identifier.
+
+            The service checks manager access before returning its details.
+        """
         result = await self.db.execute(
             select(TicketApproval)
             .options(
@@ -54,6 +71,10 @@ class ApprovalRepository(ApprovalInterface):
         approval: TicketApproval,
         history: TicketStatusHistory,
     ) -> TicketApproval:
+        """Persist a manager decision on an approval request.
+
+            The repository saves the approval state and related ticket history.
+        """
         self.db.add(approval)
         self.db.add(approval.ticket)
         self.db.add(history)

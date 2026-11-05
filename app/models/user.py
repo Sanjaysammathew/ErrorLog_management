@@ -41,6 +41,10 @@ class ApprovalStatus(str, PyEnum):
 
 
 class user(Base):
+    """Represent a user account in the application.
+
+        The model stores account identity, role, and activation information.
+    """
     __tablename__ = "users"
     __table_args__ = (
         Index("ix_users_role", "role"),

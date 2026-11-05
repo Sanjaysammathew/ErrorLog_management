@@ -5,12 +5,24 @@ from app.repositories.interfaces.ticket_interface import TicketInterface
 
 
 class HistoryService:
+    """Apply business rules for history operations.
+
+        The service coordinates validation and the required data access.
+    """
     def __init__(self, ticket_repository: TicketInterface) -> None:
+        """Initialize the history service with its collaborators.
+
+            These dependencies provide the business logic with data access and related services.
+        """
         self.ticket_repository = ticket_repository
 
     async def get_history(
         self, ticket_id: int, current_user: user
     ) -> list[TicketStatusHistory]:
+        """Retrieve the recorded status changes for a ticket.
+
+            The service applies the current user's ticket access rules.
+        """
         ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
         if ticket is None:
             raise TicketNotFoundError

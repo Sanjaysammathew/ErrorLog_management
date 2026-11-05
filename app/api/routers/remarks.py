@@ -19,11 +19,10 @@ async def add_remark(
     service: RemarkService = Depends(get_remark_service),
     current_user: user = Depends(get_current_user),
 ) -> RemarkResponse:
-    """
-    Add a comment or update to the specified ticket.
+    """Add a comment or update to the specified ticket.
 
-    The authenticated user's access to the ticket is checked before saving.
-    Return the new remark, including its author and creation details.
+        The authenticated user's access to the ticket is checked before saving.
+        Return the new remark, including its author and creation details.
     """
     return await service.add_remark(ticket_id, data, current_user)
 
@@ -34,10 +33,9 @@ async def get_remarks(
     service: RemarkService = Depends(get_remark_service),
     current_user: user = Depends(get_current_user),
 ) -> list[RemarkResponse]:
-    """
-    Retrieve the discussion remarks attached to a ticket.
+    """Retrieve the discussion remarks attached to a ticket.
 
-    The authenticated user's access to the ticket is checked by the service.
-    Return the remarks as a list, including their authors and timestamps.
+        The authenticated user's access to the ticket is checked by the service.
+        Return the remarks as a list, including their authors and timestamps.
     """
     return await service.get_remarks(ticket_id, current_user)

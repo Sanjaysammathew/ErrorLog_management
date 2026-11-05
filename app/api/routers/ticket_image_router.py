@@ -22,11 +22,10 @@ async def upload_ticket_image(
     image_service: TicketImageService = Depends(get_ticket_image_service),
     current_user: user = Depends(get_current_user),
 ) -> TicketImageResponse:
-    """
-    Upload an image file and associate it with the specified ticket.
+    """Upload an image file and associate it with the specified ticket.
 
-    The authenticated user's access to the ticket is checked before storage.
-    Return the image metadata, such as its ID and stored location.
+        The authenticated user's access to the ticket is checked before storage.
+        Return the image metadata, such as its ID and stored location.
     """
     return await image_service.upload_image(ticket_id, file, current_user)
 
@@ -41,10 +40,9 @@ async def delete_ticket_image(
     image_service: TicketImageService = Depends(get_ticket_image_service),
     current_user: user = Depends(get_current_user),
 ) -> None:
-    """
-    Remove a specific image attachment from the specified ticket.
+    """Remove a specific image attachment from the specified ticket.
 
-    The authenticated user's access is checked before the stored image and its
-    record are deleted. A successful deletion returns no response body.
+        The authenticated user's access is checked before the stored image and its
+        record are deleted. A successful deletion returns no response body.
     """
     await image_service.delete_image(ticket_id, image_id, current_user)

@@ -24,6 +24,10 @@ if TYPE_CHECKING:
 
 
 class TicketStatusHistory(Base):
+    """Represent a recorded status change for a ticket.
+
+        The record preserves the transition and its associated details.
+    """
     __tablename__ = "ticket_status_history"
     __table_args__ = (
         CheckConstraint(

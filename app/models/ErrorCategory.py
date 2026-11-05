@@ -18,6 +18,10 @@ from app.models.error_ticket import ErrorTickets
 
 
 class IssueType(str, PyEnum):
+    """Define the supported types of reported issues.
+
+        These values are used to classify ticket categories and requests.
+    """
     HARDWARE = "HARDWARE"
     SOFTWARE = "SOFTWARE"
     NETWORK = "NETWORK"

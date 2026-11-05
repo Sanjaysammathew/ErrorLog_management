@@ -6,6 +6,10 @@ from app.repositories.implementations import UserRepository
 
 
 async def create_admin() -> str:
+    """Create the initial administrator account for the application.
+
+        This setup task stores the account with administrator permissions.
+    """
     if (
         settings.ADMIN_USERNAME is None
         or settings.ADMIN_EMAIL is None

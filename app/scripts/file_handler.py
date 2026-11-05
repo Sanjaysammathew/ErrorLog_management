@@ -20,6 +20,10 @@ CHUNK_SIZE = 1024 * 1024
 
 
 def validate_image(upload_file: UploadFile) -> tuple[str, str]:
+    """Validate image against the application's requirements.
+
+        Raise or report an error when the value is not acceptable.
+    """
     filename = upload_file.filename
     if not filename or filename != PurePath(filename).name:
         raise InvalidImageError("Invalid image filename")
@@ -35,6 +39,10 @@ def validate_image(upload_file: UploadFile) -> tuple[str, str]:
 
 
 async def save_image(upload_file: UploadFile) -> tuple[str, int]:
+    """Validate and store an uploaded image file.
+
+        The saved location is used when creating the ticket image record.
+    """
     filename, _ = validate_image(upload_file)
     UPLOAD_DIRECTORY.mkdir(parents=True, exist_ok=True)
     file_path = UPLOAD_DIRECTORY / f"{uuid4().hex}{Path(filename).suffix.casefold()}"
@@ -59,6 +67,10 @@ async def save_image(upload_file: UploadFile) -> tuple[str, int]:
 
 
 async def delete_image(file_path: str) -> None:
+    """Delete or remove image from the application.
+
+        Related access and persistence rules are handled by this operation.
+    """
     path = Path(file_path).resolve()
     upload_root = UPLOAD_DIRECTORY.resolve()
     if upload_root not in path.parents:

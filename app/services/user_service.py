@@ -11,13 +11,25 @@ from app.services.email_service import EmailService
 
 
 class UserService:
+    """Apply business rules for user operations.
+
+        The service coordinates validation and the required data access.
+    """
     def __init__(
         self, user_repository: UserInterface, email_service: EmailService
     ) -> None:
+        """Initialize the user service with its collaborators.
+
+            These dependencies provide the business logic with data access and related services.
+        """
         self.user_repository = user_repository
         self.email_service = email_service
 
     async def register_user(self, user_data: UserCreate) -> user:
+        """Create a user account from validated registration data.
+
+            The service stores the account and performs required onboarding steps.
+        """
         existing_user = await self.user_repository.get_by_username_or_email(
             user_data.username, user_data.email
         )
@@ -46,6 +58,10 @@ class UserService:
         return created_user
 
     async def list_users(self, page: int = 1, page_size: int = 10) -> dict:
+        """Retrieve a paginated list of user accounts.
+
+            The service combines the selected users with pagination information.
+        """
         offset = (page - 1) * page_size
         users = await self.user_repository.get_all(offset, page_size)
         total_count = await self.user_repository.count_all()
@@ -59,6 +75,10 @@ class UserService:
     async def get_user(
         self, user_id: int | None = None, email: str | None = None
     ) -> user:
+        """Find the user account needed by the operation.
+
+            The service returns the matching account or reports that it is missing.
+        """
         if email is not None:
             existing_user = await self.user_repository.get_by_email(email)
         elif user_id is not None:
@@ -70,6 +90,10 @@ class UserService:
         return existing_user
 
     async def update_user(self, user_id: int, user_data: UserUpdate) -> user:
+        """Update an existing user account.
+
+            The service applies allowed account changes and returns the updated user.
+        """
         existing_user = await self.get_user(user_id)
         changes = user_data.model_dump(exclude_unset=True)
         if "password" in changes:
@@ -81,5 +105,9 @@ class UserService:
         return await self.user_repository.update(user_id, changes)
 
     async def deactivate_user(self, user_id: int) -> user:
+        """Deactivate user while preserving its stored record.
+
+            This prevents it from being treated as active by the application.
+        """
         await self.get_user(user_id)
         return await self.user_repository.update(user_id, {"is_active": False})

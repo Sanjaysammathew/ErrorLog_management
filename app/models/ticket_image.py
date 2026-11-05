@@ -12,6 +12,10 @@ if TYPE_CHECKING:
 
 
 class TicketImage(Base):
+    """Represent an image attachment associated with a ticket.
+
+        The record stores the image metadata and its ticket relationship.
+    """
     __tablename__ = "ticket_images"
     __table_args__ = (
         Index("ix_ticket_images_ticket_id", "ticket_id"),

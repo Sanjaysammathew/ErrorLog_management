@@ -12,6 +12,10 @@ if TYPE_CHECKING:
 
 
 class TicketRemark(Base):
+    """Represent a remark added to a support ticket.
+
+        The record tracks the remark content, author, and related ticket.
+    """
     __tablename__ = "ticket_remarks"
     __table_args__ = (
         Index("ix_ticket_remarks_ticket_id", "ticket_id"),
@@ -44,22 +48,42 @@ class TicketRemark(Base):
 
     @property
     def ticket_number(self) -> str | None:
+        """Return the human-readable number for the related ticket.
+
+            This property exposes the ticket identifier through its relationship.
+        """
         return self.ticket.ticket_number if self.ticket else None
 
     @property
     def ticket_created_at(self) -> datetime | None:
+        """Return the creation time of the related ticket.
+
+            This property exposes ticket timing through its relationship.
+        """
         return self.ticket.created_at if self.ticket else None
 
     @property
     def ticket_due_at(self) -> datetime | None:
+        """Return the due time of the related ticket.
+
+            This property exposes the ticket deadline through its relationship.
+        """
         return self.ticket.due_at if self.ticket else None
 
     @property
     def admin_id(self) -> int:
+        """Return the administrator identifier associated with the record.
+
+            This property exposes the related administrator through the model relationship.
+        """
         return self.user_id
 
     @property
     def is_overdue(self) -> bool:
+        """Determine whether overdue applies to the current record.
+
+            The result is used by application logic to make a decision.
+        """
         if self.ticket is None or self.ticket.due_at is None:
             return False
         if self.ticket.status in {"resolved", "rejected", "closed"}:

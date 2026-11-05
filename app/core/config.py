@@ -4,6 +4,10 @@ from sqlalchemy import URL
 
 
 class Settings(BaseSettings):
+    """Define the application's configurable settings.
+
+        Values are loaded from the environment and provide defaults for local development.
+    """
     APP_NAME: str = "ErrorLog Management"
     APP_VERSION: str = "1.0.0"
     API_PREFIX: str = ""
@@ -40,6 +44,10 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
+        """Build the database connection URL from the configured settings.
+
+            The URL is used by the database engine during startup.
+        """
         return URL.create(
             drivername=self.DATABASE_DRIVER,
             username=self.DATABASE_USER,

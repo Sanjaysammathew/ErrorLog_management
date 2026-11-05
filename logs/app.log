@@ -1301,3 +1301,25 @@
 2026-11-05 12:16:04,700 INFO app: Manager seed: exists
 2026-11-05 12:16:04,700 INFO app: Application started
 2026-11-05 12:16:42,339 INFO app: Application stopped
+2026-11-05 15:03:08,719 INFO app: Admin seed: exists
+2026-11-05 15:03:08,719 INFO app: Manager seed: exists
+2026-11-05 15:03:08,719 INFO app: Application started
+2026-11-05 15:04:45,679 INFO app.middleware.request_logging: Request started: GET / | Correlation ID: b5ab2a23-8fc6-468b-b0d5-2ecfc77ea0fe
+2026-11-05 15:04:45,736 INFO app.middleware.request_logging: Request completed: GET / | Status: 404 | Time: 0.0565 seconds | Correlation ID: b5ab2a23-8fc6-468b-b0d5-2ecfc77ea0fe
+2026-11-05 15:04:46,068 INFO app.middleware.request_logging: Request started: GET / | Correlation ID: 13ff0fd9-d8c0-4a89-b0aa-2896f868bbc6
+2026-11-05 15:04:46,070 INFO app.middleware.request_logging: Request completed: GET / | Status: 404 | Time: 0.0011 seconds | Correlation ID: 13ff0fd9-d8c0-4a89-b0aa-2896f868bbc6
+2026-11-05 15:04:48,959 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: ad852937-a443-4c80-9191-efae4fcabab7
+2026-11-05 15:04:48,960 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0009 seconds | Correlation ID: ad852937-a443-4c80-9191-efae4fcabab7
+2026-11-05 15:04:49,070 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: ea75a8eb-2cee-4d36-b4c1-f6158d31fed9
+2026-11-05 15:04:49,217 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.1468 seconds | Correlation ID: ea75a8eb-2cee-4d36-b4c1-f6158d31fed9
+2026-11-05 15:04:55,549 INFO app.middleware.request_logging: Request started: GET /health | Correlation ID: 5e36b5c4-e3dd-4a2a-9acc-1e92c7b7ba0b
+2026-11-05 15:04:55,555 INFO app.middleware.request_logging: Request completed: GET /health | Status: 200 | Time: 0.0060 seconds | Correlation ID: 5e36b5c4-e3dd-4a2a-9acc-1e92c7b7ba0b
+2026-11-05 15:05:07,578 INFO app.middleware.request_logging: Request started: POST /auth/refresh | Correlation ID: af5e428d-0536-493b-bbe2-f932bb31df25
+2026-11-05 15:05:07,585 ERROR app.exceptions.handlers: Invalid token error (InvalidTokenError) for POST /auth/refresh
+2026-11-05 15:05:07,586 INFO app.middleware.request_logging: Request completed: POST /auth/refresh | Status: 401 | Time: 0.0072 seconds | Correlation ID: af5e428d-0536-493b-bbe2-f932bb31df25
+2026-11-05 15:05:29,142 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 30f0a174-0c3b-4ea9-ad97-1cde7e2481f3
+2026-11-05 15:05:29,239 ERROR app.exceptions.handlers: Invalid credentials error (InvalidCredentialsError) for POST /auth/login
+2026-11-05 15:05:29,239 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 401 | Time: 0.0967 seconds | Correlation ID: 30f0a174-0c3b-4ea9-ad97-1cde7e2481f3
+2026-11-05 15:05:40,911 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: b957f8fe-43b7-4475-bde9-08b2d50f73e0
+2026-11-05 15:05:41,003 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0917 seconds | Correlation ID: b957f8fe-43b7-4475-bde9-08b2d50f73e0
+2026-11-05 15:06:29,716 INFO app: Application stopped

@@ -12,6 +12,10 @@ async def log_requests(
     request: Request,
     call_next: Callable[[Request], Awaitable[Response]],
 ) -> Response:
+    """Log request and response details as they pass through the application.
+
+        This middleware supports monitoring and troubleshooting.
+    """
     correlation_id = str(uuid.uuid4())
     request.state.correlation_id = correlation_id
     start_time = time.perf_counter()

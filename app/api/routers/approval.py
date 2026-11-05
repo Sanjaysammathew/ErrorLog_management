@@ -17,11 +17,10 @@ async def get_pending_approvals(
     approval_service: ApprovalService = Depends(get_approval_service),
     current_user: user = Depends(require_roles(UserRole.MANAGER)),
 ) -> list[ApprovalResponse]:
-    """
-    List approval requests that are waiting for the current manager's decision.
+    """List approval requests that are waiting for the current manager's decision.
 
-    Only managers can access this endpoint. Return pending approvals assigned
-    to the authenticated manager so they can review the related tickets.
+        Only managers can access this endpoint. Return pending approvals assigned
+        to the authenticated manager so they can review the related tickets.
     """
     return await approval_service.get_pending_approvals(current_user)
 
@@ -32,11 +31,10 @@ async def get_approval_by_id(
     approval_service: ApprovalService = Depends(get_approval_service),
     current_user: user = Depends(require_roles(UserRole.MANAGER)),
 ) -> ApprovalResponse:
-    """
-    Retrieve the details of a specific approval request by ID.
+    """Retrieve the details of a specific approval request by ID.
 
-    Only managers can access this endpoint, and the service verifies that the
-    approval is available to the current manager before returning its details.
+        Only managers can access this endpoint, and the service verifies that the
+        approval is available to the current manager before returning its details.
     """
     return await approval_service.get_approval_by_id(approval_id, current_user)
 
@@ -48,11 +46,10 @@ async def approve_approval(
     approval_service: ApprovalService = Depends(get_approval_service),
     current_user: user = Depends(require_roles(UserRole.MANAGER)),
 ) -> ApprovalResponse:
-    """
-    Approve the ticket associated with the specified approval request.
+    """Approve the ticket associated with the specified approval request.
 
-    Only managers can decide approvals. An optional decision reason is stored
-    with the decision, and the updated approval record is returned.
+        Only managers can decide approvals. An optional decision reason is stored
+        with the decision, and the updated approval record is returned.
     """
     return await approval_service.decide_approval(
         approval_id,
@@ -69,11 +66,10 @@ async def reject_approval(
     approval_service: ApprovalService = Depends(get_approval_service),
     current_user: user = Depends(require_roles(UserRole.MANAGER)),
 ) -> ApprovalResponse:
-    """
-    Reject the ticket associated with the specified approval request.
+    """Reject the ticket associated with the specified approval request.
 
-    Only managers can decide approvals. An optional decision reason is stored
-    with the decision, and the updated approval record is returned.
+        Only managers can decide approvals. An optional decision reason is stored
+        with the decision, and the updated approval record is returned.
     """
     return await approval_service.decide_approval(
         approval_id,

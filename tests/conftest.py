@@ -167,3 +167,9 @@ def employee_headers(client):
     )
     assert response.status_code == 200, response.text
     return {"Authorization": f"Bearer {response.json()['access_token']}"}
+
+
+@pytest_asyncio.fixture
+async def db_session(clean_database):
+    async with TestSessionLocal() as session:
+        yield session

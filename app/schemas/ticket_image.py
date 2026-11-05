@@ -4,6 +4,10 @@ from pydantic import BaseModel, ConfigDict
 
 
 class TicketImageResponse(BaseModel):
+    """Define the image attachment details returned by the API.
+
+        The schema exposes image metadata associated with a ticket.
+    """
     model_config = ConfigDict(from_attributes=True)
 
     id: int

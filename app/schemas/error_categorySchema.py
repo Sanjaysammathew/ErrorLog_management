@@ -7,6 +7,11 @@ from app.models.ErrorCategory import IssueType
 
 
 class CategoryBase(BaseModel):
+    """Define the shared fields for ticket category data.
+
+        Create, update, and response schemas build on this common shape.
+    """
+
     name: str = Field(..., min_length=2, max_length=100)
     issue_type: IssueType
     description: Optional[str] = None
@@ -15,10 +20,20 @@ class CategoryBase(BaseModel):
 
 
 class CategoryCreate(CategoryBase):
+    """Validate data used to create a ticket category.
+
+        The schema contains the fields accepted for a new category.
+    """
+
     pass
 
 
 class CategoryUpdate(BaseModel):
+    """Validate data used to update a ticket category.
+
+        The schema contains the editable category fields.
+    """
+
     name: Optional[str] = None
     description: Optional[str] = None
     default_sla_hours: Optional[int] = None
@@ -26,6 +41,11 @@ class CategoryUpdate(BaseModel):
 
 
 class CategoryResponse(CategoryBase):
+    """Define the category data returned by the API.
+
+        The schema provides a consistent representation to clients.
+    """
+
     id: int
     created_at: datetime
     is_active: bool
