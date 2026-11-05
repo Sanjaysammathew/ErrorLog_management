@@ -22,7 +22,7 @@ from app.models.user import ApprovalStatus, UserRole, user
 from app.repositories.interfaces.category_interface import CategoryInterface
 from app.repositories.interfaces.ticket_interface import TicketInterface
 from app.repositories.interfaces.user_interface import UserInterface
-from app.schemas.error_ticketSchema import TicketCreate, TicketStatus
+from app.schemas.error_ticketSchema import TicketCreate, TicketStatus, TicketStatusUpdate
 from app.scripts.ticket_number import generate_ticket_number
 from app.services.email_service import EmailService
 
@@ -226,7 +226,7 @@ class TicketService:
     async def update_ticket_status(
         self,
         ticket_id: int,
-        new_status: TicketStatus,
+        new_status: TicketStatusUpdate,
         remarks: str | None,
         current_user: user,
     ) -> ErrorTickets:
@@ -236,12 +236,6 @@ class TicketService:
         ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
         if ticket is None:
             raise TicketNotFoundError
-        if (
-            new_status == TicketStatus.CLOSED
-            and ticket.status != TicketStatus.RESOLVED.value
-        ):
-            raise TicketNotResolvedError
-
         old_status = ticket.status
         ticket.status = new_status.value
         ticket.updated_at = datetime.now(timezone.utc).replace(tzinfo=None)
@@ -264,6 +258,4 @@ class TicketService:
         updated_ticket = await self.ticket_repository.save_status_update(
             ticket, history, status_remark
         )
-        if new_status == TicketStatus.CLOSED:
-            await self.email_service.send_ticket_closed(updated_ticket)
         return updated_ticket

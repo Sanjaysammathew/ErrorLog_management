@@ -19,6 +19,14 @@ class TicketStatus(str, Enum):
     CLOSED = "closed"
 
 
+class TicketStatusUpdate(str, Enum):
+    PENDING_APPROVAL = "pending_approval"
+    OPEN = "open"
+    IN_PROGRESS = "in_progress"
+    RESOLVED = "resolved"
+    REJECTED = "rejected"
+
+
 class TicketBase(BaseModel):
     title: str = Field(..., min_length=3, max_length=100)
     description: Optional[str] = None
@@ -30,7 +38,7 @@ class TicketCreate(TicketBase):
 
 
 class TicketUpdateStatus(BaseModel):
-    status: TicketStatus
+    status: TicketStatusUpdate
     status_change_remark: Optional[str] = None
 
 

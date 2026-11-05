@@ -99,10 +99,11 @@ async def update_ticket_status(
     current_user: user = Depends(require_roles(UserRole.ADMIN)),
 ) -> TicketResponse:
     """
-    Change a ticket's status and optionally record a status change remark.
+    Change a ticket's workflow status using `pending_approval`, `open`,
+    `in_progress`, `resolved`, or `rejected`, and optionally record a remark.
 
-    Only administrators can perform this operation. The request supplies the
-    new status and remark; return the ticket with the updated status information.
+    Only administrators can use this endpoint. Use the separate close endpoint
+    to close a ticket after it has been resolved.
     """
     return await ticket_service.update_ticket_status(
         ticket_id,
