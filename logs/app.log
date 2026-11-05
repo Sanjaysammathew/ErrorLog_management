@@ -1297,3 +1297,7 @@
 2026-11-05 12:14:41,445 INFO app.middleware.request_logging: Request started: PATCH /tickets/2/close | Correlation ID: 925bb218-4192-46c4-b15c-042175afe3f4
 2026-11-05 12:14:42,060 INFO app.middleware.request_logging: Request completed: PATCH /tickets/2/close | Status: 200 | Time: 0.6153 seconds | Correlation ID: 925bb218-4192-46c4-b15c-042175afe3f4
 2026-11-05 12:15:30,276 INFO app: Application stopped
+2026-11-05 12:16:04,700 INFO app: Admin seed: exists
+2026-11-05 12:16:04,700 INFO app: Manager seed: exists
+2026-11-05 12:16:04,700 INFO app: Application started
+2026-11-05 12:16:42,339 INFO app: Application stopped
