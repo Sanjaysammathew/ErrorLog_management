@@ -6,11 +6,13 @@ from app.exceptions.custom_exceptions import (
     ImageDeletionError,
     ImageNotFoundError,
     PermissionDeniedError,
+    TicketImageUploadNotAllowedError,
 )
 from app.scripts.file_handler import delete_image, save_image, validate_image
 from app.models.ticket_image import TicketImage
 from app.models.user import UserRole, user
 from app.repositories.interfaces.ticket_image_interface import TicketImageInterface
+from app.schemas.error_ticketSchema import TicketStatus
 from app.services.ticket_service import TicketService
 
 
@@ -34,11 +36,19 @@ class TicketImageService:
     async def upload_image(
         self, ticket_id: int, upload_file: UploadFile, current_user: user
     ) -> TicketImage:
-        """Store an uploaded image and associate it with a ticket.
+        """Store an uploaded image and associate it with an eligible ticket.
 
-            The service validates the file and records its metadata.
+            Resolved, rejected, and closed tickets do not accept new images. The
+            service validates the file and records its metadata for other statuses.
         """
         ticket = await self.ticket_service.get_ticket_by_id(ticket_id, current_user)
+        if ticket.status in {
+            TicketStatus.RESOLVED.value,
+            TicketStatus.REJECTED.value,
+            TicketStatus.CLOSED.value,
+        }:
+            raise TicketImageUploadNotAllowedError
+
         original_filename, content_type = validate_image(upload_file)
         file_path, size_bytes = await save_image(upload_file)
         image = TicketImage(

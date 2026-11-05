@@ -19,6 +19,7 @@ from app.exceptions.custom_exceptions import (
     TicketCreationError,
     TicketNotFoundError,
     TicketNotResolvedError,
+    TicketImageUploadNotAllowedError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -41,6 +42,7 @@ from app.exceptions.handlers import (
     ticket_creation_handler,
     ticket_not_found_handler,
     ticket_not_resolved_handler,
+    ticket_image_upload_not_allowed_handler,
     user_already_exists_handler,
     user_not_found_handler,
 )
@@ -63,6 +65,10 @@ def register_exception_handlers(app: FastAPI) -> None:
     app.add_exception_handler(TicketCreationError, ticket_creation_handler)
     app.add_exception_handler(TicketNotFoundError, ticket_not_found_handler)
     app.add_exception_handler(TicketNotResolvedError, ticket_not_resolved_handler)
+    app.add_exception_handler(
+        TicketImageUploadNotAllowedError,
+        ticket_image_upload_not_allowed_handler,
+    )
     app.add_exception_handler(
         ApprovalAlreadyDecidedError, approval_already_decided_handler
     )

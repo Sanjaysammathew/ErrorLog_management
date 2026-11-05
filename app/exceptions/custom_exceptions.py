@@ -153,3 +153,14 @@ class ImageDeletionError(AppError):
         The exception is translated into an image deletion error response.
     """
     default_message = "Image could not be deleted"
+
+
+class TicketImageUploadNotAllowedError(AppError):
+    """Represent an attempt to attach an image to a completed ticket.
+
+    The exception prevents new attachments on resolved, rejected, or closed tickets.
+    """
+
+    default_message = (
+        "Images cannot be uploaded to resolved, rejected, or closed tickets."
+    )

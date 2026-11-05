@@ -164,16 +164,20 @@ def test_list_users_invalid_pagination(client, admin_headers):
     assert response.status_code == 422
 
 
-def test_user_lookup_without_identifier_returns_bad_request(client):
+def test_current_user_profile(client):
     login_response = client.post(
         "/auth/login",
         data={"username": "admin", "password": "admin123"},
     )
-    headers = {
-        "Authorization": f"Bearer {login_response.json()['access_token']}"
-    }
+    headers = {"Authorization": f"Bearer {login_response.json()['access_token']}"}
 
-    response = client.get("/users/lookup", headers=headers)
+    response = client.get("/users/me", headers=headers)
 
     assert response.status_code == 400
     assert response.json() == {"detail": "Provide either user_id or email."}
+
+    response = client.get("/users/me?email=admin@example.com", headers=headers)
+
+    assert response.status_code == 200
+    assert response.json()["username"] == "admin"
+    assert response.json()["email"] == "admin@example.com"

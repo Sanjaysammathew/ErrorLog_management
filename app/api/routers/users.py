@@ -1,6 +1,11 @@
 from fastapi import APIRouter, Depends, Query, status
 
-from app.api.dependency.dependencies import get_user_service, require_roles
+from app.api.dependency.dependencies import (
+    get_current_user,
+    get_user_service,
+    require_roles,
+)
+from app.exceptions.custom_exceptions import PermissionDeniedError
 from app.models.user import UserRole, user
 from app.schemas.userSchema import (
     UserCreate,
@@ -42,25 +47,27 @@ async def list_users(
     return await user_service.list_users(page, page_size)
 
 
-@router.get("/lookup", response_model=UserResponse)
-async def get_user(
+@router.get("/me", response_model=UserResponse)
+async def get_my_user(
     user_id: int | None = Query(
         default=None,
-        description=" user ID used to identify the account.",
+        description="Your user ID used to identify the account.",
     ),
     email: str | None = Query(
         default=None,
-        description=" email address used to identify the account.",
+        description="Your email address used to identify the account.",
     ),
     user_service: UserService = Depends(get_user_service),
-    _: user = Depends(require_roles(UserRole.ADMIN)),
+    current_user: user = Depends(get_current_user),
 ) -> user:
-    """Retrieve one user profile by either user ID or email address.
+    """Retrieve the authenticated user's profile by ID or email.
 
-        Only administrators can access this endpoint; provide at least one query
-        parameter and receive the matching user's account details.
+        The requested account must belong to the authenticated user.
     """
-    return await user_service.get_user(user_id, email)
+    requested_user = await user_service.get_user(user_id, email)
+    if requested_user.id != current_user.id:
+        raise PermissionDeniedError
+    return requested_user
 
 
 @router.get("/{user_id}", response_model=UserResponse)

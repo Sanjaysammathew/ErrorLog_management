@@ -27,8 +27,9 @@ async def create_ticket(
 ) -> TicketResponse:
     """Submit a new support ticket for the authenticated user.
 
-        The request body provides the issue details, and the current user becomes
-        the ticket owner. Return the created ticket with its generated identifiers.
+        The request body provides the issue details and a priority of `low`,
+        `medium`, or `high`. The current user becomes the ticket owner, and the
+        response contains the created ticket with its generated identifiers.
     """
     return await ticket_service.create_ticket(db, ticket_data, current_user)
 

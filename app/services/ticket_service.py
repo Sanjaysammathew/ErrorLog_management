@@ -22,7 +22,11 @@ from app.models.user import ApprovalStatus, UserRole, user
 from app.repositories.interfaces.category_interface import CategoryInterface
 from app.repositories.interfaces.ticket_interface import TicketInterface
 from app.repositories.interfaces.user_interface import UserInterface
-from app.schemas.error_ticketSchema import TicketCreate, TicketStatus, TicketStatusUpdate
+from app.schemas.error_ticketSchema import (
+    TicketCreate,
+    TicketStatus,
+    TicketStatusUpdate,
+)
 from app.scripts.ticket_number import generate_ticket_number
 from app.services.email_service import EmailService
 
@@ -30,21 +34,22 @@ from app.services.email_service import EmailService
 class TicketService:
     """Apply business rules for ticket operations.
 
-        The service coordinates validation and the required data access.
+    The service coordinates validation and the required data access.
     """
+
     APPROVAL_KEYWORDS = ("paid software", "hardware replacement")
     SLA_KEYWORDS = (
         ("hardware replacement", 24),
         ("paid software", 8),
-        ("network", 2),
-        ("keyboard", 8),
+        ("network", 8),
+        ("keyboard", 2),
     )
 
     @classmethod
     def _requires_approval(cls, ticket_data: TicketCreate) -> bool:
         """Check whether a ticket request requires manager approval.
 
-            Configured keywords in the ticket details determine this rule.
+        Configured keywords in the ticket details determine this rule.
         """
         searchable_text = " ".join(
             value for value in (ticket_data.title, ticket_data.description) if value
@@ -55,7 +60,7 @@ class TicketService:
     def _get_sla_hours(cls, ticket_data: TicketCreate, fallback: int) -> int:
         """Select the response target for a ticket request.
 
-            Configured issue keywords determine the SLA, with a fallback when none match.
+        Configured issue keywords determine the SLA, with a fallback when none match.
         """
         searchable_text = " ".join(
             value for value in (ticket_data.title, ticket_data.description) if value
@@ -74,7 +79,7 @@ class TicketService:
     ) -> None:
         """Initialize the ticket service with its collaborators.
 
-            These dependencies provide the business logic with data access and related services.
+        These dependencies provide the business logic with data access and related services.
         """
         self.ticket_repository = ticket_repository
         self.category_repository = category_repository
@@ -86,7 +91,7 @@ class TicketService:
     ) -> ErrorTickets:
         """Create a support ticket and its initial workflow records.
 
-            The operation applies category, approval, and due-date rules.
+        The operation applies category, approval, and due-date rules.
         """
         if not current_user.is_active or current_user.role != UserRole.EMPLOYEE:
             raise PermissionDeniedError
@@ -185,9 +190,7 @@ class TicketService:
                 )
 
             await self.ticket_repository.commit()
-            await db.refresh(
-                ticket, ["category", "created_by_user", "assigned_admin"]
-            )
+            await db.refresh(ticket, ["category", "created_by_user", "assigned_admin"])
             await self.email_service.send_ticket_created(ticket)
             return ticket
         except AppError:
@@ -200,7 +203,7 @@ class TicketService:
     async def get_my_tickets(self, current_user: user) -> list[ErrorTickets]:
         """Retrieve tickets owned by the current employee.
 
-            The result is limited to tickets created by that user.
+        The result is limited to tickets created by that user.
         """
         if not current_user.is_active or current_user.role != UserRole.EMPLOYEE:
             raise PermissionDeniedError
@@ -212,7 +215,7 @@ class TicketService:
     ) -> ErrorTickets | None:
         """Find a support ticket by its identifier.
 
-            The service checks whether the current user may view it.
+        The service checks whether the current user may view it.
         """
         ticket = await self.ticket_repository.get_ticket_by_id(ticket_id)
         if ticket is None:
@@ -226,28 +229,24 @@ class TicketService:
     async def get_all_tickets(self) -> list[ErrorTickets]:
         """Retrieve the complete support ticket queue.
 
-            This supports administrative review across all users.
+        This supports administrative review across all users.
         """
         return await self.ticket_repository.get_user()
 
-    async def get_overdue_tickets(
-        self, current_user: user
-    ) -> list[ErrorTickets]:
+    async def get_overdue_tickets(self, current_user: user) -> list[ErrorTickets]:
         """Find tickets that remain open past their due time.
 
-            The result supports administrative follow-up on overdue work.
+        The result supports administrative follow-up on overdue work.
         """
         if not current_user.is_active or current_user.role != UserRole.ADMIN:
             raise PermissionDeniedError
 
         return await self.ticket_repository.get_overdue_tickets()
 
-    async def close_ticket(
-        self, ticket_id: int, current_user: user
-    ) -> ErrorTickets:
+    async def close_ticket(self, ticket_id: int, current_user: user) -> ErrorTickets:
         """Close a resolved support ticket.
 
-            The service verifies the ticket state and records its closure.
+        The service verifies the ticket state and records its closure.
         """
         if not current_user.is_active or current_user.role != UserRole.ADMIN:
             raise PermissionDeniedError
@@ -281,7 +280,7 @@ class TicketService:
     ) -> ErrorTickets:
         """Change a ticket workflow status.
 
-            The operation records the transition and applies related workflow rules.
+        The operation records the transition and applies related workflow rules.
         """
         if not current_user.is_active or current_user.role != UserRole.ADMIN:
             raise PermissionDeniedError

@@ -24,6 +24,7 @@ from app.exceptions.custom_exceptions import (
     ImageStorageError,
     ImageCreationError,
     ImageDeletionError,
+    TicketImageUploadNotAllowedError,
 )
 
 logger = logging.getLogger(__name__)
@@ -344,6 +345,24 @@ async def image_creation_handler(
     )
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT, content={"detail": exc.message}
+    )
+
+
+async def ticket_image_upload_not_allowed_handler(
+    request: Request, exc: TicketImageUploadNotAllowedError
+) -> JSONResponse:
+    """Handle an attempt to attach an image to a completed ticket.
+
+    Return a conflict response explaining that the ticket no longer accepts images.
+    """
+    logger.info(
+        "Ticket image upload blocked for %s %s",
+        request.method,
+        request.url.path,
+    )
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT,
+        content={"detail": exc.message},
     )
 
 
