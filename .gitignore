@@ -2,3 +2,5 @@ __pycache__/
 .ruff_cache/
 alembic.ini
 .env
+/logs/
+/venv/
