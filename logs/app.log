@@ -1455,3 +1455,13 @@
 2026-11-05 16:41:00,710 INFO app.middleware.request_logging: Request started: GET /tickets/10/history | Correlation ID: d94002e0-ca6a-4eee-b7a7-021b7f5732d4
 2026-11-05 16:41:00,739 INFO app.middleware.request_logging: Request completed: GET /tickets/10/history | Status: 200 | Time: 0.0290 seconds | Correlation ID: d94002e0-ca6a-4eee-b7a7-021b7f5732d4
 2026-11-05 16:41:52,542 INFO app: Application stopped
+2026-11-05 17:00:03,848 INFO app: Admin seed: exists
+2026-11-05 17:00:03,848 INFO app: Manager seed: exists
+2026-11-05 17:00:03,848 INFO app: Application started
+2026-11-05 17:00:08,196 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: 8f95e51e-2df8-4f06-b690-ace905a2ff2d
+2026-11-05 17:00:08,198 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0018 seconds | Correlation ID: 8f95e51e-2df8-4f06-b690-ace905a2ff2d
+2026-11-05 17:00:08,286 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: 81c96936-d67c-4309-833b-db8d506d753e
+2026-11-05 17:00:08,496 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.2102 seconds | Correlation ID: 81c96936-d67c-4309-833b-db8d506d753e
+2026-11-05 17:00:28,254 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 3df7610d-c295-4103-bd0c-b2f7300a0554
+2026-11-05 17:00:28,348 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0945 seconds | Correlation ID: 3df7610d-c295-4103-bd0c-b2f7300a0554
+2026-11-05 17:03:56,096 INFO app: Application stopped

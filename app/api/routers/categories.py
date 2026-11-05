@@ -1,28 +1,14 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends
 
 from app.api.dependency.dependencies import get_category_service, require_roles
 from app.models.user import UserRole, user
 from app.schemas.error_categorySchema import (
-    CategoryCreate,
     CategoryResponse,
     CategoryUpdate,
 )
 from app.services.category_service import CategoryService
 
 router = APIRouter(prefix="/categories", tags=["categories"])
-
-
-@router.post("", response_model=CategoryResponse, status_code=status.HTTP_201_CREATED)
-async def create_category(
-    category_data: CategoryCreate,
-    category_service: CategoryService = Depends(get_category_service),
-    _: user = Depends(require_roles(UserRole.ADMIN)),
-) -> CategoryResponse:
-    """Create a ticket category from the details supplied in the request body.
-        Only administrators can access this endpoint; it returns the saved category
-        with its generated ID and current active state.
-    """
-    return await category_service.create_category(category_data)
 
 
 @router.get("", response_model=list[CategoryResponse])

@@ -1,4 +1,5 @@
 import pytest
+from app.models.ErrorCategory import ErrorCategory, IssueType
 
 # Authentication fixtures
 
@@ -37,69 +38,27 @@ def manager_headers(client):
     return {"Authorization": f"Bearer {token}"}
 
 
-# Helper to create a category
-
-
-def create_category(client, headers, name="Hardware Issue"):
-    return client.post(
-        "/categories",
-        json={
-            "name": name,
-            "issue_type": "HARDWARE",
-            "description": "Hardware related problems",
-            "default_sla_hours": 24,
-            "requires_approval_default": False,
-        },
-        headers=headers,
+async def seed_category(db_session, name="Hardware Issue"):
+    category = ErrorCategory(
+        name=name,
+        issue_type=IssueType.HARDWARE,
+        description="Hardware related problems",
+        default_sla_hours=24,
+        requires_approval_default=False,
+        is_active=True,
     )
+    db_session.add(category)
+    await db_session.commit()
+    await db_session.refresh(category)
+    return category
 
 
-# 1. Create category
+# 1. Get all categories
 
 
-def test_create_category(client, admin_headers):
-    response = create_category(client, admin_headers)
-
-    assert response.status_code == 201
-    assert response.json()["name"] == "Hardware Issue"
-    assert response.json()["issue_type"] == "HARDWARE"
-    assert response.json()["default_sla_hours"] == 24
-    assert response.json()["is_active"] is True
-
-
-# 2. Create duplicate category
-
-
-def test_create_duplicate_category(client, admin_headers):
-    create_category(client, admin_headers)
-
-    response = create_category(client, admin_headers)
-
-    assert response.status_code == 409
-
-
-# 3. Create category with invalid data
-
-
-def test_create_category_invalid_data(client, admin_headers):
-    response = client.post(
-        "/categories",
-        json={
-            "name": "H",
-            "issue_type": "INVALID",
-            "default_sla_hours": 0,
-        },
-        headers=admin_headers,
-    )
-
-    assert response.status_code == 422
-
-
-# 4. Get all categories
-
-
-def test_get_all_categories(client, admin_headers):
-    create_category(client, admin_headers)
+@pytest.mark.asyncio(loop_scope="session")
+async def test_get_all_categories(client, admin_headers, db_session):
+    await seed_category(db_session)
 
     response = client.get(
         "/categories",
@@ -110,13 +69,13 @@ def test_get_all_categories(client, admin_headers):
     assert len(response.json()) == 1
 
 
-# 5. Get category by ID
+# 2. Get category by ID
 
 
-def test_get_category_by_id(client, admin_headers):
-    create_response = create_category(client, admin_headers)
-
-    category_id = create_response.json()["id"]
+@pytest.mark.asyncio(loop_scope="session")
+async def test_get_category_by_id(client, admin_headers, db_session):
+    category = await seed_category(db_session)
+    category_id = category.id
 
     response = client.get(
         f"/categories/{category_id}",
@@ -128,13 +87,13 @@ def test_get_category_by_id(client, admin_headers):
     assert response.json()["name"] == "Hardware Issue"
 
 
-# 6. Update category
+# 3. Update category
 
 
-def test_update_category(client, admin_headers):
-    create_response = create_category(client, admin_headers)
-
-    category_id = create_response.json()["id"]
+@pytest.mark.asyncio(loop_scope="session")
+async def test_update_category(client, admin_headers, db_session):
+    category = await seed_category(db_session)
+    category_id = category.id
 
     response = client.put(
         f"/categories/{category_id}",
@@ -150,7 +109,7 @@ def test_update_category(client, admin_headers):
     assert response.json()["default_sla_hours"] == 48
 
 
-# 7. Update nonexistent category
+# 4. Update nonexistent category
 
 
 def test_update_nonexistent_category(client, admin_headers):
@@ -163,13 +122,13 @@ def test_update_nonexistent_category(client, admin_headers):
     assert response.status_code == 404
 
 
-# 8. Deactivate category
+# 5. Deactivate category
 
 
-def test_deactivate_category(client, admin_headers):
-    create_response = create_category(client, admin_headers)
-
-    category_id = create_response.json()["id"]
+@pytest.mark.asyncio(loop_scope="session")
+async def test_deactivate_category(client, admin_headers, db_session):
+    category = await seed_category(db_session)
+    category_id = category.id
 
     response = client.patch(
         f"/categories/{category_id}/deactivate",
@@ -180,7 +139,7 @@ def test_deactivate_category(client, admin_headers):
     assert response.json()["is_active"] is False
 
 
-# 9. Deactivate nonexistent category
+# 6. Deactivate nonexistent category
 
 
 def test_deactivate_nonexistent_category(client, admin_headers):
@@ -192,7 +151,7 @@ def test_deactivate_nonexistent_category(client, admin_headers):
     assert response.status_code == 404
 
 
-# 10. Employee/manager role can view categories
+# 7. Employee/manager role can view categories
 # Manager is already available in your test database.
 
 
@@ -203,27 +162,3 @@ def test_manager_can_view_categories(client, manager_headers):
     )
 
     assert response.status_code == 200
-
-
-# 11. Manager cannot create category
-
-
-def test_manager_cannot_create_category(client, manager_headers):
-    response = create_category(client, manager_headers)
-
-    assert response.status_code == 403
-
-
-# 12. Unauthenticated user cannot create category
-
-
-def test_create_category_without_token(client):
-    response = client.post(
-        "/categories",
-        json={
-            "name": "Network Issue",
-            "issue_type": "NETWORK",
-        },
-    )
-
-    assert response.status_code == 401
