@@ -1,6 +1,5 @@
 from datetime import datetime
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -41,7 +40,7 @@ class TicketBase(BaseModel):
         Specialized ticket schemas extend this common representation.
     """
     title: str = Field(..., min_length=3, max_length=100)
-    description: Optional[str] = None
+    description: str | None = None
     priority: TicketPriority = TicketPriority.MEDIUM
 
 
@@ -59,7 +58,7 @@ class TicketUpdateStatus(BaseModel):
         The schema includes the new state and an optional status remark.
     """
     status: TicketStatusUpdate
-    status_change_remark: Optional[str] = None
+    status_change_remark: str | None = None
 
 
 class TicketResponse(TicketBase):
@@ -75,10 +74,10 @@ class TicketResponse(TicketBase):
     requires_approval: bool
     created_at: datetime
     updated_at: datetime
-    due_at: Optional[datetime] = None
+    due_at: datetime | None = None
 
-    category: Optional[CategoryResponse] = None
-    created_by_user: Optional[UserResponse] = None
-    assigned_admin: Optional[UserResponse] = None
+    category: CategoryResponse | None = None
+    created_by_user: UserResponse | None = None
+    assigned_admin: UserResponse | None = None
 
     model_config = ConfigDict(from_attributes=True)

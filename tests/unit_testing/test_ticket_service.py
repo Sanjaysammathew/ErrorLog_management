@@ -1,23 +1,21 @@
-import pytest
 from unittest.mock import AsyncMock
 
-from app.models.user import user, UserRole, TicketPriority
-from app.models.ErrorCategory import ErrorCategory, IssueType
-from app.models.error_ticket import ErrorTickets
-from app.schemas.error_ticketSchema import TicketCreate, TicketStatus
-
-from app.services.ticket_service import TicketService
-from app.services.email_service import EmailService
-
-from app.repositories.interfaces.ticket_interface import TicketInterface
-from app.repositories.interfaces.category_interface import CategoryInterface
-from app.repositories.interfaces.user_interface import UserInterface
+import pytest
 
 from app.exceptions.custom_exceptions import (
     CategoryNotFoundError,
     PermissionDeniedError,
     TicketNotResolvedError,
 )
+from app.models.error_ticket import ErrorTickets
+from app.models.ErrorCategory import ErrorCategory, IssueType
+from app.models.user import TicketPriority, UserRole, user
+from app.repositories.interfaces.category_interface import CategoryInterface
+from app.repositories.interfaces.ticket_interface import TicketInterface
+from app.repositories.interfaces.user_interface import UserInterface
+from app.schemas.error_ticketSchema import TicketCreate, TicketStatus
+from app.services.email_service import EmailService
+from app.services.ticket_service import TicketService
 
 # FIXTURES
 

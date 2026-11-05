@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -14,7 +13,7 @@ class CategoryBase(BaseModel):
 
     name: str = Field(..., min_length=2, max_length=100)
     issue_type: IssueType
-    description: Optional[str] = None
+    description: str | None = None
     default_sla_hours: int = Field(default=24, ge=1)
     requires_approval_default: bool = False
 
@@ -34,10 +33,10 @@ class CategoryUpdate(BaseModel):
         The schema contains the editable category fields.
     """
 
-    name: Optional[str] = None
-    description: Optional[str] = None
-    default_sla_hours: Optional[int] = None
-    requires_approval_default: Optional[bool] = None
+    name: str | None = None
+    description: str | None = None
+    default_sla_hours: int | None = None
+    requires_approval_default: bool | None = None
 
 
 class CategoryResponse(CategoryBase):

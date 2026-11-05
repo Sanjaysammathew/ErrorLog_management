@@ -1,16 +1,16 @@
-import pytest
-from unittest.mock import AsyncMock
 from types import SimpleNamespace
+from unittest.mock import AsyncMock
 
-from app.models.user import UserRole, ApprovalStatus
-from app.services.approval_service import ApprovalService
-from app.repositories.interfaces.approval_interface import ApprovalInterface
-from app.services.email_service import EmailService
+import pytest
+
 from app.exceptions.custom_exceptions import (
-    PermissionDeniedError,
-    TicketNotFoundError,
     ApprovalAlreadyDecidedError,
+    PermissionDeniedError,
 )
+from app.models.user import ApprovalStatus, UserRole
+from app.repositories.interfaces.approval_interface import ApprovalInterface
+from app.services.approval_service import ApprovalService
+from app.services.email_service import EmailService
 
 # Fixtures
 

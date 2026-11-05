@@ -1,12 +1,12 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, SecretStr
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy import URL
 
 
 class Settings(BaseSettings):
     """Define the application's configurable settings.
 
-        Values are loaded from the environment and provide defaults for local development.
+        Values are loaded from the environment and provide development defaults.
     """
     APP_NAME: str = "ErrorLog Management"
     APP_VERSION: str = "1.0.0"

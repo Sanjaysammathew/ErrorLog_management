@@ -52,7 +52,9 @@ async def test_category_lookup_by_name_id_and_active_issue_type(db_session):
 
     assert (await repository.get_by_name("Hardware Help")).id == hardware.id
     assert (await repository.get_by_id(inactive_network.id)).name == "Old Network Help"
-    assert (await repository.get_by_issue_type(IssueType.NETWORK)).id == active_network.id
+    network_category = await repository.get_by_issue_type(IssueType.NETWORK)
+    assert network_category is not None
+    assert network_category.id == active_network.id
     assert await repository.get_by_id(999999) is None
 
 

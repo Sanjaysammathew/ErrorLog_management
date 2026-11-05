@@ -1,7 +1,8 @@
 from app.core.config import settings
 from app.core.security import hash_password
 from app.database.session import sessionLocal
-from app.models.user import UserRole, user as UserModel
+from app.models.user import UserRole
+from app.models.user import user as UserModel
 from app.repositories.implementations import UserRepository
 
 

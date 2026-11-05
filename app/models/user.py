@@ -10,10 +10,9 @@ from app.database.base import Base
 if TYPE_CHECKING:
     from app.models.error_ticket import ErrorTickets
     from app.models.ticket_approval import TicketApproval
+    from app.models.ticket_image import TicketImage
     from app.models.ticket_remark import TicketRemark
     from app.models.ticket_status_history import TicketStatusHistory
-    from app.models.ticket_remark import TicketRemark
-    from app.models.ticket_image import TicketImage
 
 
 class UserRole(str, PyEnum):
@@ -63,7 +62,7 @@ class user(Base):
         nullable=False,
     )
     department: Mapped[str] = mapped_column(String(100), nullable=True)
-    manager_id: Mapped[Optional[int]] = mapped_column(
+    manager_id: Mapped[int | None] = mapped_column(
         ForeignKey("users.id"), nullable=True
     )
     created_at: Mapped[datetime] = mapped_column(

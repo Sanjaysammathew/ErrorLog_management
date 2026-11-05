@@ -1,10 +1,5 @@
-from unittest.mock import AsyncMock
 
-import pytest
 
-from app.api.dependency.dependencies import get_email_service
-from app.main import app
-from app.services.email_service import EmailService
 
 # HELPER FUNCTION
 

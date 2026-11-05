@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 
 from app.models.error_ticket import ErrorTickets
 from app.models.ticket_approval import TicketApproval
-from app.models.ticket_status_history import TicketStatusHistory
 from app.models.ticket_remark import TicketRemark
+from app.models.ticket_status_history import TicketStatusHistory
 
 
 class TicketInterface(ABC):
@@ -111,6 +111,6 @@ class TicketInterface(ABC):
     async def get_status_history(self, ticket_id: int) -> list[TicketStatusHistory]:
         """Retrieve the status history entries for a ticket.
 
-            The repository returns the recorded workflow transitions in chronological order.
+            The repository returns recorded transitions in chronological order.
         """
         raise NotImplementedError

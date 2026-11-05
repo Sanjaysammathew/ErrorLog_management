@@ -1,8 +1,9 @@
-import pytest
-import pytest_asyncio
 from collections.abc import AsyncIterator
 from unittest.mock import AsyncMock
 
+import pytest
+import pytest_asyncio
+from fastapi.testclient import TestClient
 from sqlalchemy import URL, make_url, text
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
@@ -10,14 +11,13 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 from sqlalchemy.pool import NullPool
-from fastapi.testclient import TestClient
 
+from app import models  # noqa: F401
+from app.api.dependency.dependencies import get_email_service
 from app.core import settings
 from app.core.security import hash_password
 from app.database.base import Base
 from app.database.connection import get_db
-from app.api.dependency.dependencies import get_email_service
-from app import models  # noqa: F401
 from app.main import app
 from app.models.user import UserRole, user
 from app.services.email_service import EmailService

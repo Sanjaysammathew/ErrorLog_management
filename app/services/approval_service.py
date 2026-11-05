@@ -1,14 +1,13 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
-from app.models.ticket_approval import TicketApproval
-from app.models.ticket_status_history import TicketStatusHistory
 from app.exceptions.custom_exceptions import (
     ApprovalAlreadyDecidedError,
     PermissionDeniedError,
     TicketNotFoundError,
 )
-from app.models.user import UserRole, user
-from app.models.user import ApprovalStatus
+from app.models.ticket_approval import TicketApproval
+from app.models.ticket_status_history import TicketStatusHistory
+from app.models.user import ApprovalStatus, UserRole, user
 from app.repositories.interfaces.approval_interface import ApprovalInterface
 from app.services.email_service import EmailService
 
@@ -25,7 +24,7 @@ class ApprovalService:
     ) -> None:
         """Initialize the approval service with its collaborators.
 
-            These dependencies provide the business logic with data access and related services.
+            These dependencies provide data access and related business services.
         """
         self.approval_repository = approval_repository
         self.email_service = email_service
@@ -75,7 +74,7 @@ class ApprovalService:
         if approval.status != ApprovalStatus.PENDING:
             raise ApprovalAlreadyDecidedError
 
-        decision_at = datetime.now(timezone.utc).replace(tzinfo=None)
+        decision_at = datetime.now(UTC).replace(tzinfo=None)
         new_ticket_status = (
             "open" if status == ApprovalStatus.APPROVED else "rejected"
         )

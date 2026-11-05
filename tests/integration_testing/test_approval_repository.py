@@ -4,8 +4,8 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
-from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.models.error_ticket import ErrorTickets
+from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.models.ticket_approval import TicketApproval
 from app.models.ticket_status_history import TicketStatusHistory
 from app.models.user import ApprovalStatus, UserRole, user
@@ -65,7 +65,9 @@ async def test_pending_approvals_returns_manager_requests_from_database(db_sessi
 
 
 @pytest.mark.asyncio(loop_scope="session")
-async def test_pending_approvals_excludes_decided_and_other_manager_requests(db_session):
+async def test_pending_approvals_excludes_decided_and_other_manager_requests(
+    db_session,
+):
     repository = ApprovalRepository(db_session)
     _, manager, pending_approval = await create_approval_fixture(db_session)
     decided_ticket, _, _ = await create_approval_fixture_for_other_ticket(
@@ -87,7 +89,10 @@ async def test_pending_approvals_excludes_decided_and_other_manager_requests(db_
     results = await repository.get_pending_approvals(manager.id)
 
     assert [item.id for item in results] == [pending_approval.id]
-    assert all(item.ticket_id not in {decided_ticket.id, other_ticket.id} for item in results)
+    assert all(
+        item.ticket_id not in {decided_ticket.id, other_ticket.id}
+        for item in results
+    )
 
 
 async def create_approval_fixture_for_other_ticket(db_session, manager, status):
@@ -120,7 +125,9 @@ async def create_approval_fixture_for_other_ticket(db_session, manager, status):
 
 
 @pytest.mark.asyncio(loop_scope="session")
-async def test_get_approval_by_id_loads_related_ticket_and_missing_returns_none(db_session):
+async def test_get_approval_by_id_loads_related_ticket_and_missing_returns_none(
+    db_session,
+):
     repository = ApprovalRepository(db_session)
     ticket, _, approval = await create_approval_fixture(db_session)
 
@@ -167,7 +174,9 @@ async def test_save_decision_persists_approval_ticket_and_history(db_session):
 
 
 @pytest.mark.asyncio(loop_scope="session")
-async def test_save_duplicate_ticket_manager_decision_fails_database_constraint(db_session):
+async def test_save_duplicate_ticket_manager_decision_fails_database_constraint(
+    db_session,
+):
     repository = ApprovalRepository(db_session)
     ticket, manager, _ = await create_approval_fixture(db_session)
     ticket_id = ticket.id

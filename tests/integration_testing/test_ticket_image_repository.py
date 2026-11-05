@@ -2,8 +2,8 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
-from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.models.error_ticket import ErrorTickets
+from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.models.ticket_image import TicketImage
 from app.models.user import user
 from app.repositories.implementations.ticket_image_repository import (

@@ -1,4 +1,5 @@
 import pytest
+
 from app.models.ErrorCategory import ErrorCategory, IssueType
 
 # Authentication fixtures

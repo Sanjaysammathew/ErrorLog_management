@@ -8,11 +8,11 @@ from app.exceptions.custom_exceptions import (
     PermissionDeniedError,
     TicketImageUploadNotAllowedError,
 )
-from app.scripts.file_handler import delete_image, save_image, validate_image
 from app.models.ticket_image import TicketImage
 from app.models.user import UserRole, user
 from app.repositories.interfaces.ticket_image_interface import TicketImageInterface
 from app.schemas.error_ticketSchema import TicketStatus
+from app.scripts.file_handler import delete_image, save_image, validate_image
 from app.services.ticket_service import TicketService
 
 
@@ -28,7 +28,7 @@ class TicketImageService:
     ) -> None:
         """Initialize the ticketimage service with its collaborators.
 
-            These dependencies provide the business logic with data access and related services.
+            These dependencies provide data access and related business services.
         """
         self.image_repository = image_repository
         self.ticket_service = ticket_service

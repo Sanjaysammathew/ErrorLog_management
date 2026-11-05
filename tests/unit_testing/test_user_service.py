@@ -1,16 +1,17 @@
-import pytest
 from unittest.mock import AsyncMock
 
-from app.models.user import user, UserRole
-from app.schemas.userSchema import UserCreate, UserUpdate
-from app.services.user_service import UserService
-from app.repositories.interfaces.user_interface import UserInterface
-from app.services.email_service import EmailService
+import pytest
+
 from app.exceptions.custom_exceptions import (
     InvalidUserLookupError,
-    UserAlreadyExistsError,
     ManagerNotFoundError,
+    UserAlreadyExistsError,
 )
+from app.models.user import UserRole, user
+from app.repositories.interfaces.user_interface import UserInterface
+from app.schemas.userSchema import UserCreate, UserUpdate
+from app.services.email_service import EmailService
+from app.services.user_service import UserService
 
 
 # Fixtures

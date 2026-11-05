@@ -4,9 +4,8 @@ from app.api.dependency.dependencies import (
     get_approval_service,
     require_roles,
 )
-from app.models.user import UserRole, user
+from app.models.user import ApprovalStatus, UserRole, user
 from app.schemas.ticket_approvalSchema import ApprovalAction, ApprovalResponse
-from app.models.user import ApprovalStatus
 from app.services.approval_service import ApprovalService
 
 router = APIRouter(prefix="/approvals", tags=["approvals"])

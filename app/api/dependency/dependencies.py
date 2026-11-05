@@ -11,25 +11,29 @@ from app.database.connection import get_db
 from app.exceptions.custom_exceptions import InvalidTokenError as InvalidTokenAppError
 from app.exceptions.custom_exceptions import PermissionDeniedError
 from app.models.user import UserRole, user
-from app.repositories.implementations import UserRepository
-from app.repositories.implementations import TicketImageRepository
-from app.repositories.interfaces import UserInterface
-from app.repositories.implementations import CategoryRepository
-from app.repositories.implementations import TicketRepository
-from app.repositories.interfaces import CategoryInterface
-from app.repositories.interfaces import TicketInterface
+from app.repositories.implementations import (
+    CategoryRepository,
+    TicketImageRepository,
+    TicketRepository,
+    UserRepository,
+)
+from app.repositories.implementations.approval_repository import ApprovalRepository
+from app.repositories.interfaces import (
+    CategoryInterface,
+    TicketInterface,
+    UserInterface,
+)
+from app.repositories.interfaces.approval_interface import ApprovalInterface
+from app.repositories.interfaces.ticket_image_interface import TicketImageInterface
+from app.services.approval_service import ApprovalService
 from app.services.auth_service import AuthService
 from app.services.category_service import CategoryService
-from app.services.user_service import UserService
-from app.services.ticket_service import TicketService
-from app.services.remark_service import RemarkService
-from app.services.history_service import HistoryService
-from app.repositories.implementations.approval_repository import ApprovalRepository
-from app.repositories.interfaces.approval_interface import ApprovalInterface
-from app.services.approval_service import ApprovalService
 from app.services.email_service import EmailService
-from app.repositories.interfaces.ticket_image_interface import TicketImageInterface
+from app.services.history_service import HistoryService
+from app.services.remark_service import RemarkService
 from app.services.ticket_image_service import TicketImageService
+from app.services.ticket_service import TicketService
+from app.services.user_service import UserService
 
 
 def get_user_repository(
@@ -75,7 +79,7 @@ def get_category_service(
 def get_email_service() -> EmailService:
     """Provide the email service used to send application notifications.
 
-        FastAPI injects it into operations that notify users about account or ticket events.
+        FastAPI injects it into routes that send account or ticket notifications.
     """
     return EmailService()
 

@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 
@@ -14,7 +13,7 @@ class ApprovalDecision(BaseModel):
     """
 
     status: ApprovalStatus
-    decision_reason: Optional[str] = None
+    decision_reason: str | None = None
 
 
 class ApprovalAction(BaseModel):
@@ -23,7 +22,7 @@ class ApprovalAction(BaseModel):
         The schema may include a reason accompanying the decision.
     """
 
-    decision_reason: Optional[str] = None
+    decision_reason: str | None = None
 
 
 class ApprovalResponse(BaseModel):
@@ -36,8 +35,8 @@ class ApprovalResponse(BaseModel):
     ticket_id: int
     manager_id: int
     status: ApprovalStatus
-    decision_reason: Optional[str] = None
-    approved_at: Optional[datetime] = None
+    decision_reason: str | None = None
+    approved_at: datetime | None = None
     ticket: TicketResponse
 
     model_config = ConfigDict(from_attributes=True)

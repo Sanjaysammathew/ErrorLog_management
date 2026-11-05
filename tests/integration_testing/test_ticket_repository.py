@@ -4,8 +4,8 @@ import pytest
 from sqlalchemy import select
 
 from app.exceptions.custom_exceptions import TicketCreationError
-from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.models.error_ticket import ErrorTickets
+from app.models.ErrorCategory import ErrorCategory, IssueType
 from app.models.ticket_remark import TicketRemark
 from app.models.ticket_status_history import TicketStatusHistory
 from app.models.user import UserRole, user
@@ -31,7 +31,9 @@ async def make_ticket(db_session, *, title="Test ticket", **overrides):
     employee = await db_session.scalar(
         select(user).where(user.email == "employee@example.com")
     )
-    admin = await db_session.scalar(select(user).where(user.email == "admin@example.com"))
+    admin = await db_session.scalar(
+        select(user).where(user.email == "admin@example.com")
+    )
     ticket = ErrorTickets(
         ticket_number=overrides.get("ticket_number", f"T-{title[:8]}"),
         title=title,

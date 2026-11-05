@@ -17,10 +17,9 @@ from app.database.base import Base
 if TYPE_CHECKING:
     from app.models.ErrorCategory import ErrorCategory
     from app.models.ticket_approval import TicketApproval
+    from app.models.ticket_image import TicketImage
     from app.models.ticket_remark import TicketRemark
     from app.models.ticket_status_history import TicketStatusHistory
-    from app.models.ticket_remark import TicketRemark
-    from app.models.ticket_image import TicketImage
     from app.models.user import user
 
 

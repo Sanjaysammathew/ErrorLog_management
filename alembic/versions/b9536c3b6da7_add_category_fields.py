@@ -5,17 +5,17 @@ Revises: ce1e8c0df630
 Create Date: 2026-11-02 20:52:19.215746
 
 """
-from typing import Sequence, Union
+from collections.abc import Sequence
 
-from alembic import op
 import sqlalchemy as sa
 
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision: str = 'b9536c3b6da7'
-down_revision: Union[str, Sequence[str], None] = 'ce1e8c0df630'
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+down_revision: str | Sequence[str] | None = 'ce1e8c0df630'
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
@@ -38,12 +38,19 @@ def upgrade() -> None:
     )
     op.add_column(
         'error_categories',
-        sa.Column('created_at', sa.DateTime(), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            'created_at',
+            sa.DateTime(),
+            server_default=sa.func.now(),
+            nullable=False,
+        ),
     )
     op.alter_column('error_categories', 'issue_type', server_default=None)
     op.alter_column('error_categories', 'is_active', server_default=None)
     op.alter_column('error_categories', 'created_at', server_default=None)
-    op.create_unique_constraint('uq_error_categories_name', 'error_categories', ['name'])
+    op.create_unique_constraint(
+        'uq_error_categories_name', 'error_categories', ['name']
+    )
     # ### end Alembic commands ###
 
 

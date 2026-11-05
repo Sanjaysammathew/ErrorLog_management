@@ -35,7 +35,8 @@ async def log_requests(
     response.headers["X-Correlation-ID"] = correlation_id
 
     logger.info(
-        "Request completed: %s %s | Status: %s | Time: %.4f seconds | Correlation ID: %s",
+        "Request completed: %s %s | Status: %s | Time: %.4f seconds | "
+        "Correlation ID: %s",
         request.method,
         request.url.path,
         response.status_code,

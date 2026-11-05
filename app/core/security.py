@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import jwt
 from fastapi.security import OAuth2PasswordBearer
@@ -31,7 +31,7 @@ def create_access_token(subject: str, role: str) -> str:
 
         The token contains identity and role claims used by protected API routes.
     """
-    expires_at = datetime.now(timezone.utc) + timedelta(
+    expires_at = datetime.now(UTC) + timedelta(
         minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES
     )
     payload = {"sub": subject, "role": role, "type": "access", "exp": expires_at}
@@ -47,7 +47,7 @@ def create_refresh_token(subject: str, role: str) -> str:
 
         The token can be exchanged for a fresh authentication token pair.
     """
-    expires_at = datetime.now(timezone.utc) + timedelta(
+    expires_at = datetime.now(UTC) + timedelta(
         days=settings.JWT_REFRESH_TOKEN_EXPIRE_DAYS
     )
     payload = {"sub": subject, "role": role, "type": "refresh", "exp": expires_at}

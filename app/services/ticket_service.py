@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -14,7 +14,7 @@ from app.exceptions.custom_exceptions import (
     TicketNotResolvedError,
 )
 from app.models.error_ticket import ErrorTickets
-from app.models.ErrorCategory import ErrorCategory, IssueType
+from app.models.ErrorCategory import ErrorCategory
 from app.models.ticket_approval import TicketApproval
 from app.models.ticket_remark import TicketRemark
 from app.models.ticket_status_history import TicketStatusHistory
@@ -79,7 +79,7 @@ class TicketService:
     ) -> None:
         """Initialize the ticket service with its collaborators.
 
-        These dependencies provide the business logic with data access and related services.
+        These dependencies provide data access and related business services.
         """
         self.ticket_repository = ticket_repository
         self.category_repository = category_repository
@@ -107,7 +107,8 @@ class TicketService:
             )
             if inactive_category is not None:
                 raise CategoryNotFoundError(
-                    "This category is inactive. Contact an administrator to activate it."
+                    "This category is inactive. Contact an administrator "
+                    "to activate it."
                 )
             category = ErrorCategory(
                 name=f"{ticket_data.issue_type.value.title()} Issues",
@@ -119,18 +120,18 @@ class TicketService:
             )
             try:
                 await self.category_repository.add_pending(category)
-            except CategoryAlreadyExistsError:
+            except CategoryAlreadyExistsError as exc:
                 await db.rollback()
                 category = await self.category_repository.get_by_issue_type(
                     ticket_data.issue_type
                 )
                 if category is None:
-                    raise CategoryNotFoundError
+                    raise CategoryNotFoundError from exc
         if category is None or not category.is_active:
             raise CategoryNotFoundError
 
         # Database DateTime columns are timezone-naive; store UTC consistently.
-        created_at = datetime.now(timezone.utc).replace(tzinfo=None)
+        created_at = datetime.now(UTC).replace(tzinfo=None)
         sla_hours = self._get_sla_hours(ticket_data, category.default_sla_hours)
         due_at = created_at + timedelta(hours=sla_hours)
         requires_approval = self._requires_approval(ticket_data)
@@ -257,7 +258,7 @@ class TicketService:
         if ticket.status != TicketStatus.RESOLVED.value:
             raise TicketNotResolvedError
 
-        closed_at = datetime.now(timezone.utc).replace(tzinfo=None)
+        closed_at = datetime.now(UTC).replace(tzinfo=None)
         ticket.status = TicketStatus.CLOSED.value
         ticket.updated_at = closed_at
         history = TicketStatusHistory(
@@ -290,7 +291,7 @@ class TicketService:
             raise TicketNotFoundError
         old_status = ticket.status
         ticket.status = new_status.value
-        ticket.updated_at = datetime.now(timezone.utc).replace(tzinfo=None)
+        ticket.updated_at = datetime.now(UTC).replace(tzinfo=None)
         history = TicketStatusHistory(
             ticket_id=ticket.id,
             changed_by_id=current_user.id,

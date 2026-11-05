@@ -1,17 +1,16 @@
-import pytest
 from unittest.mock import AsyncMock
 
-from app.models.user import user, UserRole
-from app.models.error_ticket import ErrorTickets
-from app.models.ticket_status_history import TicketStatusHistory
-
-from app.services.history_service import HistoryService
-from app.repositories.interfaces.ticket_interface import TicketInterface
+import pytest
 
 from app.exceptions.custom_exceptions import (
     PermissionDeniedError,
     TicketNotFoundError,
 )
+from app.models.error_ticket import ErrorTickets
+from app.models.ticket_status_history import TicketStatusHistory
+from app.models.user import UserRole, user
+from app.repositories.interfaces.ticket_interface import TicketInterface
+from app.services.history_service import HistoryService
 
 # Fixtures
 

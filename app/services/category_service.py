@@ -15,7 +15,7 @@ class CategoryService:
     def __init__(self, category_repository: CategoryInterface) -> None:
         """Initialize the category service with its collaborators.
 
-            These dependencies provide the business logic with data access and related services.
+            These dependencies provide data access and related business services.
         """
         self.category_repository = category_repository
 

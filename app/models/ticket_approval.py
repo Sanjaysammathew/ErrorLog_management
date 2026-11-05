@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from sqlalchemy import (
     CheckConstraint,
@@ -52,9 +52,9 @@ class TicketApproval(Base):
         nullable=False,
     )
 
-    decision_reason: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    decision_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
 
-    approved_at: Mapped[Optional[datetime]] = mapped_column(
+    approved_at: Mapped[datetime | None] = mapped_column(
         DateTime, nullable=True, default=None
     )
 

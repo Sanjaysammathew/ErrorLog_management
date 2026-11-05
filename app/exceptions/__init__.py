@@ -1,5 +1,6 @@
 from app.exceptions.custom_exceptions import (
     AppError,
+    ApprovalAlreadyDecidedError,
     CategoryAlreadyExistsError,
     CategoryNotFoundError,
     InvalidCredentialsError,
@@ -8,13 +9,13 @@ from app.exceptions.custom_exceptions import (
     ManagerNotFoundError,
     PermissionDeniedError,
     TicketCreationError,
+    TicketImageUploadNotAllowedError,
     TicketNotResolvedError,
-    ApprovalAlreadyDecidedError,
     UserAlreadyExistsError,
     UserNotFoundError,
-    TicketImageUploadNotAllowedError,
 )
 from app.exceptions.handlers import (
+    approval_already_decided_handler,
     category_already_exists_handler,
     category_not_found_handler,
     invalid_credentials_handler,
@@ -23,11 +24,10 @@ from app.exceptions.handlers import (
     manager_not_found_handler,
     permission_denied_handler,
     ticket_creation_handler,
+    ticket_image_upload_not_allowed_handler,
     ticket_not_resolved_handler,
-    approval_already_decided_handler,
     user_already_exists_handler,
     user_not_found_handler,
-    ticket_image_upload_not_allowed_handler,
 )
 
 __all__ = [

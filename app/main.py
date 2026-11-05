@@ -1,6 +1,6 @@
-from contextlib import asynccontextmanager
 import logging
 from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
@@ -8,12 +8,9 @@ from app.api.routers.base import api_router
 from app.core.config import settings
 from app.database.session import engine
 from app.exceptions.register_handlers import register_exception_handlers
-from app.models import ErrorCategory, error_ticket, ticket_approval, ticket_remark
-from app.models import ticket_status_history, user
-from app.models import ticket_image
+from app.middleware.request_logging import log_requests
 from app.scripts.create_admin import create_admin
 from app.scripts.create_manager import create_manager
-from app.middleware.request_logging import log_requests
 from app.utils.logging_config import configure_logging
 
 

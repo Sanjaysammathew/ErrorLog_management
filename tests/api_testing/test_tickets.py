@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import AsyncMock
+
+import pytest
 
 from app.api.dependency.dependencies import get_email_service
 from app.services.email_service import EmailService

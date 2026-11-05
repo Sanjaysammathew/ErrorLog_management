@@ -1,6 +1,6 @@
 from sqlalchemy import select
-from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from app.models.error_ticket import ErrorTickets
 from app.models.ticket_approval import TicketApproval

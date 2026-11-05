@@ -1,16 +1,15 @@
 from datetime import datetime
 
 from sqlalchemy import select
-from sqlalchemy.orm import selectinload
-
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from app.exceptions.custom_exceptions import TicketCreationError
 from app.models.error_ticket import ErrorTickets
 from app.models.ticket_approval import TicketApproval
-from app.models.ticket_status_history import TicketStatusHistory
 from app.models.ticket_remark import TicketRemark
+from app.models.ticket_status_history import TicketStatusHistory
 from app.repositories.interfaces.ticket_interface import TicketInterface
 
 
@@ -194,7 +193,7 @@ class TicketRepository(TicketInterface):
     ) -> list[TicketStatusHistory]:
         """Retrieve the status history entries for a ticket.
 
-            The repository returns the recorded workflow transitions in chronological order.
+            The repository returns recorded transitions in chronological order.
         """
         result = await self.db.execute(
             select(TicketStatusHistory)

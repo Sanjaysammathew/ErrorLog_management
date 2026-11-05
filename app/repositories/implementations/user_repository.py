@@ -1,11 +1,10 @@
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.exceptions.custom_exceptions import UserAlreadyExistsError, UserNotFoundError
 from app.models.user import UserRole, user
 from app.repositories.interfaces.user_interface import UserInterface
-from sqlalchemy import func
 
 
 class UserRepository(UserInterface):

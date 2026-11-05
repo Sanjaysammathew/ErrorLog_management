@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from sqlalchemy import (
     CheckConstraint,
@@ -56,7 +56,7 @@ class TicketStatusHistory(Base):
 
     changed_by_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
 
-    old_status: Mapped[Optional[str]] = mapped_column(String(30), nullable=True)
+    old_status: Mapped[str | None] = mapped_column(String(30), nullable=True)
 
     new_status: Mapped[str] = mapped_column(String(30), nullable=False)
 

@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
@@ -11,7 +10,7 @@ class UserBase(BaseModel):
 
     username: str
     email: EmailStr
-    department: Optional[str] = None
+    department: str | None = None
     role: UserRole = UserRole.EMPLOYEE
 
 
@@ -28,10 +27,10 @@ class UserUpdate(BaseModel):
 
         The schema contains the account fields that administrators may update.
     """
-    username: Optional[str] = None
-    email: Optional[EmailStr] = None
-    department: Optional[str] = None
-    password: Optional[str] = Field(default=None, min_length=6)
+    username: str | None = None
+    email: EmailStr | None = None
+    department: str | None = None
+    password: str | None = Field(default=None, min_length=6)
 
 
 class UserResponse(UserBase):
@@ -40,7 +39,7 @@ class UserResponse(UserBase):
         The schema provides a consistent public representation of a user.
     """
     id: int
-    manager_id: Optional[int] = None
+    manager_id: int | None = None
     created_at: datetime
     is_active: bool
 

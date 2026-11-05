@@ -47,7 +47,7 @@ class CategoryRepository(CategoryInterface):
     async def get_by_issue_type_any_status(
         self, issue_type: IssueType
     ) -> ErrorCategory | None:
-        """Find the category associated with an issue type, including inactive records."""
+        """Find a category for an issue type, including inactive records."""
         result = await self.db.execute(
             select(ErrorCategory)
             .where(ErrorCategory.issue_type == issue_type)

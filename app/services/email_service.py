@@ -16,7 +16,7 @@ class EmailService:
     def __init__(self) -> None:
         """Initialize the email service with its collaborators.
 
-            These dependencies provide the business logic with data access and related services.
+            These dependencies provide data access and related business services.
         """
         self.api_key = settings.MAILJET_API_KEY
         self.api_secret = (
@@ -37,7 +37,7 @@ class EmailService:
     ) -> None:
         """Send a email notification.
 
-            The operation prepares and delivers the message through the configured email service.
+            The service sends the prepared message through configured mail.
         """
         message_sender = sender_email or self.sender_email
         if not self.api_key or not self.api_secret or not message_sender:
@@ -70,7 +70,7 @@ class EmailService:
     async def send_account_created(self, new_user: user) -> None:
         """Send a account created notification.
 
-            The operation prepares and delivers the message through the configured email service.
+            The service sends the prepared message through configured mail.
         """
         await self.send_email(
             new_user.email,
@@ -85,7 +85,7 @@ class EmailService:
     async def send_ticket_created(self, ticket: ErrorTickets) -> None:
         """Send a ticket created notification.
 
-            The operation prepares and delivers the message through the configured email service.
+            The service sends the prepared message through configured mail.
         """
         if ticket.created_by_user is None:
             raise EmailDeliveryError("Ticket owner is unavailable for notification")
@@ -103,7 +103,7 @@ class EmailService:
     async def send_ticket_closed(self, ticket: ErrorTickets) -> None:
         """Send a ticket closed notification.
 
-            The operation prepares and delivers the message through the configured email service.
+            The service sends the prepared message through configured mail.
         """
         if ticket.created_by_user is None:
             raise EmailDeliveryError("Ticket owner is unavailable for notification")
@@ -125,7 +125,7 @@ class EmailService:
     ) -> None:
         """Send a approval decision notification.
 
-            The operation prepares and delivers the message through the configured email service.
+            The service sends the prepared message through configured mail.
         """
         if ticket.assigned_admin is None:
             raise EmailDeliveryError("Assigned admin is unavailable for notification")

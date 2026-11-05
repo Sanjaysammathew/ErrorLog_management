@@ -5,26 +5,26 @@ from fastapi.responses import JSONResponse
 
 from app.exceptions.custom_exceptions import (
     AppError,
-    InvalidCredentialsError,
-    InvalidTokenError,
-    InvalidUserLookupError,
+    ApprovalAlreadyDecidedError,
     CategoryAlreadyExistsError,
     CategoryNotFoundError,
+    EmailDeliveryError,
+    ImageCreationError,
+    ImageDeletionError,
+    ImageNotFoundError,
+    ImageStorageError,
+    InvalidCredentialsError,
+    InvalidImageError,
+    InvalidTokenError,
+    InvalidUserLookupError,
     ManagerNotFoundError,
     PermissionDeniedError,
     TicketCreationError,
+    TicketImageUploadNotAllowedError,
     TicketNotFoundError,
     TicketNotResolvedError,
-    ApprovalAlreadyDecidedError,
-    EmailDeliveryError,
     UserAlreadyExistsError,
     UserNotFoundError,
-    ImageNotFoundError,
-    InvalidImageError,
-    ImageStorageError,
-    ImageCreationError,
-    ImageDeletionError,
-    TicketImageUploadNotAllowedError,
 )
 
 logger = logging.getLogger(__name__)
@@ -79,7 +79,9 @@ async def invalid_credentials_handler(
     )
 
 
-async def invalid_token_handler(request: Request, exc: InvalidTokenError) -> JSONResponse:
+async def invalid_token_handler(
+    request: Request, exc: InvalidTokenError
+) -> JSONResponse:
     """Handle the invalid token error for an HTTP request.
 
         The handler logs the failure and returns the matching error response.

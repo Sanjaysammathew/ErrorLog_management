@@ -1,7 +1,7 @@
 from app.core.security import hash_password
 from app.exceptions.custom_exceptions import (
-    ManagerNotFoundError,
     InvalidUserLookupError,
+    ManagerNotFoundError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -21,7 +21,7 @@ class UserService:
     ) -> None:
         """Initialize the user service with its collaborators.
 
-            These dependencies provide the business logic with data access and related services.
+            These dependencies provide data access and related business services.
         """
         self.user_repository = user_repository
         self.email_service = email_service

@@ -1,4 +1,3 @@
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -22,8 +21,8 @@ class TokenData(BaseModel):
         The schema provides the authenticated user's token claims.
     """
 
-    email: Optional[str] = None
-    role: Optional[UserRole] = None
+    email: str | None = None
+    role: UserRole | None = None
 
 
 class RefreshTokenRequest(BaseModel):

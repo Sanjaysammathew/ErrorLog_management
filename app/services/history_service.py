@@ -12,7 +12,7 @@ class HistoryService:
     def __init__(self, ticket_repository: TicketInterface) -> None:
         """Initialize the history service with its collaborators.
 
-            These dependencies provide the business logic with data access and related services.
+            These dependencies provide data access and related business services.
         """
         self.ticket_repository = ticket_repository
 
