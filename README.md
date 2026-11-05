@@ -157,12 +157,7 @@ python -m venv venv
 .\venv\Scripts\Activate.ps1
 ```
 
-**macOS / Linux**
 
-```bash
-python -m venv venv
-source venv/bin/activate
-```
 
 ### 7.2 Install dependencies
 
@@ -177,11 +172,6 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-On macOS / Linux, use:
-
-```bash
-cp .env.example .env
-```
 
 Edit `.env` and provide valid application database, test database, JWT, seed-user, and Mailjet settings. Create the PostgreSQL application database before applying migrations.
 

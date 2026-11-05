@@ -1323,3 +1323,7 @@
 2026-11-05 15:05:40,911 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: b957f8fe-43b7-4475-bde9-08b2d50f73e0
 2026-11-05 15:05:41,003 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0917 seconds | Correlation ID: b957f8fe-43b7-4475-bde9-08b2d50f73e0
 2026-11-05 15:06:29,716 INFO app: Application stopped
+2026-11-05 16:02:36,627 INFO app: Admin seed: exists
+2026-11-05 16:02:36,627 INFO app: Manager seed: exists
+2026-11-05 16:02:36,627 INFO app: Application started
+2026-11-05 16:04:19,948 INFO app: Application stopped
