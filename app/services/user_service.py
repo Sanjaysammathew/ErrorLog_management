@@ -1,6 +1,7 @@
 from app.core.security import hash_password
 from app.exceptions.custom_exceptions import (
     ManagerNotFoundError,
+    InvalidUserLookupError,
     UserAlreadyExistsError,
     UserNotFoundError,
 )
@@ -84,7 +85,7 @@ class UserService:
         elif user_id is not None:
             existing_user = await self.user_repository.get_by_id(user_id)
         else:
-            raise ValueError("Either user_id or email must be provided.")
+            raise InvalidUserLookupError
         if existing_user is None:
             raise UserNotFoundError
         return existing_user

@@ -7,6 +7,7 @@ from app.services.user_service import UserService
 from app.repositories.interfaces.user_interface import UserInterface
 from app.services.email_service import EmailService
 from app.exceptions.custom_exceptions import (
+    InvalidUserLookupError,
     UserAlreadyExistsError,
     ManagerNotFoundError,
 )
@@ -138,6 +139,15 @@ async def test_list_users(
     assert result["page_size"] == 10
 
     user_repository.get_all.assert_awaited_once_with(10, 10)
+
+
+@pytest.mark.asyncio
+async def test_get_user_requires_an_identifier(user_service, user_repository):
+    with pytest.raises(InvalidUserLookupError):
+        await user_service.get_user()
+
+    user_repository.get_by_email.assert_not_awaited()
+    user_repository.get_by_id.assert_not_awaited()
 
 
 # 5. Update user password

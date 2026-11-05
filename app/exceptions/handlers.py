@@ -7,6 +7,7 @@ from app.exceptions.custom_exceptions import (
     AppError,
     InvalidCredentialsError,
     InvalidTokenError,
+    InvalidUserLookupError,
     CategoryAlreadyExistsError,
     CategoryNotFoundError,
     ManagerNotFoundError,
@@ -140,6 +141,24 @@ async def user_not_found_handler(
     )
     return JSONResponse(
         status_code=status.HTTP_404_NOT_FOUND,
+        content={"detail": exc.message},
+    )
+
+
+async def invalid_user_lookup_handler(
+    request: Request, exc: InvalidUserLookupError
+) -> JSONResponse:
+    """Handle a user lookup request that does not specify an identifier.
+
+    The handler returns a bad request response with a useful validation message.
+    """
+    logger.info(
+        "Invalid user lookup for %s %s",
+        request.method,
+        request.url.path,
+    )
+    return JSONResponse(
+        status_code=status.HTTP_400_BAD_REQUEST,
         content={"detail": exc.message},
     )
 

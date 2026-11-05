@@ -13,6 +13,7 @@ from app.exceptions.custom_exceptions import (
     InvalidCredentialsError,
     InvalidImageError,
     InvalidTokenError,
+    InvalidUserLookupError,
     ManagerNotFoundError,
     PermissionDeniedError,
     TicketCreationError,
@@ -34,6 +35,7 @@ from app.exceptions.handlers import (
     image_validation_handler,
     invalid_credentials_handler,
     invalid_token_handler,
+    invalid_user_lookup_handler,
     manager_not_found_handler,
     permission_denied_handler,
     ticket_creation_handler,
@@ -56,6 +58,7 @@ def register_exception_handlers(app: FastAPI) -> None:
     app.add_exception_handler(ManagerNotFoundError, manager_not_found_handler)
     app.add_exception_handler(PermissionDeniedError, permission_denied_handler)
     app.add_exception_handler(UserNotFoundError, user_not_found_handler)
+    app.add_exception_handler(InvalidUserLookupError, invalid_user_lookup_handler)
     app.add_exception_handler(CategoryNotFoundError, category_not_found_handler)
     app.add_exception_handler(TicketCreationError, ticket_creation_handler)
     app.add_exception_handler(TicketNotFoundError, ticket_not_found_handler)

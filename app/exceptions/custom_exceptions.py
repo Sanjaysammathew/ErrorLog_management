@@ -50,6 +50,15 @@ class UserNotFoundError(AppError):
     default_message = "User not found"
 
 
+class InvalidUserLookupError(AppError):
+    """Represent a user lookup request without an identifier.
+
+    The exception is translated into a bad request API response.
+    """
+
+    default_message = "Provide either user_id or email."
+
+
 class CategoryAlreadyExistsError(AppError):
     """Represent a category name conflict during category creation.
 

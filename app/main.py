@@ -21,7 +21,7 @@ from app.utils.logging_config import configure_logging
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     """Manage application startup and shutdown resources.
 
-        This context runs initialization before serving requests and cleanup on exit.
+    This context runs initialization before serving requests and cleanup on exit.
     """
     configure_logging()
     logger = logging.getLogger("app")
@@ -53,3 +53,11 @@ app = FastAPI(
 app.middleware("http")(log_requests)
 register_exception_handlers(app)
 app.include_router(api_router, prefix=settings.API_PREFIX)
+
+
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to Employee Management API",
+        "status": "Running successfully",
+    }

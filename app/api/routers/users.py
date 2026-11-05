@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, Query, status
 
 from app.api.dependency.dependencies import get_user_service, require_roles
 from app.models.user import UserRole, user
@@ -60,11 +60,6 @@ async def get_user(
         Only administrators can access this endpoint; provide at least one query
         parameter and receive the matching user's account details.
     """
-    if user_id is None and email is None:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Provide either user_id or email.",
-        )
     return await user_service.get_user(user_id, email)
 
 
