@@ -26,6 +26,13 @@ class CategoryInterface(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    async def get_by_issue_type_any_status(
+        self, issue_type: IssueType
+    ) -> ErrorCategory | None:
+        """Find a category by issue type regardless of activation status."""
+        raise NotImplementedError
+
+    @abstractmethod
     async def create(self, category: ErrorCategory) -> ErrorCategory:
         """Save a new record to the database.
 

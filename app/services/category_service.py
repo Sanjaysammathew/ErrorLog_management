@@ -67,3 +67,12 @@ class CategoryService:
 
         category.is_active = False
         return await self.category_repository.update(category)
+
+    async def activate_category(self, category_id: int) -> ErrorCategory:
+        """Activate a category so it can be used for new tickets."""
+        category = await self.get_category_by_id(category_id)
+        if category is None:
+            raise UserNotFoundError
+
+        category.is_active = True
+        return await self.category_repository.update(category)

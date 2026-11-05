@@ -95,6 +95,15 @@ class TicketService:
             ticket_data.issue_type
         )
         if category is None:
+            inactive_category = (
+                await self.category_repository.get_by_issue_type_any_status(
+                    ticket_data.issue_type
+                )
+            )
+            if inactive_category is not None:
+                raise CategoryNotFoundError(
+                    "This category is inactive. Contact an administrator to activate it."
+                )
             category = ErrorCategory(
                 name=f"{ticket_data.issue_type.value.title()} Issues",
                 issue_type=ticket_data.issue_type,

@@ -44,6 +44,17 @@ class CategoryRepository(CategoryInterface):
         )
         return result.scalars().first()
 
+    async def get_by_issue_type_any_status(
+        self, issue_type: IssueType
+    ) -> ErrorCategory | None:
+        """Find the category associated with an issue type, including inactive records."""
+        result = await self.db.execute(
+            select(ErrorCategory)
+            .where(ErrorCategory.issue_type == issue_type)
+            .order_by(ErrorCategory.id)
+        )
+        return result.scalars().first()
+
     async def create(self, category: ErrorCategory) -> ErrorCategory:
         """Save a new record to the database.
 

@@ -14,6 +14,7 @@ from app.repositories.interfaces.category_interface import CategoryInterface
 from app.repositories.interfaces.user_interface import UserInterface
 
 from app.exceptions.custom_exceptions import (
+    CategoryNotFoundError,
     PermissionDeniedError,
     TicketNotResolvedError,
 )
@@ -199,7 +200,37 @@ async def test_create_ticket_requires_approval(
     ticket_repository.commit.assert_awaited_once()
 
 
-# 3. GET MY TICKETS
+# 3. REJECT TICKET WHEN CATEGORY IS INACTIVE
+
+
+@pytest.mark.asyncio
+async def test_create_ticket_rejects_inactive_category(
+    ticket_service,
+    category_repository,
+    db,
+    employee,
+):
+    ticket_data = TicketCreate(
+        title="Keyboard not working",
+        description="Some keyboard keys are not responding",
+        priority=TicketPriority.MEDIUM,
+        issue_type=IssueType.HARDWARE,
+    )
+    inactive_category = ErrorCategory(
+        id=1,
+        name="Hardware Issues",
+        issue_type=IssueType.HARDWARE,
+        is_active=False,
+    )
+
+    category_repository.get_by_issue_type.return_value = None
+    category_repository.get_by_issue_type_any_status.return_value = inactive_category
+
+    with pytest.raises(CategoryNotFoundError, match="category is inactive"):
+        await ticket_service.create_ticket(db, ticket_data, employee)
+
+
+# 4. GET MY TICKETS
 
 
 @pytest.mark.asyncio

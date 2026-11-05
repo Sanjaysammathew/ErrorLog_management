@@ -68,3 +68,13 @@ async def deactivate_category(
         its updated inactive state while preserving existing ticket references.
     """
     return await category_service.deactivate_category(category_id)
+
+
+@router.patch("/{category_id}/activate", response_model=CategoryResponse)
+async def activate_category(
+    category_id: int,
+    category_service: CategoryService = Depends(get_category_service),
+    _: user = Depends(require_roles(UserRole.ADMIN)),
+) -> CategoryResponse:
+    """Activate a ticket category so it can be used for new tickets."""
+    return await category_service.activate_category(category_id)

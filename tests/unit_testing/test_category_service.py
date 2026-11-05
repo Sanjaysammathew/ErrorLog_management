@@ -76,3 +76,17 @@ async def test_deactivate_category_success(category_service, category_repository
 
     assert result.is_active is False
     category_repository.update.assert_awaited_once()
+
+
+# 5. Activate category successfully
+@pytest.mark.asyncio
+async def test_activate_category_success(category_service, category_repository):
+    category = SimpleNamespace(id=1, is_active=False)
+
+    category_repository.get_by_id.return_value = category
+    category_repository.update.side_effect = lambda category: category
+
+    result = await category_service.activate_category(1)
+
+    assert result.is_active is True
+    category_repository.update.assert_awaited_once()

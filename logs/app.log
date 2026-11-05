@@ -1477,3 +1477,46 @@
 2026-11-05 17:13:48,319 INFO app: Manager seed: exists
 2026-11-05 17:13:48,319 INFO app: Application started
 2026-11-05 17:14:26,536 INFO app: Application stopped
+2026-11-05 18:45:44,155 INFO app: Admin seed: exists
+2026-11-05 18:45:44,155 INFO app: Manager seed: exists
+2026-11-05 18:45:44,155 INFO app: Application started
+2026-11-05 18:45:45,147 INFO app.middleware.request_logging: Request started: GET /categories | Correlation ID: 5d7235f6-d537-4694-be55-0c25edf5d381
+2026-11-05 18:45:45,179 ERROR app.exceptions.handlers: Invalid token error (InvalidTokenError) for GET /categories
+2026-11-05 18:45:45,179 INFO app.middleware.request_logging: Request completed: GET /categories | Status: 401 | Time: 0.0326 seconds | Correlation ID: 5d7235f6-d537-4694-be55-0c25edf5d381
+2026-11-05 18:45:54,027 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: c466b8b9-3783-471a-b93e-74d3d2b50741
+2026-11-05 18:45:54,028 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0009 seconds | Correlation ID: c466b8b9-3783-471a-b93e-74d3d2b50741
+2026-11-05 18:45:54,149 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: 78e54119-c9bc-4978-b6aa-4fa83d41315e
+2026-11-05 18:45:54,273 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.1233 seconds | Correlation ID: 78e54119-c9bc-4978-b6aa-4fa83d41315e
+2026-11-05 18:46:41,012 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: 97d489ad-98fd-47f8-85cf-2d377ad3610b
+2026-11-05 18:46:41,099 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0875 seconds | Correlation ID: 97d489ad-98fd-47f8-85cf-2d377ad3610b
+2026-11-05 18:48:51,327 INFO app.middleware.request_logging: Request started: GET /categories | Correlation ID: a7f81ae1-998a-45e6-aec7-108a3b690c86
+2026-11-05 18:48:51,367 INFO app.middleware.request_logging: Request completed: GET /categories | Status: 200 | Time: 0.0407 seconds | Correlation ID: a7f81ae1-998a-45e6-aec7-108a3b690c86
+2026-11-05 18:54:03,726 INFO app: Application stopped
+2026-11-05 18:54:12,164 INFO app: Admin seed: exists
+2026-11-05 18:54:12,164 INFO app: Manager seed: exists
+2026-11-05 18:54:12,165 INFO app: Application started
+2026-11-05 18:56:06,790 INFO app: Application stopped
+2026-11-05 18:56:10,715 INFO app: Admin seed: exists
+2026-11-05 18:56:10,716 INFO app: Manager seed: exists
+2026-11-05 18:56:10,716 INFO app: Application started
+2026-11-05 18:57:07,415 INFO app: Application stopped
+2026-11-05 18:57:12,155 INFO app: Admin seed: exists
+2026-11-05 18:57:12,155 INFO app: Manager seed: exists
+2026-11-05 18:57:12,155 INFO app: Application started
+2026-11-05 18:59:39,422 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: df5fa15f-a6d8-4f56-a983-a9788461cec9
+2026-11-05 18:59:39,423 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0016 seconds | Correlation ID: df5fa15f-a6d8-4f56-a983-a9788461cec9
+2026-11-05 18:59:39,540 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: d2ce7575-26dd-4c50-98e4-84646b403bcd
+2026-11-05 18:59:39,770 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.2299 seconds | Correlation ID: d2ce7575-26dd-4c50-98e4-84646b403bcd
+2026-11-05 18:59:47,856 INFO app.middleware.request_logging: Request started: PATCH /categories/1/activate | Correlation ID: 9a866b45-f233-4da6-a30f-f56f2b006d08
+2026-11-05 18:59:47,863 INFO app.middleware.request_logging: Request completed: PATCH /categories/1/activate | Status: 401 | Time: 0.0075 seconds | Correlation ID: 9a866b45-f233-4da6-a30f-f56f2b006d08
+2026-11-05 18:59:58,283 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: d12dc51f-4618-4ae2-8dfc-ede2975f20cf
+2026-11-05 18:59:58,370 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0871 seconds | Correlation ID: d12dc51f-4618-4ae2-8dfc-ede2975f20cf
+2026-11-05 19:00:04,540 INFO app.middleware.request_logging: Request started: PATCH /categories/1/activate | Correlation ID: 0a0d5d53-6601-42a3-b335-f8cc7c0ab496
+2026-11-05 19:00:04,594 INFO app.middleware.request_logging: Request completed: PATCH /categories/1/activate | Status: 200 | Time: 0.0545 seconds | Correlation ID: 0a0d5d53-6601-42a3-b335-f8cc7c0ab496
+2026-11-05 19:00:40,210 INFO app.middleware.request_logging: Request started: POST /auth/login | Correlation ID: a3ea71d5-bc58-4cfb-9278-407add600ad5
+2026-11-05 19:00:40,294 INFO app.middleware.request_logging: Request completed: POST /auth/login | Status: 200 | Time: 0.0840 seconds | Correlation ID: a3ea71d5-bc58-4cfb-9278-407add600ad5
+2026-11-05 19:17:33,936 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: 5df99f03-fef4-49df-95a1-4a0342169b6f
+2026-11-05 19:17:33,937 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0006 seconds | Correlation ID: 5df99f03-fef4-49df-95a1-4a0342169b6f
+2026-11-05 19:17:34,050 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: 247338fa-3318-4b2b-ac0a-9f89924140ed
+2026-11-05 19:17:34,052 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.0018 seconds | Correlation ID: 247338fa-3318-4b2b-ac0a-9f89924140ed
+2026-11-05 19:18:24,814 INFO app: Application stopped
