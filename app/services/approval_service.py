@@ -2,6 +2,7 @@ from datetime import UTC, datetime
 
 from app.exceptions.custom_exceptions import (
     ApprovalAlreadyDecidedError,
+    InvalidTicketStatusTransitionError,
     PermissionDeniedError,
     TicketNotFoundError,
 )
@@ -73,6 +74,10 @@ class ApprovalService:
             raise TicketNotFoundError
         if approval.status != ApprovalStatus.PENDING:
             raise ApprovalAlreadyDecidedError
+        if approval.ticket.status != "pending_approval":
+            raise InvalidTicketStatusTransitionError(
+                "Only pending-approval tickets can receive an approval decision"
+            )
 
         decision_at = datetime.now(UTC).replace(tzinfo=None)
         new_ticket_status = (

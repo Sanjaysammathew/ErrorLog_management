@@ -12,6 +12,7 @@ from app.exceptions.custom_exceptions import (
     ImageStorageError,
     InvalidCredentialsError,
     InvalidImageError,
+    InvalidTicketStatusTransitionError,
     InvalidTokenError,
     InvalidUserLookupError,
     ManagerNotFoundError,
@@ -35,6 +36,7 @@ from app.exceptions.handlers import (
     image_storage_handler,
     image_validation_handler,
     invalid_credentials_handler,
+    invalid_ticket_status_transition_handler,
     invalid_token_handler,
     invalid_user_lookup_handler,
     manager_not_found_handler,
@@ -65,6 +67,10 @@ def register_exception_handlers(app: FastAPI) -> None:
     app.add_exception_handler(TicketCreationError, ticket_creation_handler)
     app.add_exception_handler(TicketNotFoundError, ticket_not_found_handler)
     app.add_exception_handler(TicketNotResolvedError, ticket_not_resolved_handler)
+    app.add_exception_handler(
+        InvalidTicketStatusTransitionError,
+        invalid_ticket_status_transition_handler,
+    )
     app.add_exception_handler(
         TicketImageUploadNotAllowedError,
         ticket_image_upload_not_allowed_handler,

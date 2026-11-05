@@ -206,7 +206,7 @@ async def get_current_user(
         raise InvalidTokenAppError from exc
 
     current_user = await user_repository.get_by_email(email)
-    if current_user is None:
+    if current_user is None or not current_user.is_active:
         raise InvalidTokenAppError
 
     return current_user

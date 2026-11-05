@@ -15,6 +15,7 @@ from app.exceptions.custom_exceptions import (
     ImageStorageError,
     InvalidCredentialsError,
     InvalidImageError,
+    InvalidTicketStatusTransitionError,
     InvalidTokenError,
     InvalidUserLookupError,
     ManagerNotFoundError,
@@ -244,6 +245,21 @@ async def ticket_not_resolved_handler(
     logger.error(
         "Ticket not resolved error (%s) for %s %s",
         type(exc).__name__, request.method, request.url.path,
+    )
+    return JSONResponse(
+        status_code=status.HTTP_409_CONFLICT,
+        content={"detail": exc.message},
+    )
+
+
+async def invalid_ticket_status_transition_handler(
+    request: Request, exc: InvalidTicketStatusTransitionError
+) -> JSONResponse:
+    """Handle a ticket status transition rejected by the workflow."""
+    logger.info(
+        "Invalid ticket status transition for %s %s",
+        request.method,
+        request.url.path,
     )
     return JSONResponse(
         status_code=status.HTTP_409_CONFLICT,

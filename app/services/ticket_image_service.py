@@ -5,6 +5,7 @@ from app.exceptions.custom_exceptions import (
     ImageCreationError,
     ImageDeletionError,
     ImageNotFoundError,
+    ImageStorageError,
     PermissionDeniedError,
     TicketImageUploadNotAllowedError,
 )
@@ -83,8 +84,11 @@ class TicketImageService:
         ):
             raise PermissionDeniedError
 
-        await delete_image(image.file_path)
         try:
             await self.image_repository.delete_image(image)
         except SQLAlchemyError as exc:
+            raise ImageDeletionError from exc
+        try:
+            await delete_image(image.file_path)
+        except ImageStorageError as exc:
             raise ImageDeletionError from exc

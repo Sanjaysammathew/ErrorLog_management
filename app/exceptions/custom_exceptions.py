@@ -99,6 +99,12 @@ class TicketNotResolvedError(AppError):
     default_message = "Only resolved tickets can be closed"
 
 
+class InvalidTicketStatusTransitionError(AppError):
+    """Represent a ticket status change that is not allowed by its workflow."""
+
+    default_message = "This ticket status transition is not allowed"
+
+
 class ApprovalAlreadyDecidedError(AppError):
     """Represent an approval request that already has a decision.
 

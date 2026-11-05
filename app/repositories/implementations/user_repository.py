@@ -42,7 +42,9 @@ class UserRepository(UserInterface):
 
             This supports workflows that need to locate a role holder.
         """
-        result = await self.db.execute(select(user).where(user.role == role))
+        result = await self.db.execute(
+            select(user).where(user.role == role, user.is_active.is_(True))
+        )
         return result.scalars().first()
 
     async def create(self, new_user: user) -> user:

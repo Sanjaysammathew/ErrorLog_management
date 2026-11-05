@@ -22,8 +22,12 @@ class AuthService:
             Inactive accounts and incorrect credentials cannot obtain tokens.
         """
         current_user = await self.user_repository.get_by_username_or_email(login, login)
-        if current_user is None or not verify_password(
-            password, current_user.hashed_password
+        if (
+            current_user is None
+            or not current_user.is_active
+            or not verify_password(
+                password, current_user.hashed_password
+            )
         ):
             raise InvalidCredentialsError
 

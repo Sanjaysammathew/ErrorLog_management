@@ -1,3 +1,4 @@
+import logging
 from datetime import UTC, datetime, timedelta
 
 from sqlalchemy.exc import SQLAlchemyError
@@ -7,6 +8,8 @@ from app.exceptions.custom_exceptions import (
     AppError,
     CategoryAlreadyExistsError,
     CategoryNotFoundError,
+    EmailDeliveryError,
+    InvalidTicketStatusTransitionError,
     ManagerNotFoundError,
     PermissionDeniedError,
     TicketCreationError,
@@ -30,6 +33,8 @@ from app.schemas.error_ticketSchema import (
 from app.scripts.ticket_number import generate_ticket_number
 from app.services.email_service import EmailService
 
+logger = logging.getLogger(__name__)
+
 
 class TicketService:
     """Apply business rules for ticket operations.
@@ -44,6 +49,14 @@ class TicketService:
         ("network", 8),
         ("keyboard", 2),
     )
+    ALLOWED_STATUS_TRANSITIONS = {
+        TicketStatus.PENDING_APPROVAL: set(),
+        TicketStatus.OPEN: {TicketStatus.IN_PROGRESS, TicketStatus.RESOLVED},
+        TicketStatus.IN_PROGRESS: {TicketStatus.OPEN, TicketStatus.RESOLVED},
+        TicketStatus.RESOLVED: set(),
+        TicketStatus.REJECTED: set(),
+        TicketStatus.CLOSED: set(),
+    }
 
     @classmethod
     def _requires_approval(cls, ticket_data: TicketCreate) -> bool:
@@ -155,6 +168,11 @@ class TicketService:
                 await db.rollback()
                 raise ManagerNotFoundError
 
+        assigned_admin = await self.user_repository.get_by_role(UserRole.ADMIN)
+        if assigned_admin is None:
+            await db.rollback()
+            raise TicketCreationError("No active administrator is available")
+
         try:
             ticket = ErrorTickets(
                 title=ticket_data.title,
@@ -162,7 +180,7 @@ class TicketService:
                 priority=ticket_data.priority.value,
                 category_id=category.id,
                 user_id=current_user.id,
-                assigned_admin_id=1,
+                assigned_admin_id=assigned_admin.id,
                 status=initial_status,
                 requires_approval=requires_approval,
                 due_at=due_at,
@@ -192,7 +210,13 @@ class TicketService:
 
             await self.ticket_repository.commit()
             await db.refresh(ticket, ["category", "created_by_user", "assigned_admin"])
-            await self.email_service.send_ticket_created(ticket)
+            try:
+                await self.email_service.send_ticket_created(ticket)
+            except EmailDeliveryError:
+                logger.exception(
+                    "Ticket %s was created, but its notification email failed",
+                    ticket.ticket_number,
+                )
             return ticket
         except AppError:
             await db.rollback()
@@ -290,6 +314,14 @@ class TicketService:
         if ticket is None:
             raise TicketNotFoundError
         old_status = ticket.status
+        try:
+            current_status = TicketStatus(old_status)
+        except ValueError as exc:
+            raise InvalidTicketStatusTransitionError from exc
+        if new_status not in self.ALLOWED_STATUS_TRANSITIONS[current_status]:
+            raise InvalidTicketStatusTransitionError(
+                f"Cannot change a ticket from {old_status} to {new_status.value}"
+            )
         ticket.status = new_status.value
         ticket.updated_at = datetime.now(UTC).replace(tzinfo=None)
         history = TicketStatusHistory(
