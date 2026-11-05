@@ -1145,3 +1145,57 @@
 2026-11-04 17:28:19,225 INFO app: Manager seed: exists
 2026-11-04 17:28:19,225 INFO app: Application started
 2026-11-04 17:28:19,231 INFO app: Application stopped
+2026-11-05 10:17:30,753 INFO app: Admin seed: exists
+2026-11-05 10:17:30,753 INFO app: Manager seed: exists
+2026-11-05 10:17:30,753 INFO app: Application started
+2026-11-05 10:32:53,051 INFO app: Application stopped
+2026-11-05 10:32:56,278 INFO app: Admin seed: exists
+2026-11-05 10:32:56,278 INFO app: Manager seed: exists
+2026-11-05 10:32:56,278 INFO app: Application started
+2026-11-05 10:32:57,604 INFO app: Application stopped
+2026-11-05 10:33:02,099 INFO app: Admin seed: exists
+2026-11-05 10:33:02,099 INFO app: Manager seed: exists
+2026-11-05 10:33:02,099 INFO app: Application started
+2026-11-05 10:33:18,558 INFO app.middleware.request_logging: Request started: GET / | Correlation ID: 9efab5b0-e73f-4fce-873c-dfb9012e0cc6
+2026-11-05 10:33:18,600 INFO app.middleware.request_logging: Request completed: GET / | Status: 404 | Time: 0.0427 seconds | Correlation ID: 9efab5b0-e73f-4fce-873c-dfb9012e0cc6
+2026-11-05 10:33:19,306 INFO app.middleware.request_logging: Request started: GET / | Correlation ID: d3ff3b8f-951b-4dbf-b547-1a6d3ca1ac44
+2026-11-05 10:33:19,307 INFO app.middleware.request_logging: Request completed: GET / | Status: 404 | Time: 0.0011 seconds | Correlation ID: d3ff3b8f-951b-4dbf-b547-1a6d3ca1ac44
+2026-11-05 10:33:19,374 INFO app.middleware.request_logging: Request started: GET /favicon.ico | Correlation ID: ecbbad36-807c-456b-a98e-8ba9ef66b926
+2026-11-05 10:33:19,376 INFO app.middleware.request_logging: Request completed: GET /favicon.ico | Status: 404 | Time: 0.0013 seconds | Correlation ID: ecbbad36-807c-456b-a98e-8ba9ef66b926
+2026-11-05 10:33:22,922 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: f71c1a46-b683-4edf-9ee1-d1ee6245b59c
+2026-11-05 10:33:22,923 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0008 seconds | Correlation ID: f71c1a46-b683-4edf-9ee1-d1ee6245b59c
+2026-11-05 10:33:23,049 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: b60b0b58-9549-499d-b1b9-8079952ea0c6
+2026-11-05 10:33:23,194 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.1456 seconds | Correlation ID: b60b0b58-9549-499d-b1b9-8079952ea0c6
+2026-11-05 10:43:02,556 INFO app: Application stopped
+2026-11-05 10:44:26,056 INFO app: Admin seed: exists
+2026-11-05 10:44:26,056 INFO app: Manager seed: exists
+2026-11-05 10:44:26,056 INFO app: Application started
+2026-11-05 10:44:26,188 INFO app: Application stopped
+2026-11-05 10:44:30,896 INFO app: Admin seed: exists
+2026-11-05 10:44:30,896 INFO app: Manager seed: exists
+2026-11-05 10:44:30,897 INFO app: Application started
+2026-11-05 10:47:26,355 INFO app: Application stopped
+2026-11-05 10:47:31,510 INFO app: Admin seed: exists
+2026-11-05 10:47:31,511 INFO app: Manager seed: exists
+2026-11-05 10:47:31,511 INFO app: Application started
+2026-11-05 10:52:40,635 INFO app: Application stopped
+2026-11-05 10:52:45,781 INFO app: Admin seed: exists
+2026-11-05 10:52:45,781 INFO app: Manager seed: exists
+2026-11-05 10:52:45,781 INFO app: Application started
+2026-11-05 10:52:47,973 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: 83fd47aa-1244-4f7e-85bc-f4c94a77e8a1
+2026-11-05 10:52:47,974 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0010 seconds | Correlation ID: 83fd47aa-1244-4f7e-85bc-f4c94a77e8a1
+2026-11-05 10:52:48,076 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: 0048fbd0-417f-4633-bbd4-040f049154bd
+2026-11-05 10:52:48,246 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.1699 seconds | Correlation ID: 0048fbd0-417f-4633-bbd4-040f049154bd
+2026-11-05 10:55:26,045 INFO app: Application stopped
+2026-11-05 10:55:30,543 INFO app: Admin seed: exists
+2026-11-05 10:55:30,543 INFO app: Manager seed: exists
+2026-11-05 10:55:30,543 INFO app: Application started
+2026-11-05 10:57:07,649 INFO app: Application stopped
+2026-11-05 10:57:12,179 INFO app: Admin seed: exists
+2026-11-05 10:57:12,180 INFO app: Manager seed: exists
+2026-11-05 10:57:12,180 INFO app: Application started
+2026-11-05 11:01:26,144 INFO app.middleware.request_logging: Request started: GET /docs | Correlation ID: 24f8b4be-73f5-4d50-b35a-9fd0c07b690c
+2026-11-05 11:01:26,145 INFO app.middleware.request_logging: Request completed: GET /docs | Status: 200 | Time: 0.0008 seconds | Correlation ID: 24f8b4be-73f5-4d50-b35a-9fd0c07b690c
+2026-11-05 11:01:26,216 INFO app.middleware.request_logging: Request started: GET /openapi.json | Correlation ID: 6aaa8215-72df-473c-bb07-c9f24b0e2227
+2026-11-05 11:01:26,459 INFO app.middleware.request_logging: Request completed: GET /openapi.json | Status: 200 | Time: 0.2430 seconds | Correlation ID: 6aaa8215-72df-473c-bb07-c9f24b0e2227
+2026-11-05 11:03:00,483 INFO app: Application stopped

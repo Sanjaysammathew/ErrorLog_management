@@ -14,4 +14,10 @@ async def get_history(
     service: HistoryService = Depends(get_history_service),
     current_user: user = Depends(get_current_user),
 ) -> list[StatusHistoryResponse]:
+    """
+    Retrieve the chronological status changes recorded for a ticket.
+
+    The authenticated user's access to the ticket is checked by the service.
+    Return each recorded status change as a history entry.
+    """
     return await service.get_history(ticket_id, current_user)

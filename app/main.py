@@ -37,6 +37,13 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION,
+    description=(
+        "A role-based error ticket management API for reporting, tracking, and "
+        "resolving application and network issues. It supports ticket "
+        "categorization, attachments, remarks, status history, approvals, "
+        "overdue-ticket monitoring, and user administration for administrators, "
+        "managers, and employees."
+    ),
     lifespan=lifespan,
 )
 app.middleware("http")(log_requests)
