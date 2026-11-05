@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 
 from app.api.dependency.dependencies import get_user_service, require_roles
 from app.models.user import UserRole, user
@@ -44,14 +44,41 @@ async def list_users(
     return await user_service.list_users(page, page_size)
 
 
-@router.get("/{user_id}", response_model=UserResponse)
+@router.get("/lookup", response_model=UserResponse)
 async def get_user(
+    user_id: int | None = Query(
+        default=None,
+        description=" user ID used to identify the account.",
+    ),
+    email: str | None = Query(
+        default=None,
+        description=" email address used to identify the account.",
+    ),
+    user_service: UserService = Depends(get_user_service),
+    _: user = Depends(require_roles(UserRole.ADMIN)),
+) -> user:
+    """
+    Retrieve one user profile by either user ID or email address.
+
+    Only administrators can access this endpoint; provide at least one query
+    parameter and receive the matching user's account details.
+    """
+    if user_id is None and email is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Provide either user_id or email.",
+        )
+    return await user_service.get_user(user_id, email)
+
+
+@router.get("/{user_id}", response_model=UserResponse)
+async def get_user_by_id(
     user_id: int,
     user_service: UserService = Depends(get_user_service),
     _: user = Depends(require_roles(UserRole.ADMIN)),
 ) -> user:
     """
-    Retrieve the profile of one user by account ID.
+    Retrieve one user profile by account ID.
 
     Only administrators can access this endpoint. Return the user's account
     details, or an error if no account exists for the supplied ID.

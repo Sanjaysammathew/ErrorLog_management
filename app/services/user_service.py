@@ -56,8 +56,15 @@ class UserService:
             "page_size": page_size,
         }
 
-    async def get_user(self, user_id: int) -> user:
-        existing_user = await self.user_repository.get_by_id(user_id)
+    async def get_user(
+        self, user_id: int | None = None, email: str | None = None
+    ) -> user:
+        if email is not None:
+            existing_user = await self.user_repository.get_by_email(email)
+        elif user_id is not None:
+            existing_user = await self.user_repository.get_by_id(user_id)
+        else:
+            raise ValueError("Either user_id or email must be provided.")
         if existing_user is None:
             raise UserNotFoundError
         return existing_user
