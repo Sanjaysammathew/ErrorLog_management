@@ -42,8 +42,9 @@ class ApprovalStatus(str, PyEnum):
 class user(Base):
     """Represent a user account in the application.
 
-        The model stores account identity, role, and activation information.
+    The model stores account identity, role, and activation information.
     """
+
     __tablename__ = "users"
     __table_args__ = (
         Index("ix_users_role", "role"),
@@ -76,9 +77,7 @@ class user(Base):
     manager: Mapped[Optional["user"]] = relationship(
         "user", remote_side=[id], back_populates="subordinates"
     )
-    subordinates: Mapped[list["user"]] = relationship(
-        "user", back_populates="manager"
-    )
+    subordinates: Mapped[list["user"]] = relationship("user", back_populates="manager")
     ticket_created: Mapped[list["ErrorTickets"]] = relationship(
         "ErrorTickets",
         foreign_keys="ErrorTickets.user_id",
@@ -100,7 +99,4 @@ class user(Base):
     )
     ticket_images_uploaded: Mapped[list["TicketImage"]] = relationship(
         "TicketImage", back_populates="uploaded_by"
-    )
-    remarks: Mapped[list["TicketRemark"]] = relationship(
-        "TicketRemark", back_populates="user"
     )
