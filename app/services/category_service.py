@@ -4,7 +4,7 @@ from app.exceptions.custom_exceptions import (
 )
 from app.models.ErrorCategory import ErrorCategory
 from app.repositories.interfaces.category_interface import CategoryInterface
-from app.schemas.error_categorySchema import CategoryCreate, CategoryUpdate
+from app.schemas.error_categorySchema import CategoryUpdate
 
 
 class CategoryService:
@@ -18,27 +18,6 @@ class CategoryService:
             These dependencies provide the business logic with data access and related services.
         """
         self.category_repository = category_repository
-
-    async def create_category(self, category_data: CategoryCreate) -> ErrorCategory:
-        """Create and persist a ticket category.
-
-            The service checks category rules before saving the new record.
-        """
-        existing_category = await self.category_repository.get_by_name(
-            category_data.name
-        )
-        if existing_category is not None:
-            raise CategoryAlreadyExistsError
-
-        category = ErrorCategory(
-            name=category_data.name,
-            issue_type=category_data.issue_type,
-            description=category_data.description,
-            default_sla_hours=category_data.default_sla_hours,
-            requires_approval_default=category_data.requires_approval_default,
-            is_active=True,
-        )
-        return await self.category_repository.create(category)
 
     async def get_all_categories(self) -> list[ErrorCategory]:
         """Retrieve the available ticket categories.
